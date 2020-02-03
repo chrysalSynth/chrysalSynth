@@ -1,5 +1,6 @@
 * {
     background-color: black;
+    color: white;
 }
 
 /* The switch - the box around the slider */
@@ -8,6 +9,8 @@
     display: inline-block;
     width: 46px;
     height: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
   
   /* Hide default HTML checkbox */
@@ -43,11 +46,11 @@
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: rgb(33, 177, 33);
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px rgb(33, 177, 33);
   }
   
   input:checked + .slider:before {
@@ -80,10 +83,24 @@
     position: fixed;
     bottom: 0;
     text-align: center;
-    margin-bottom: 10px;
-    margin: auto;
+    margin-bottom: 80px;
+  
 }
 
 img {
     width: 80%;
+}
+
+p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#soundSwitches {
+    display: flex;
+    justify-content: left;
+}
+#ui {
+    display: flex;
+    justify-content: left;
 }
