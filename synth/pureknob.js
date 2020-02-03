@@ -1111,10 +1111,34 @@ resonanceKnob.setProperty('colorFG', '#88ff88');
 resonanceKnob.setProperty('trackWidth', 0.4);
 resonanceKnob.setProperty('valMin', 0);
 resonanceKnob.setProperty('valMax', 100);
-resonanceKnob.setProperty('valMax', 100);
+resonanceKnob.setProperty('label', 'Resonance');
 var node = resonanceKnob.node();
 var elem = document.getElementById('resonance');
 elem.appendChild(node);
+
+var cutOffKnob = pureknob.createKnob(75, 75);
+cutOffKnob.setProperty('angleStart', -0.75 * Math.PI);
+cutOffKnob.setProperty('angleEnd', 0.75 * Math.PI);
+cutOffKnob.setProperty('colorFG', '#88ff88');
+cutOffKnob.setProperty('trackWidth', 0.4);
+cutOffKnob.setProperty('valMin', 0);
+cutOffKnob.setProperty('valMax', 100);
+cutOffKnob.setProperty('label', 'Cut Off');
+var node2 = cutOffKnob.node();
+var elem2 = document.getElementById('cutOff');
+elem2.appendChild(node2);
+
+var lfoKnob = pureknob.createKnob(75, 75);
+lfoKnob.setProperty('angleStart', -0.75 * Math.PI);
+lfoKnob.setProperty('angleEnd', 0.75 * Math.PI);
+lfoKnob.setProperty('colorFG', '#88ff88');
+lfoKnob.setProperty('trackWidth', 0.4);
+lfoKnob.setProperty('valMin', 0);
+lfoKnob.setProperty('valMax', 100);
+lfoKnob.setProperty('label', 'LFO');
+var node3 = lfoKnob.node();
+var elem3 = document.getElementById('lfo');
+elem3.appendChild(node3);
 
 
 
