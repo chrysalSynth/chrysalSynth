@@ -28,8 +28,6 @@
     visibility: hidden;
     opacity: 0;
   
-    /* transition effect. not necessary */
-    transition: opacity .2s, visibility .2s;
   }
 
   .img-wrap:hover .img-description {
