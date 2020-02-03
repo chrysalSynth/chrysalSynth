@@ -1,12 +1,66 @@
-* {
-    background-color: black;
-    color: white;
-}
-
-header {
-    text-align: left;
-}
-
 body {
+    background-image: url(https://media.giphy.com/media/e331cVEDmOAco/giphy.gif);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+h1 {
+    font-size: 290%;
+    font-family: fantasy;
+    font-style: oblique;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    color: rgba(241, 238, 238, 0.74);
+}
+
+h4 {
+    font-size: 150%;
+    font-family: fantasy;
+    color: rgba(241, 238, 238, 0.74);
+}
+
+button {
+    color: rgb(255, 255, 255); 
+    font-size: 15px; 
+    line-height: 10px; 
+    padding: 6px; 
+    border-radius: 100px; 
+    font-family: Georgia, serif; 
+    font-weight: normal; 
+    text-decoration: none; 
+    font-style: italic; 
+    font-variant: normal; 
+    text-transform: capitalize; 
+    background-image: radial-gradient(at center center, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%); 
+    box-shadow: rgba(255, 255, 255, 0.58) 0px 0px 19px 8px; 
+    border: 0px solid rgba(0, 0, 0, 0.192); 
+    display: inline-block;
+}
+
+Button:hover {
+    background: #000000; 
+}
+
+Button:active {
+    background: #000000; 
+}
+
+
+p {
+    font: small-caption;
+}
+
+div {
     text-align: center;
+    margin-top: 20vh;
+    color: white;
+    opacity: 89%;
+}
+
+a {
+    color: rgba(241, 238, 238, 0.74);
+}
+
+label {
+    font-size: 175%;
 }
