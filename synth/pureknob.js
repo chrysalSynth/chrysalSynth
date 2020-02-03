@@ -1112,6 +1112,7 @@ resonanceKnob.setProperty('trackWidth', 0.4);
 resonanceKnob.setProperty('valMin', 0);
 resonanceKnob.setProperty('valMax', 100);
 resonanceKnob.setProperty('label', 'Resonance');
+resonanceKnob.setProperty('textScale', 1);
 var node = resonanceKnob.node();
 var elem = document.getElementById('resonance');
 elem.appendChild(node);

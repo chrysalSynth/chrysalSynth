@@ -92,8 +92,11 @@ img {
 }
 
 p {
-    margin-bottom: 0;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    margin-left: 20px;
     margin-top: 0;
+    text-align: right;
 }
 
 #soundSwitches {
@@ -107,4 +110,10 @@ p {
 .filterKnobs {
     margin-top: 5px;
     margin-left: 15px;
+}
+
+#visualizer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
