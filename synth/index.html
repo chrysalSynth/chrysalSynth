@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="synth.css">
     <title>Welcome to ChrysalSynth...</title>
 </head>
@@ -38,30 +39,49 @@
                     <input id="sliderInput" type="range" min="1" max="100" value="50">
                 </div>
             </div>
-               <div id="soundSwitchName">
-                   <p>Sine:</p>
-                   <p>Square:</p>
-                   <p>Triangle:</p>
-                   <p>Sawtooth:</p>
-               </div>
-               <div id="soundSwitchButtons">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label><br>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label><br>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label><br>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label><br>
-               </div>
+               <div id="soundSwitch">
+                   <div class="soundSwitches" id="sine">
+                       <span><p>Sine:</p></span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                    </div>
+                    <div class="soundSwitches" id="square">
+                        <span><p>Sine:</p></span>
+                             <label class="switch">
+                                 <input type="checkbox">
+                                 <span class="slider round"></span>
+                             </label>
+                     </div>
+                     <div class="soundSwitches" id="triangle">
+                        <span><p>Sine:</p></span>
+                             <label class="switch">
+                                 <input type="checkbox">
+                                 <span class="slider round"></span>
+                             </label>
+                     </div>
+                     <div class="soundSwitches" id="sawtooth">
+                       <span><p>Sine:</p></span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                     </div>
+                </div>
+               
+               <div>
+                    <div id="saveButtonDiv">
+                        <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
+                    <button class="saveButton" type="button" id="saveButton">SAVE</button><br><br>
+                    </div>
+                    <select name="savedSession">
+                        <option value="Recording1">Recording1</option>
+                        <option value="Recording2">Recording2</option>
+                        <option value="Recording3">Recording3</option>
+                        <option value="Recording4">Recording4</option>
+                    </select>
+                </div>
             </div>
         </div>   
     </div>
