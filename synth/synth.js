@@ -8,6 +8,7 @@ var activeNotes = []; // the stack of actively-pressed keys
 let midiObject = {}; //midi event to store
 let keyObject = {}; //keyboard event to store
 let musicalLayer = []; //collection of musical events to store
+let layerToStore = [];
 let contextPlayback = null;
 let oscillatorPlayback = null;
 let envelopePlayback = null;
@@ -19,8 +20,10 @@ let recordStartTime = null;
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
+const recordSaveButton = document.getElementById('saveButton');
+const recordNameInput = document.getElementById('saveSession');
 // const recordStopButton = document.getElementById('record-stop');
-const recordPlayButton = document.getElementById('record-play');
+// const recordPlayButton = document.getElementById('record-play');
 
 // DOM SYNTH CONTROLS
 const waveformControl = document.getElementById('waveform');
@@ -29,7 +32,7 @@ const gainControl = document.getElementById('gain');
 const frequencyControlLP = document.getElementById('filterFrequencyLP');
 const frequencyControlHP = document.getElementById('filterFrequencyHP');
 const frequencyControlBP = document.getElementById('filterFrequencyBP');
-const lfoControl = document.getElementById('lfoValue');
+// const lfoControl = document.getElementById('lfoValue');
 
 
 
@@ -81,39 +84,40 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   
     //CONNECTIONS
-    gain.connect(filterLP);
-    filterLP.connect(filterHP);
-    filterHP.connect(filterBP);
-    filterBP.connect(myOscilloscope);
+    gain.connect(myOscilloscope);
+    // filterLP.connect(filterHP);
+    // filterHP.connect(filterBP);
+    // filterBP.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
   
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
     waveformControl.addEventListener('change', function(event) {
         waveform = event.target.value;
+        console.log(waveform);
     });
   
-    gainControl.addEventListener('change', function(event) {
+    gainControl.addEventListener('mousemove', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlLP.addEventListener('change', function(event) {
+    frequencyControlLP.addEventListener('mousemove', function(event) {
         filterLP.type = 'lowpass';
         filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlHP.addEventListener('change', function(event) {
+    frequencyControlHP.addEventListener('mousemove', function(event) {
         filterHP.type = 'highpass';
         filterHP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlBP.addEventListener('change', function(event) {
+    frequencyControlBP.addEventListener('mousemove', function(event) {
         filterBP.type = 'bandpass';
         filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    lfoControl.addEventListener('change', function(event) {
-        lfo.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    });
+    // lfoControl.addEventListener('change', function(event) {
+    //     // lfo.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    // });
   
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
     window.addEventListener('keydown', keyDown, false);
@@ -123,17 +127,16 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //KEYBOARD && THAT KEY IS NOT CURRENTLY ACTIVE
     function keyDown(event) {
         const key = (event.detail || event.which).toString();
-
-        keyObject = {
-            note_switch: 144,
-            note_name: keyboardFrequencyMap[key],
-            note_velocity: 127,
-            note_time: audioCtx.currentTime - recordStartTime
-        };
-        storingMusic(keyObject);
-
         if (keyboardFrequencyMap[key] && !activeOscillators[key]) {
             playNote(key);
+
+            keyObject = {
+                note_switch: 144,
+                note_name: keyboardFrequencyMap[key],
+                note_velocity: 127,
+                note_time: audioCtx.currentTime - recordStartTime
+            };
+            storingMusic(keyObject);
         }
     }
   
@@ -252,16 +255,29 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //RECORDING
 
     recordStartButton.addEventListener('click', () => {
-        musicalLayer = [];
-        recordStartTime = audioCtx.currentTime;
+        if (recordStartButton.checked) {
+            musicalLayer = [];
+            recordStartTime = audioCtx.currentTime;
+        } else if (!recordStartButton.checked) {
+            layerToStore = musicalLayer.slice();
+        }
     });
     
     function storingMusic(musicObject) {
         musicalLayer.push(musicObject);
-        console.log(musicalLayer);
+        // console.log(musicalLayer);
     }
 
+    function saveSong(name, id, layerToStore) {
+        this.name = name;
+        this.id = id;
+        this.song = layerToStore;
+    }
 
+    recordSaveButton.addEventListener('click', () => {
+        const newSong = new saveSong(recordNameInput.value.toString(), recordNameInput.value.toString(), layerToStore);
+        console.log(newSong);
+    });
 
 
     //PLAYBACK
