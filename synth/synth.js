@@ -12,7 +12,7 @@ let waveform = 'sawtooth';
 
 window.addEventListener('click', function() {
   // patch up prefixes
-    window.AudioContext=window.AudioContext||window.webkitAudioContext;
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
     context = new AudioContext();
     if (navigator.requestMIDIAccess)
@@ -66,8 +66,8 @@ function MIDIMessageEventHandler(event) {
     console.log(noteOn(event.data[1]));
 }
 
-function frequencyFromNoteNumber( note ) {
-    return 440 * Math.pow(2,(note-69)/12);
+function frequencyFromNoteNumber(note) {
+    return 440 * Math.pow(2, (note - 69) / 12);
 }
 
 function noteOn(noteNumber) {
@@ -92,18 +92,14 @@ function noteOff(noteNumber) {
     }
 }
 
-
-
 //KEYBOARD STUFF
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function(event) {
     //SET UP AUDIO CONTEXT
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   
     //PROCESSING CHAIN
     const gain = audioCtx.createGain();
     const filter = audioCtx.createBiquadFilter();
-  
-
   
     //OBJECT FOR STORING ACTIVE NOTES
     const activeOscillators = {};
@@ -128,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         '80': 622.253967444161821, //P - D#
         '186': 659.255113825739859,  //; - E
         '219': 698.456462866007768,  //[ - F
-        // '53': 739.988845423268797, //5 - F#
+        '222': 739.988845423268797, //' - F#
         // '84': 783.990871963498588,  //T - G
         // '54': 830.609395159890277, //6 - G#
         // '89': 880.000000000000000,  //Y - A
@@ -141,12 +137,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     filter.connect(audioCtx.destination);
   
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
-    const waveformControl = document.getElementById('waveform')
+    const waveformControl = document.getElementById('waveform');
     waveformControl.addEventListener('change', function(event) {
         waveform = event.target.value;
     });
   
-    const gainControl = document.getElementById('gain')
+    const gainControl = document.getElementById('gain');
     gainControl.addEventListener('change', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
@@ -192,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         activeOscillators[key] = osc;
         activeOscillators[key].connect(gain);
         activeOscillators[key].start();
+        console.log(audioCtx.currentTime);
     }
   
 });
