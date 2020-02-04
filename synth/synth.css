@@ -3,6 +3,10 @@
     color: white;
 }
 
+/* .slidecontainer {
+  width: 100%;
+} */
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
@@ -99,10 +103,26 @@ p {
     text-align: right;
 }
 
+#passfilters {
+    display: flex;
+    justify-content: left;
+    /* height: 200px; */
+}
+
+#sliderInput {
+    /* height: 20px; */
+    width: 200px;
+}
+
+#sliderText {
+    font-size: xx-small;
+}
+
 #soundSwitches {
     display: flex;
     justify-content: left;
 }
+
 #ui {
     display: flex;
     justify-content: left;
