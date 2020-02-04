@@ -40,36 +40,18 @@
                 </div>
             </div>
                <div id="soundSwitch">
-                   <div class="soundSwitches" id="sine">
-                       <span><p>Sine:</p></span>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                    </div>
-                    <div class="soundSwitches" id="square">
-                        <span><p>Sine:</p></span>
-                             <label class="switch">
-                                 <input type="checkbox">
-                                 <span class="slider round"></span>
-                             </label>
-                     </div>
-                     <div class="soundSwitches" id="triangle">
-                        <span><p>Sine:</p></span>
-                             <label class="switch">
-                                 <input type="checkbox">
-                                 <span class="slider round"></span>
-                             </label>
-                     </div>
-                     <div class="soundSwitches" id="sawtooth">
-                       <span><p>Sine:</p></span>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                     </div>
-                </div>
-               
+                   <div>
+                    <select id="savedSession" name="savedSession">
+                        <option value="Recording1">Sine</option>
+                        <option value="Recording2">Square</option>
+                        <option value="Recording3">Triangle</option>
+                        <option value="Recording4">Sawtooth</option>
+                    </select>
+                   </div>
+                   <div id="gainDial">
+                       <input class="gainDial" type="range" min="0" max=100 value="50">
+                   </div>
+               </div>
                <div id="saveLoadDiv">
                     <div id="saveButtonDiv">
                         <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
@@ -100,5 +82,7 @@
     
 </body>
 <script src="pureknob.js"></script>
-<!-- <script src="synth.js"></script> -->
+<script src="synth.js"></script>
+
+
 </html>
