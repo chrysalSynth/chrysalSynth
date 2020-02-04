@@ -2342,10 +2342,10 @@ body .container #recordButton + label:after {
   cursor: pointer;
 }
 body .container #recordButton:checked + label:after {
-  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
-  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
-  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
-  animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
+  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
+  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
+  animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
