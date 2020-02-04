@@ -197,6 +197,11 @@ p {
   border-radius: 50%;
 }
 
+#oscilloscope {
+  width: 600px;
+  height: 300px;
+}
+
 .soundSwitches{
   display: flex;
   justify-content: left;

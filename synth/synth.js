@@ -1,3 +1,6 @@
+//IMPORT OSCILLOSCOPE JS
+import { OScope } from './oscope.js';
+
 var midiAccess = null;  // the MIDIAccess object.
 var portamento = 0;  // portamento/glide speed
 var activeNotes = []; // the stack of actively-pressed keys
@@ -34,6 +37,9 @@ const lfoControl = document.getElementById('lfoValue');
 document.addEventListener('DOMContentLoaded', function(event) {
     //SET UP AUDIO CONTEXT
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    //SETUP OSCILLOSCOPE
+    const myOscilloscope = new OScope(audioCtx, 'oscilloscope');
   
     //PROCESSING CHAIN
     const gain = audioCtx.createGain();
@@ -85,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     gain.connect(filterLP);
     filterLP.connect(filterHP);
     filterHP.connect(filterBP);
-    filterBP.connect(audioCtx.destination);
+    filterBP.connect(myOscilloscope);
+    myOscilloscope.connect(audioCtx.destination);
   
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
     waveformControl.addEventListener('change', function(event) {
