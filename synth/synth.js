@@ -7,6 +7,8 @@ var release = 0.05;   // release speed
 var portamento = 0;  // portamento/glide speed
 var activeNotes = []; // the stack of actively-pressed keys
 
+let activeMusic = false;
+
 let midiObject = {}; //musical event to store
 let musicalLayer = []; //collection of musical events to store
 
@@ -17,26 +19,34 @@ let attackPlayback = 0.05;      // attack speed
 let releasePlayback = 0.05;   // release speed
 let portamentoPlayback = 0;  // portamento/glide speed
 
+let recordStartTime = null;
+
 window.addEventListener('click', function() {
   // patch up prefixes
-    window.AudioContext=window.AudioContext||window.webkitAudioContext;
 
-    context = new AudioContext();
-    if (navigator.requestMIDIAccess)
-        navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject);
-    else
-        alert("No MIDI support present in your browser.  You're gonna have a bad time.");
+    if (!activeMusic) {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-    // set up the basic oscillator chain, muted to begin with.
-    oscillator = context.createOscillator();
-    oscillator.frequency.setValueAtTime(110, 0);
-    envelope = context.createGain();
-    oscillator.connect(envelope);
-    oscillator.type = 'sawtooth';
-    envelope.connect(context.destination);
-    envelope.gain.value = 0.0;  // Mute the sound
-    oscillator.start();  // Go ahead and start up the oscillator
-    context.resume();
+        context = new AudioContext();
+        if (navigator.requestMIDIAccess)
+            navigator.requestMIDIAccess().then(onMIDIInit, onMIDIReject);
+        else
+            alert("No MIDI support present in your browser.  You're gonna have a bad time.");
+
+        // set up the basic oscillator chain, muted to begin with.
+        oscillator = context.createOscillator();
+        oscillator.frequency.setValueAtTime(110, 0);
+        envelope = context.createGain();
+        oscillator.connect(envelope);
+        oscillator.type = 'sawtooth';
+        envelope.connect(context.destination);
+        envelope.gain.value = 0.0;  // Mute the sound
+        oscillator.start();  // Go ahead and start up the oscillator
+        context.resume();
+        activeMusic = true;
+    };
+
+
 });
 
 function onMIDIInit(midi) {
@@ -62,7 +72,7 @@ function MIDIMessageEventHandler(event) {
         note_switch: event.data[0],
         note_name: event.data[1],
         note_velocity: event.data[2],
-        note_time: context.currentTime
+        note_time: context.currentTime - recordStartTime
     };
     storingMusic(midiObject);
     switch (event.data[0] & 0xf0) {
@@ -101,7 +111,7 @@ function noteOff(noteNumber) {
         envelope.gain.setTargetAtTime(0.0, 0, release );
     } else {
         oscillator.frequency.cancelScheduledValues(0);
-        oscillator.frequency.setTargetAtTime(frequencyFromNoteNumber(activeNotes[activeNotes.length-1]), 0, portamento );
+        oscillator.frequency.setTargetAtTime(frequencyFromNoteNumber(activeNotes[activeNotes.length-1]), 0, portamento);
     }
     // console.log(context.currentTime, 'note-off');
 }
@@ -134,8 +144,14 @@ testDiv.appendChild(recordPlayButton);
 
 // setTimeout(() => {playStoredMusic(musicalLayer)}, 10000);
 
-recordStartButton.addEventListener('click', () => {
 
+
+
+
+
+recordStartButton.addEventListener('click', () => {
+    musicalLayer = [];
+    recordStartTime = context.currentTime;
 });
 
 recordPlayButton.addEventListener('click', () => {
@@ -168,7 +184,7 @@ function playStoredMusic(musicalLayer) {
             oscillatorPlayback.frequency.setTargetAtTime(frequencyFromNoteNumber(currentNoteValue.note_name), currentNoteValue.note_time, portamento);
             envelopePlayback.gain.setTargetAtTime(1.0, currentNoteValue.note_time, attackPlayback);
         } else if (currentNoteValue.note_switch === 128) { //note off!
-            envelopePlayback.gain.setTargetAtTime(0, currentNoteValue.note_time, release);
+            envelopePlayback.gain.setTargetAtTime(0, currentNoteValue.note_time, releasePlayback);
         }
     }
 }
