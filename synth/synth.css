@@ -103,19 +103,24 @@ p {
     text-align: right;
 }
 
-#passfilters {
+.passfilters {
     display: flex;
     justify-content: left;
-    /* height: 200px; */
+    /* height: 100px; */
+}
+
+.slideContainer {
+  height: 27.5px;
 }
 
 #sliderInput {
-    /* height: 20px; */
+    height: px;
     width: 200px;
 }
 
 #sliderText {
     font-size: xx-small;
+    height: 3.5px;
 }
 
 #soundSwitches {
