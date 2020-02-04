@@ -149,12 +149,52 @@ p {
 }
 
 #saveButtonDiv {
-    margin-left: 2vw;
-    margin-top: .5vw;
+    margin-left: 2.5vw;
+    margin-top: .7vw;
 }
-#saveButton {
-    height: 2vw;
 
+#saveButton {
+    height: 2.8vw;
+    width: 100px;
+}
+
+#saveSession {
+  height: 2.6vw;
+  width: 16vw;
+  border-width: 2px;
+  /* margin-right: vw; */
+}
+
+/* drop down menu  */
+#savedSession {
+  height: 2.6vw;
+  width: 16.5vw;
+  margin-left: 5.8vw;
+  border-width: 2px;
+}
+
+#saveLoadDiv {
+  /* text-align: center; */
+}
+
+#downloadButton {
+  height: 2.5vw;
+  width: 100px;
+  margin-right: 3.3vw;
+  /* position: relative;
+  right: 27px; */
+}
+
+#downloadButtonDiv {
+  /* margin-left: 4.25vw; */
+}
+
+#avatarContainerImage {
+  height: 2.8vw;
+  width: 2.8vw;
+  margin-left: 2vw;
+  margin-top: .9vw;
+  border-radius: 50%;
 }
 
 .soundSwitches{
@@ -163,3 +203,17 @@ p {
   vertical-align: middle;
   width:10vw
 }
+
+/* #recordButton {
+    width: 35px;
+    height: 35px;
+    font-size: 0;
+    background-color: red;
+    border: 0;
+    border-radius: 35px;
+    margin: 18px;
+    outline: none;
+    height: 4vw;
+    width: 4vw;
+    margin-left: 90vw;
+} */
