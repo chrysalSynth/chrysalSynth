@@ -1134,11 +1134,12 @@ lfoKnob.setProperty('angleStart', -0.75 * Math.PI);
 lfoKnob.setProperty('angleEnd', 0.75 * Math.PI);
 lfoKnob.setProperty('colorFG', '#3EB120');
 lfoKnob.setProperty('trackWidth', 0.4);
-lfoKnob.setProperty('valMin', 0);
-lfoKnob.setProperty('valMax', 100);
+lfoKnob.setProperty('val', 10);
+lfoKnob.setProperty('valMin', 10);
+lfoKnob.setProperty('valMax', 20);
 lfoKnob.setProperty('label', 'LFO');
 var node3 = lfoKnob.node();
-var elem3 = document.getElementById('lfo');
+var elem3 = document.getElementById('lfoValue');
 elem3.appendChild(node3);
 
 
