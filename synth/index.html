@@ -13,16 +13,17 @@
     <div id="visualizer">
         <img src="../assets/visualizer_placeholder.gif">
         <div class="container">
-            <input type="checkbox" id="btn"/>
-            <label for="btn"></label>
+            <input type="checkbox" id="recordButton"/>
+            <label for="recordButton"></label>
             <div class="time">
               <div class="h_m"></div>
               <div class="s_ms"></div>
             </div>
           </div>
     </div>
+    <div id="oscilloscope"></div>
     <div id="piano">
-        <img src="../assets/piano_placeholder.jpg">
+        <!-- <img src="../assets/piano_placeholder.jpg"> -->
         <br><br>
     </div>
     <div class="footer">
@@ -31,26 +32,26 @@
             </div>
             <div class="filterKnobs" id="cutOff">
             </div>
-            <div class="filterKnobs" id="lfo">
+            <div class="filterKnobs" id="lfoValue">
             </div>
             <div id="soundSwitches">
             <div class="passFilters">
                 <div class="slideContainer">
                     <p id="sliderText">Low pass:</p>
-                    <input id="sliderInput" type="range" min="1" max="100" value="50">
+                    <input id="filterFrequencyLP" type="range" min="20.0" max="20000.0" step=".01" value="20000.0">
                 </div>
                 <div class="slideContainer">
                     <p id="sliderText">High pass:</p>
-                    <input id="sliderInput" type="range" min="1" max="100" value="50">
+                    <input id="filterFrequencyHP" type="range" min="0.0" max="1000.0" step=".01" value="50">
                 </div>
                 <div class="slideContainer">
                     <p id="sliderText">Band pass:</p>
-                    <input id="sliderInput" type="range" min="1" max="100" value="50">
+                    <input id="filterFrequencyBP" type="range" min="20.0" max="10000.0" step=".01" value="5000.0">
                 </div>
             </div>
                <div id="soundSwitch">
                    <div>
-                    <select id="savedSession" name="savedSession">
+                    <select id="waveform" name="waveform">
                         <option value="Recording1">Sine</option>
                         <option value="Recording2">Square</option>
                         <option value="Recording3">Triangle</option>
@@ -58,7 +59,7 @@
                     </select>
                    </div>
                    <div id="gainDial">
-                       <input class="gainDial" type="range" min="0" max=100 value="50">
+                       <input id="gain" type="range" min="0" max=1 step=".01" value="1">
                    </div>
                </div>
                <div id="saveLoadDiv">
@@ -91,7 +92,5 @@
     
 </body>
 <script src="pureknob.js"></script>
-<script src="synth.js"></script>
-
-
+<script type="module" src="synth.js"></script>
 </html>
