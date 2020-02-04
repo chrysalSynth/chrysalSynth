@@ -8,7 +8,51 @@
     <title>Welcome to ChrysalSynth...</title>
 </head>
 <body>
+    <div id="visualizer">
+        <img src="../assets/visualizer_placeholder.gif"
+    </div>
+    <div id="piano">
+        <img src="../assets/piano_placeholder.jpg">
+        <br><br>
+    </div>
+    <div class="footer">
+        <div id="ui">
+            <div class="filterKnobs" id="resonance">
+            </div>
+            <div class="filterKnobs" id="cutOff">
+            </div>
+            <div class="filterKnobs" id="lfo">
+            </div>
+            <div id="soundSwitches">
+               <div id="soundSwitchName">
+                   <p>Sine:</p>
+                   <p>Square:</p>
+                   <p>Triangle:</p>
+                   <p>Sawtooth:</p>
+               </div>
+               <div id="soundSwitchButtons">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label><br>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label><br>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label><br>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label><br>
+               </div>
+            </div>
+        </div>   
+    </div>
     
 </body>
-<script src="synth.js"></script>
+<script src="pureknob.js"></script>
+<!-- <script src="synth.js"></script> -->
 </html>
