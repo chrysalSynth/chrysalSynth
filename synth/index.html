@@ -6,15 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="synth.css">
+    <link rel="stylesheet" type="text/css" href="recordbutton.css">
     <title>Welcome to ChrysalSynth...</title>
 </head>
 <body>
     <div id="visualizer">
         <img src="../assets/visualizer_placeholder.gif">
+        <div class="container">
+            <input type="checkbox" id="recordButton"/>
+            <label for="recordButton"></label>
+            <div class="time">
+              <div class="h_m"></div>
+              <div class="s_ms"></div>
+            </div>
+          </div>
     </div>
     <div id="oscilloscope"></div>
     <div id="piano">
-        <img src="../assets/piano_placeholder.jpg">
+        <!-- <img src="../assets/piano_placeholder.jpg"> -->
         <br><br>
     </div>
     <div class="footer">
@@ -50,7 +59,7 @@
                     </select>
                    </div>
                    <div id="gainDial">
-                       <input id="gain" type="range" min="0" max=1 value="1">
+                       <input id="gain" type="range" min="0" max=1 step=".01" value="1">
                    </div>
                </div>
                <div id="saveLoadDiv">
