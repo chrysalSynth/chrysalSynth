@@ -74,7 +74,8 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  border: solid 2px red;
+  border-top: solid 1px grey;
+  /* border: solid 2px red; */
   color: white;
   text-align: center;
 }
