@@ -148,7 +148,7 @@ p {
     margin-bottom: 10vw;
 }
 
-#saveButtonDiv {
+#saveLoadDiv {
     margin-left: 2.5vw;
     margin-top: .7vw;
 }
@@ -169,7 +169,7 @@ p {
 #savedSession {
   height: 2.6vw;
   width: 16.5vw;
-  margin-left: 5.8vw;
+  /* margin-left: 5.8vw; */
   border-width: 2px;
 }
 
@@ -180,7 +180,7 @@ p {
 #downloadButton {
   height: 2.5vw;
   width: 100px;
-  margin-right: 3.3vw;
+  /* margin-right: 3.3vw; */
   /* position: relative;
   right: 27px; */
 }
