@@ -4,7 +4,7 @@
 }
 
 .slidecontainer {
-  height: 3vw
+  height: 3vw;
   width: 100%;
 }
 
@@ -55,7 +55,7 @@
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1vw rgb(33, 177, 33);
+    box-shadow: 0 0 .3vw rgb(33, 177, 33);
   }
   
   input:checked + .slider:before {
@@ -132,8 +132,6 @@ p {
 #soundSwitches {
     display: flex;
 }
-
-
 
 #ui {
     display: flex;
