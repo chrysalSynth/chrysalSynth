@@ -7,11 +7,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="synth.css">
     <link rel="stylesheet" type="text/css" href="recordbutton.css">
+    <link rel="stylesheet" type="text/css" href="play-pause-button.css">
     <title>Welcome to ChrysalSynth...</title>
 </head>
 <body>
     <div id="visualizer">
         <img src="../assets/visualizer_placeholder.gif">
+        <!-- <a href="#" title="" class="play" id="playbutton"></a> -->
         <div class="container">
             <input type="checkbox" id="recordButton"/>
             <label for="recordButton"></label>
@@ -19,7 +21,8 @@
               <div class="h_m"></div>
               <div class="s_ms"></div>
             </div>
-          </div>
+            <a href="#" title="" class="play" id="playbutton"></a>
+        </div>
     </div>
     <div id="oscilloscope"></div>
     <div id="piano">
