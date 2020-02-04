@@ -27,8 +27,6 @@ button {
     font-style: italic; 
     font-variant: normal; 
     text-transform: capitalize; 
-    /* background-image: radial-gradient(at center center, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%); 
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;  */
     border: 0px solid rgba(0, 0, 0, 0); 
     display: inline-block;
 }

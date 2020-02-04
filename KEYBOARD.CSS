@@ -1,0 +1,85 @@
+/* main, nowplaying, or keys */
+
+.nowplaying {
+  font-size: 20px;
+  line-height: 1;
+  color: #eee;
+  text-shadow: 0 0 5rem #028ae9;
+  transition: all .07s ease;
+  min-height: 120px;
+}
+
+.keys {
+  display: block;
+  width: 100%;
+  height: 350px;
+  max-width: 960px;
+  position: relative;
+  margin: 4px auto 0;
+}
+
+.key {
+  position: relative;
+  border: 4px solid black;
+  border-radius: .5rem;
+  transition: all .07s ease;
+  display: block;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+.key:not(.sharp) { 
+  float: left;
+  width: 10%;
+  height: 100%;
+  background: rgba(255, 255, 255, .8);    
+}
+
+.key.sharp {
+  position: absolute;
+  width: 6%;
+  height: 60%;
+  background: #000;
+  color: #eee;
+  top: 0;
+  z-index: 3;
+}
+
+.key[data-key="87"] {
+  left: 7%;
+}
+
+.key[data-key="69"] {
+  left: 17%;
+}
+
+.key[data-key="84"]  {
+  left: 37%;
+}
+
+.key[data-key="89"] {
+  left: 47%;
+}
+
+.key[data-key="85"] {
+  left: 57%;    
+}
+
+.key[data-key="79"] {
+    left: 77%;    
+}
+
+.key[data-key="80"] {
+  left: 87%;    
+}
+
+.key[data-key="222"] {
+  left: 107%;
+}
+
+.playing {
+  transform: scale(.95);
+  border-color: #028ae9;
+  box-shadow: 0 0 1rem #028ae9;
+}
