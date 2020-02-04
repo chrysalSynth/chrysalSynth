@@ -14,26 +14,20 @@ let portamentoPlayback = 0;  // portamento/glide speed
 let recordStartTime = null;
 
 
-// RECORD BUTTONS
-const testDiv = document.getElementById('test-div');
-const recordStartButton = document.createElement('button');
-const recordStopButton = document.createElement('button');
-const recordPlayButton = document.createElement('button');
-recordStartButton.textContent = 'Record Start';
-recordStartButton.style.color = 'red';
-testDiv.appendChild(recordStartButton);
-recordStopButton.textContent = 'Record Stop';
-recordStopButton.style.color = 'red';
-testDiv.appendChild(recordStopButton);
-recordPlayButton.textContent = 'Record PLAY';
-recordPlayButton.style.color = 'red';
-testDiv.appendChild(recordPlayButton);
+// DOM RECORD BUTTONS
+const recordStartButton = document.getElementById('record-start');
+// const recordStopButton = document.getElementById('record-stop');
+const recordPlayButton = document.getElementById('record-play');
 
-const gainControl = document.getElementById('gain');
-const filterTypeControl = document.getElementById('filterType');
-const filterFrequencyControl = document.getElementById('filterFrequency');
+// DOM SYNTH CONTROLS
 const waveformControl = document.getElementById('waveform');
 let waveform = waveformControl.value;
+const gainControl = document.getElementById('gain');
+const frequencyControlLP = document.getElementById('filterFrequencyLP');
+const frequencyControlHP = document.getElementById('filterFrequencyHP');
+const frequencyControlBP = document.getElementById('filterFrequencyBP');
+const lfoControl = document.getElementById('lfoValue');
+
 
 
 //KEYBOARD STUFF
@@ -43,7 +37,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
     //PROCESSING CHAIN
     const gain = audioCtx.createGain();
-    const filter = audioCtx.createBiquadFilter();
+    const filterLP = audioCtx.createBiquadFilter();
+    const filterHP = audioCtx.createBiquadFilter();
+    const filterBP = audioCtx.createBiquadFilter();
   
     //OBJECT FOR STORING ACTIVE NOTES
     const activeOscillators = {};
@@ -75,10 +71,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // '55': 932.327523036179832, //7 - A#
         // '85': 987.766602512248223,  //U - B
     };
+
+    //LFO
+    let lfo = audioCtx.createOscillator();
+    lfo.type = 'square';
+    lfo.frequency.value = 10;
+    let lfoGain = audioCtx.createGain();
+    lfo.connect(lfoGain);   
+    lfo.start();
+    lfoGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
   
     //CONNECTIONS
-    gain.connect(filter);
-    filter.connect(audioCtx.destination);
+    gain.connect(filterLP);
+    filterLP.connect(filterHP);
+    filterHP.connect(filterBP);
+    filterBP.connect(audioCtx.destination);
   
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
     waveformControl.addEventListener('change', function(event) {
@@ -89,12 +96,23 @@ document.addEventListener('DOMContentLoaded', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    filterTypeControl.addEventListener('change', function(event) {
-        filter.type = event.target.value;
+    frequencyControlLP.addEventListener('change', function(event) {
+        filterLP.type = 'lowpass';
+        filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    filterFrequencyControl.addEventListener('change', function(event) {
-        filter.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    frequencyControlHP.addEventListener('change', function(event) {
+        filterHP.type = 'highpass';
+        filterHP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    });
+
+    frequencyControlBP.addEventListener('change', function(event) {
+        filterBP.type = 'bandpass';
+        filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    });
+
+    lfoControl.addEventListener('change', function(event) {
+        lfo.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
   
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
@@ -117,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         if (keyboardFrequencyMap[key] && !activeOscillators[key]) {
             playNote(key);
         }
+        lfoGain.connect(audioCtx.destination);
     }
   
     //STOPS & DELETES OSCILLATOR ON KEY RELEASE IF KEY RELEASED IS ON MUSICAL
@@ -136,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[key].stop();
             delete activeOscillators[key];
         }
+        lfoGain.disconnect(audioCtx.destination);
     }
   
     //HANDLES CREATION & STORING OF OSCILLATORS
@@ -157,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         activeOscillators[noteNumber] = osc;
         activeOscillators[noteNumber].connect(gain);
         activeOscillators[noteNumber].start();
+        lfoGain.connect(audioCtx.destination);
     }
 
     function noteOff(noteNumber) {
@@ -171,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[noteNumber].stop();
             delete activeOscillators[noteNumber];
         }
+        lfoGain.disconnect(audioCtx.destination);
     }
 
     function frequencyFromNoteNumber(note) {

@@ -29,17 +29,40 @@
       step="0.01" value="1.0">
     <br>
     <br>
-    <span>Filter Type: </span>
+    <!-- <span>Filter Type: </span>
     <select id="filterType">
       <option value="lowpass" selected="selected">Lowpass</option>
       <option value="highpass">Highpass</option>
       <option value="bandpass">Bandpass</option>
     </select>
+    <br> -->
+    <span>Low Pass Frequency: </span>
+    <input id="filterFrequencyLP" type="range" min="20.0" max="20000.0"
+      step="0.01" value="20000.0">
     <br>
-    <span>Filter Frequency: </span>
-    <input id="filterFrequency" type="range" min="20.0" max="10000.0"
-      step="0.01" value="1000.0">
     <br>
+    <span>High Pass Frequency: </span>
+    <input id="filterFrequencyHP" type="range" min="0.0" max="10000.0"
+      step="0.01" value="0.0">
+    <br>
+    <br>
+    <span>Band Pass Frequency: </span>
+    <input id="filterFrequencyBP" type="range" min="20.0" max="10000.0"
+      step="0.01" value="5000.0">
+    <br>
+    <br>
+    <span>LFO: </span>
+    <input id="lfoValue" type="range" min="10" max="20"
+      step="0.01" value="10.0">
+    <br>
+    <br>
+
+
+    <button id="record-start">Record Start</button>
+    <br>
+    <button id="record-stop">Record Stop</button>
+    <br>
+    <button id="record-play">Record Play</button>
 
     <script type="module" src="synth.js"></script>
 </body>
