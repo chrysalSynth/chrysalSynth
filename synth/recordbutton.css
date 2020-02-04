@@ -2311,10 +2311,10 @@ body .container {
   height: 170px;
   margin: -85px -85px;
 }
-body .container #btn {
+body .container #recordButton {
   display: none;
 }
-body .container #btn + label:before {
+body .container #recordButton + label:before {
   position: absolute;
   left: 80%;
   top: 91%;
@@ -2329,7 +2329,7 @@ body .container #btn + label:before {
   border: 6px solid #fff;
   cursor: pointer;
 }
-body .container #btn + label:after {
+body .container #recordButton + label:after {
   position: absolute;
   left: 80%;
   top: 91%;
@@ -2341,17 +2341,17 @@ body .container #btn + label:after {
   background: #e80415;
   cursor: pointer;
 }
-body .container #btn:checked + label:after {
-  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
-  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
-  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
-  animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
+body .container #recordButton:checked + label:after {
+  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+  animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
-body .container #btn:checked ~ .time {
+body .container #recordButton:checked ~ .time {
   -webkit-animation: time 0.3s infinite linear;
   -moz-animation: time 0.3s infinite linear;
   -o-animation: time 0.3s infinite linear;
@@ -2362,7 +2362,7 @@ body .container #btn:checked ~ .time {
   animation-fill-mode: forwards;
   animation-delay: 0.3s;
 }
-body .container #btn:checked ~ .time .h_m:after {
+body .container #recordButton:checked ~ .time .h_m:after {
   -webkit-animation: to_24 86400s infinite linear;
   -moz-animation: to_24 86400s infinite linear;
   -o-animation: to_24 86400s infinite linear;
@@ -2370,7 +2370,7 @@ body .container #btn:checked ~ .time .h_m:after {
   -webkit-animation-delay: 1800s;
   animation-delay: 1800s;
 }
-body .container #btn:checked ~ .time .h_m:before {
+body .container #recordButton:checked ~ .time .h_m:before {
   -webkit-animation: to_60 3600s infinite linear;
   -moz-animation: to_60 3600s infinite linear;
   -o-animation: to_60 3600s infinite linear;
@@ -2378,7 +2378,7 @@ body .container #btn:checked ~ .time .h_m:before {
   -webkit-animation-delay: 30s;
   animation-delay: 30s;
 }
-body .container #btn:checked ~ .time .s_ms:before {
+body .container #recordButton:checked ~ .time .s_ms:before {
   -webkit-animation: to_60 60s infinite linear;
   -moz-animation: to_60 60s infinite linear;
   -o-animation: to_60 60s infinite linear;
@@ -2386,7 +2386,7 @@ body .container #btn:checked ~ .time .s_ms:before {
   -webkit-animation-delay: 0.5s;
   animation-delay: 0.5s;
 }
-body .container #btn:checked ~ .time .s_ms:after {
+body .container #recordButton:checked ~ .time .s_ms:after {
   -webkit-animation: to_100 1s infinite linear;
   -moz-animation: to_100 1s infinite linear;
   -o-animation: to_100 1s infinite linear;
