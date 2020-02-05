@@ -78,6 +78,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // '85': 987.766602512248223,  //U - B
     };
 
+    // const userInput = document.querySelector('input:checked');
+    // const userInput = document.getElementById('65');
+    
+    //LFO
+    let lfo = audioCtx.createOscillator();
+    lfo.type = 'square';
+    lfo.frequency.value = 10;
+    let lfoGain = audioCtx.createGain();
+    lfo.connect(lfoGain);   
+    lfo.start();
+    lfoGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+
 
   
     //CONNECTIONS
@@ -154,6 +166,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[key].stop();
             delete activeOscillators[key];
         }
+        lfoGain.disconnect(audioCtx.destination);
+
+        const userInput = document.querySelector('input:active');
     }
   
     //HANDLES CREATION & STORING OF OSCILLATORS
