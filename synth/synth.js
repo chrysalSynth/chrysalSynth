@@ -244,6 +244,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         };
         storingMusic(midiObject);
 
+        console.log(gain);
+
         switch (event.data[0] & 0xf0) {
             case 0x90:
                 if (event.data[2] !== 0) {  // if velocity != 0, this is a note-on message
@@ -310,6 +312,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         contextPlayback = new AudioContext();
         const activeOscillatorsPlayback = {};
+        const playbackMultiplier = 1;
     
     
         for (let i = 0; i < musicalLayer.length; i++){
@@ -327,13 +330,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 envelopePlayback.connect(contextPlayback.destination);
                 envelopePlayback.gain.value = 0.0;
 
-                oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time);
-                envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time);
+                oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time * (1 / playbackMultiplier));
+                envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time * (1 / playbackMultiplier));
             } else if (currentNoteValue.note_switch === 128) { //note off!      
 
                 const oscillatorPlayback = activeOscillatorsPlayback[currentNoteValue.note_name];
-                oscillatorPlayback.frequency.setValueAtTime(0, currentNoteValue.note_time);
-                envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time);              
+                oscillatorPlayback.frequency.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));
+                envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));              
             }
         }
     }
