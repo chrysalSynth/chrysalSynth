@@ -165,11 +165,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[key].stop();
             delete activeOscillators[key];
         }
-        lfoGain.disconnect(audioCtx.destination);
-
-        const userInput = document.querySelector('input:active');
-    }
+        lfoGain.disconnect(audioCtx.destination);    
   
+        
     //HANDLES CREATION & STORING OF OSCILLATORS
     function playNote(key) {
         const osc = audioCtx.createOscillator();
