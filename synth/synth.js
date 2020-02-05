@@ -49,6 +49,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const filterLP = audioCtx.createBiquadFilter();
     const filterHP = audioCtx.createBiquadFilter();
     const filterBP = audioCtx.createBiquadFilter();
+
+    //COMPRESSOR
+    const compressor = audioCtx.createDynamicsCompressor();
+    compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+    compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+    compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+    compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+    compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
   
     //OBJECT FOR STORING ACTIVE NOTES
     const activeOscillators = {};
@@ -83,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
     //CONNECTIONS
     gain.connect(filterLP);
-    filterLP.connect(myOscilloscope);
+    filterLP.connect(compressor);
+    compressor.connect(myOscilloscope);
     // filterHP.connect(filterBP);
     // filterBP.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
