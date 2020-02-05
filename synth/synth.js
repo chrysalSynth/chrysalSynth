@@ -20,7 +20,7 @@ getUserFromLS();
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
-const recordKeyPress = document.getElementById('recordButton');
+// const recordKeyPress = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
 const savedSessions = document.getElementById('savedSession');
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             }
         }
 
-        localStorage.setItem('userAccount', JSON.stringify(userAccounts));
+        localStorage.setItem('userAccounts', JSON.stringify(userAccounts));
         updateSongs();
     });
 
@@ -390,7 +390,7 @@ function updateSongs() {
 
 function getUserFromLS() {
     const user = localStorage.getItem('currentUser');
-    userAccounts = JSON.parse(localStorage.getItem('userAccount'));
+    userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
 
     for (let i = 0; i < userAccounts.length; i++) {
         if (user === userAccounts[i].name) {
