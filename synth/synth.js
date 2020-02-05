@@ -16,6 +16,9 @@ let releasePlayback = 0.05;   // release speed
 let portamentoPlayback = 0;  // portamento/glide speed
 let recordStartTime = null;
 
+const userInfo = localStorage.getItem('userAccount');
+const userInfoParsed = JSON.parse(userInfo);
+console.log(userInfoParsed);
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
