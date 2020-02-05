@@ -89,7 +89,10 @@
     bottom: 0;
     text-align: center;
     margin-bottom: 7vw;
-  
+    top: 75%;
+    left: 25%;
+    margin-top: -100px; /* Negative half of height. */
+    margin-left: -20px; /* Negative half of width. */
 }
 
 img {
@@ -189,17 +192,20 @@ p {
   /* margin-left: 4.25vw; */
 }
 
-#avatarContainerImage {
-  height: 2.8vw;
-  width: 2.8vw;
-  margin-left: 2vw;
-  margin-top: .9vw;
-  border-radius: 50%;
+#playbutton {
+  /* height: 2.8vw;
+  width: 2.8vw; */
+  margin-left: 5vw;
+  margin-top: 1.5vw;
+  /* border-radius: 50%; */
 }
 
 #oscilloscope {
+  position: fixed;
   width: 600px;
   height: 300px;
+  top: 25%;
+  right: 75%;
 }
 
 .soundSwitches{
