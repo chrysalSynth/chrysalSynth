@@ -18,7 +18,7 @@ let recordStartTime = null;
 
 
 // DOM RECORD BUTTONS
-const recordStartButton = document.getElementById('record-start');
+const recordStartButton = document.getElementById('recordButton');
 // const recordStopButton = document.getElementById('record-stop');
 const recordPlayButton = document.getElementById('record-play');
 
@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     lfo.connect(lfoGain);   
     lfo.start();
     lfoGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+
+
   
     //CONNECTIONS
     gain.connect(filterLP);
@@ -145,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         if (keyboardFrequencyMap[key] && !activeOscillators[key]) {
             playNote(key);
         }
-        lfoGain.connect(audioCtx.destination);
     }
   
     //STOPS & DELETES OSCILLATOR ON KEY RELEASE IF KEY RELEASED IS ON MUSICAL
@@ -189,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         activeOscillators[noteNumber] = osc;
         activeOscillators[noteNumber].connect(gain);
         activeOscillators[noteNumber].start();
-        lfoGain.connect(audioCtx.destination);
     }
 
     function noteOff(noteNumber) {
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[noteNumber].stop();
             delete activeOscillators[noteNumber];
         }
-        lfoGain.disconnect(audioCtx.destination);
+
     }
 
     function frequencyFromNoteNumber(note) {
@@ -281,9 +281,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //PLAYBACK
 
-    recordPlayButton.addEventListener('click', () => {
-        {playStoredMusic(musicalLayer)}
-    });
+    //
 
     function playStoredMusic(musicalLayer) {
 
