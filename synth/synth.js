@@ -5,7 +5,6 @@ let currentUserAccount;
 let userAccounts;
 
 var midiAccess = null;  // the MIDIAccess object.
-var portamento = 0;  // portamento/glide speed
 var activeNotes = []; // the stack of actively-pressed keys
 
 let midiObject = {}; //midi event to store
@@ -14,11 +13,7 @@ let musicalLayer = []; //collection of musical events to store
 let layerToStore = [];
 
 let contextPlayback = null;
-let oscillatorPlayback = null;
 let envelopePlayback = null;
-let attackPlayback = 0.05;      // attack speed
-let releasePlayback = 0.05;   // release speed
-let portamentoPlayback = 0;  // portamento/glide speed
 let recordStartTime = null;
 
 getUserFromLS();
@@ -28,14 +23,9 @@ const recordStartButton = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
 const savedSessions = document.getElementById('savedSession');
-console.log(savedSessions);
+const recordPlayButton = document.getElementById('playbutton');
 
 updateSongs();
-
-
-
-// const recordStopButton = document.getElementById('record-stop');
-const recordPlayButton = document.getElementById('playbutton');
 
 // DOM SYNTH CONTROLS
 const waveformControl = document.getElementById('waveform');
@@ -44,9 +34,6 @@ const gainControl = document.getElementById('gain');
 const frequencyControlLP = document.getElementById('filterFrequencyLP');
 const frequencyControlHP = document.getElementById('filterFrequencyHP');
 const frequencyControlBP = document.getElementById('filterFrequencyBP');
-// const lfoControl = document.getElementById('lfoValue');
-
-
 
 //KEYBOARD STUFF
 document.addEventListener('DOMContentLoaded', function(event) {
@@ -103,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
     waveformControl.addEventListener('change', function(event) {
         waveform = event.target.value;
-        console.log(waveform);
     });
   
     gainControl.addEventListener('mousemove', function(event) {
@@ -124,10 +110,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         filterBP.type = 'bandpass';
         filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
-
-    // lfoControl.addEventListener('change', function(event) {
-    //     // lfo.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    // });
   
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
     window.addEventListener('keydown', keyDown, false);
@@ -155,7 +137,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 note_switch: 144,
                 note_name: keyboardFrequencyMap[key],
                 note_velocity: 127,
-                note_time: audioCtx.currentTime - recordStartTime
+                note_time: audioCtx.currentTime - recordStartTime,
+                note_waveform: waveform,
+                note_gain: gain.gain.value
             };
             storingMusic(keyObject);
         }
@@ -170,7 +154,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
             note_switch: 128,
             note_name: keyboardFrequencyMap[key],
             note_velocity: 0,
-            note_time: audioCtx.currentTime - recordStartTime
+            note_time: audioCtx.currentTime - recordStartTime,
+            note_waveform: waveform,
+            note_gain: gain.gain.value
         };
         storingMusic(keyObject);
 
@@ -195,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //MIDI
     function noteOn(noteNumber) {
         const osc = audioCtx.createOscillator();
-        osc.frequency.setTargetAtTime(frequencyFromNoteNumber(noteNumber), 0, portamento);
+        osc.frequency.setValueAtTime(frequencyFromNoteNumber(noteNumber), audioCtx.currentTime);
         osc.type = waveform;
         activeOscillators[noteNumber] = osc;
         activeOscillators[noteNumber].connect(gain);
@@ -252,7 +238,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
             note_switch: event.data[0],
             note_name: midiFreq,
             note_velocity: event.data[2],
-            note_time: audioCtx.currentTime - recordStartTime
+            note_time: audioCtx.currentTime - recordStartTime,
+            note_waveform: waveform,
+            note_gain: gain.gain.value
         };
         storingMusic(midiObject);
 
@@ -271,9 +259,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
 
 
-
-
-
     //RECORDING
 
     recordStartButton.addEventListener('click', () => {
@@ -287,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     
     function storingMusic(musicObject) {
         musicalLayer.push(musicObject);
-        // console.log(musicalLayer);
     }
 
     function SaveSong(name, layerToStore) {
@@ -299,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         const newSongName = recordNameInput.value.toString();
         const newSong = new SaveSong(newSongName, layerToStore);
         currentUserAccount.recordingSession[newSongName] = newSong;
-
 
         for (let i = 0; i < userAccounts.length; i++) {
             if (currentUserAccount.name === userAccounts[i].name) {
@@ -327,50 +310,30 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         contextPlayback = new AudioContext();
         const activeOscillatorsPlayback = {};
-        console.log('eh');
     
-        // set up the basic oscillator chain, muted to begin with.
-        // oscillatorPlayback = contextPlayback.createOscillator();
-        // oscillatorPlayback.frequency.setValueAtTime(440, 0);
-        // envelopePlayback = contextPlayback.createGain();
-        // oscillatorPlayback.connect(envelopePlayback);
-        // oscillatorPlayback.type = 'sawtooth';
-        // envelopePlayback.connect(contextPlayback.destination);
-        // envelopePlayback.gain.value = 0.0;  // Mute the sound
-        // oscillatorPlayback.start();  // Go ahead and start up the oscillator
     
         for (let i = 0; i < musicalLayer.length; i++){
-            const currentNoteValue = musicalLayer[i];
-            const oscillatorPlayback = contextPlayback.createOscillator();
-
-            activeOscillatorsPlayback[currentNoteValue.note_name] = oscillatorPlayback;
-
-            
-    
+            const currentNoteValue = musicalLayer[i];                       
             if (currentNoteValue.note_switch === 144) { //note on!
-                // oscillatorPlayback.frequency.setValueAtTime(440, 0);
+
+                const oscillatorPlayback = contextPlayback.createOscillator();
+
+                activeOscillatorsPlayback[currentNoteValue.note_name] = oscillatorPlayback;  
+                activeOscillatorsPlayback[currentNoteValue.note_name].start(); 
                 envelopePlayback = contextPlayback.createGain();
                
                 oscillatorPlayback.connect(envelopePlayback);
-                oscillatorPlayback.type = 'sawtooth';
+                oscillatorPlayback.type = currentNoteValue.note_waveform;
                 envelopePlayback.connect(contextPlayback.destination);
-                envelopePlayback.gain.value = 0.0;  // Mute the sound
-                oscillatorPlayback.start();  // Go ahead and start up the oscillator
-                oscillatorPlayback.frequency.setTargetAtTime(currentNoteValue.note_name, currentNoteValue.note_time, portamento);
-                envelopePlayback.gain.setTargetAtTime(1.0, currentNoteValue.note_time, attackPlayback);
-            } else if (currentNoteValue.note_switch === 128) { //note off!               
-                console.log('off');
-                console.log(currentNoteValue.note_name);
-                // activeOscillatorsPlayback[currentNoteValue.note_name].stop();
+                envelopePlayback.gain.value = 0.0;
 
-                envelopePlayback.gain.setTargetAtTime(0, currentNoteValue.note_time, releasePlayback);
-                // oscillatorPlayback.stop();
-                console.log(oscillatorPlayback);
-                delete activeOscillatorsPlayback[currentNoteValue.note_name];
-                console.log(activeOscillatorsPlayback);
-                
-                // activeOscillatorsPlayback[currentNoteValue.note_name].stop();
-                
+                oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time);
+                envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time);
+            } else if (currentNoteValue.note_switch === 128) { //note off!      
+
+                const oscillatorPlayback = activeOscillatorsPlayback[currentNoteValue.note_name];
+                oscillatorPlayback.frequency.setValueAtTime(0, currentNoteValue.note_time);
+                envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time);              
             }
         }
     }
@@ -388,20 +351,12 @@ function updateSongs() {
 }
 
 function getUserFromLS() {
-    // const lsUser = localStorage.getItem('name');
     const user = localStorage.getItem('currentUser');
     userAccounts = JSON.parse(localStorage.getItem('userAccount'));
-    // console.log(user);
-    // console.log(userAccounts);
 
     for (let i = 0; i < userAccounts.length; i++) {
         if (user === userAccounts[i].name) {
             currentUserAccount = userAccounts[i];
-            // console.log(currentUserAccount);
         }
     }
-
-    // const songsInArray = Object.values(currentUserAccount.recordingSession);
-    // console.log(currentUserAccount);
-
-};
+}
