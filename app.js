@@ -10,7 +10,7 @@ signUp.addEventListener('click', () => {
 
     let localStorageAccount = JSON.parse(localStorage.getItem('userAccount'));
 
-    const userAccount = new CreateUserAccount(name.value, avatar);
+    const userAccount = new CreateUserAccount(name.value);
 
     if (localStorageAccount){
         localStorageAccount.push(userAccount);
