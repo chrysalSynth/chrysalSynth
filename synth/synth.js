@@ -92,8 +92,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // '55': 932.327523036179832, //7 - A#
         // '85': 987.766602512248223,  //U - B
     };
-
-
   
     //CONNECTIONS
     gain.connect(myOscilloscope);
