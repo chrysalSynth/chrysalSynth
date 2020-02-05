@@ -130,6 +130,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
     window.addEventListener('keydown', keyDown, false);
     window.addEventListener('keyup', keyUp, false);
+
+    //EVENT LISTENERS FOR THE KEYBOARD IMAGES FOR COMPUTER KEYBOARD
+    window.addEventListener('keydown', function(e) {
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        key.classList.add('active');
+    });
+
+    window.addEventListener('keyup', function(e) {
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        key.classList.remove('active');
+    });
   
     //CALLED ON KEYDOWN EVENT - CALLS PLAYNOTE IF KEY PRESSED IS ON MUSICAL
     //KEYBOARD && THAT KEY IS NOT CURRENTLY ACTIVE
