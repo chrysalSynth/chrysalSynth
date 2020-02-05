@@ -3,14 +3,19 @@
     color: white;
 }
 
+.slidecontainer {
+  height: 3vw;
+  width: 100%;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
     display: inline-block;
-    width: 46px;
-    height: 20px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    width: 4vw;
+    height: 1.6vw;
+    margin-top: .3vw;
+    margin-bottom: .02vw;
   }
   
   /* Hide default HTML checkbox */
@@ -36,10 +41,10 @@
   .slider:before {
     position: absolute;
     content: "";
-    height: 13px;
-    width: 13px;
-    left: 4px;
-    bottom: 4px;
+    height: .9vw;
+    width: 1vw;
+    left: .5vw;
+    bottom: .3vw;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -50,18 +55,18 @@
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px rgb(33, 177, 33);
+    box-shadow: 0 0 .3vw rgb(33, 177, 33);
   }
   
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(2vw);
+    -ms-transform: translateX(2vw);
+    transform: translateX(2vw);
   }
   
   /* Rounded sliders */
   .slider.round {
-    border-radius: 34px;
+    border-radius: 2vw;
   }
   
   .slider.round:before {
@@ -74,7 +79,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  border: solid 2px red;
+  border-top: 2vw grey !important;
   color: white;
   text-align: center;
 }
@@ -83,7 +88,7 @@
     position: fixed;
     bottom: 0;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 7vw;
   
 }
 
@@ -92,28 +97,130 @@ img {
 }
 
 p {
-    margin-bottom: 7px;
-    margin-right: 7px;
-    margin-left: 20px;
-    margin-top: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin-bottom: .4vw;
+    margin-right: .4vw;
+    margin-left: 1vw;
+    margin-top: 0vw;
     text-align: right;
+    vertical-align: middle;
+    font-size: 1.5vw; 
+  }
+
+.passFilters {
+    margin-top: .5vw;
+    margin-left: 1vw;
+    width: 17vw;
+    text-align: center;
+    /* height: 100px; */
+}
+
+.slideContainer {
+  height: 2.5vw;
+}
+
+#sliderInput {
+    width: 15vw;
+}
+
+#sliderText {
+    font-size: 1.2vw;
+    height: .5vw;
+    text-align: left;
 }
 
 #soundSwitches {
     display: flex;
-    justify-content: left;
 }
+
 #ui {
     display: flex;
     justify-content: left;
 }
 .filterKnobs {
-    margin-top: 5px;
-    margin-left: 15px;
+    margin-top: 1vw;
+    margin-left: 2vw;
 }
 
 #visualizer {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10vw;
 }
+
+#saveLoadDiv {
+    margin-left: 2.5vw;
+    margin-top: .7vw;
+}
+
+#saveButton {
+    height: 2.8vw;
+    width: 100px;
+}
+
+#saveSession {
+  height: 2.6vw;
+  width: 16vw;
+  border-width: 2px;
+  /* margin-right: vw; */
+}
+
+/* drop down menu  */
+#savedSession {
+  height: 2.6vw;
+  width: 16.5vw;
+  /* margin-left: 5.8vw; */
+  border-width: 2px;
+}
+
+#saveLoadDiv {
+  /* text-align: center; */
+}
+
+#downloadButton {
+  height: 2.5vw;
+  width: 100px;
+  /* margin-right: 3.3vw; */
+  /* position: relative;
+  right: 27px; */
+}
+
+#downloadButtonDiv {
+  /* margin-left: 4.25vw; */
+}
+
+#avatarContainerImage {
+  height: 2.8vw;
+  width: 2.8vw;
+  margin-left: 2vw;
+  margin-top: .9vw;
+  border-radius: 50%;
+}
+
+#oscilloscope {
+  width: 600px;
+  height: 300px;
+}
+
+.soundSwitches{
+  display: flex;
+  justify-content: left;
+  vertical-align: middle;
+  width:10vw
+}
+
+
+
+/* #recordButton {
+    width: 35px;
+    height: 35px;
+    font-size: 0;
+    background-color: red;
+    border: 0;
+    border-radius: 35px;
+    margin: 18px;
+    outline: none;
+    height: 3vw;
+    width: 3vw;
+    margin-left: 90vw;
+} */
