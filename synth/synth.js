@@ -91,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
     //CONNECTIONS
     gain.connect(filterLP);
-    filterLP.connect(myOscilloscope);
+    filterLP.connect(compressor);
+    compressor.connect(myOscilloscope);
     // filterHP.connect(filterBP);
     // filterBP.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
