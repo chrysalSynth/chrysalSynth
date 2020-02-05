@@ -189,12 +189,12 @@ p {
   /* margin-left: 4.25vw; */
 }
 
-#avatarContainerImage {
-  height: 2.8vw;
-  width: 2.8vw;
-  margin-left: 2vw;
-  margin-top: .9vw;
-  border-radius: 50%;
+#playbutton {
+  /* height: 2.8vw;
+  width: 2.8vw; */
+  margin-left: 5vw;
+  margin-top: 1.5vw;
+  /* border-radius: 50%; */
 }
 
 #oscilloscope {

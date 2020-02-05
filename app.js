@@ -1,7 +1,8 @@
 const name = document.getElementById('name');
 const signUp = document.getElementById('signUp');
-const avatar = document.getElementById('avatar');
-
+const avatar1_span = document.getElementById('avatar1');
+const avatar2_span = document.getElementById('avatar2');
+const avatar3_span = document.getElementById('avatar3');
 
 signUp.addEventListener('click', () => {
 
@@ -28,4 +29,15 @@ signUp.addEventListener('click', () => {
    // window.location.href = './synth';
 });
 
+// avatar1_span.addEventListener('click', function() {
+//     window.location.href = './synth';
+// });
+
+// avatar2_span.addEventListener('click', function() {
+//     window.location.href = './synth';
+// });
+
+// avatar3_span.addEventListener('click', function() {
+//     window.location.href = './synth';
+// });
 
