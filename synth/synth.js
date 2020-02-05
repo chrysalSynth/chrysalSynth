@@ -289,22 +289,23 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     });
 
-    window.addEventListener('keyup', (e) => {
-        if (e.keyCode === 82 && !recordStartButton.checked) {
-            musicalLayer = [];
-            recordStartTime = audioCtx.currentTime;
-            recordStartButton.checked;
-            console.log('r has been pressed');
+    // window.addEventListener('keyup', (e) => {
+    //     if (e.keyCode === 82 && !recordStartButton.checked) {
+    //         recordStartButton.checked;
+    //         musicalLayer = [];
+    //         console.log(musicalLayer);
+    //         recordStartTime = audioCtx.currentTime;
+    //         console.log('r has been pressed');
 
-        } else if (e.keyCode === 82 && recordStartButton.checked) {
-            layerToStore = musicalLayer.slice(); 
-            !recordStartButton.checked;
-            console.log('r has been pressed again');  
-        } else if (recordStartButton.checked) {
-            console.log('r has been pressed again return'); 
-            return;
-        }
-    });
+    //     } else if (e.keyCode === 82 && recordStartButton.checked) {
+    //         layerToStore = musicalLayer.slice(); 
+    //         !recordStartButton.checked;
+    //         console.log('r has been pressed again');  
+    //     } else if (recordStartButton.checked) {
+    //         console.log('r has been pressed again return'); 
+    //         return;
+    //     }
+    // });
 
 
     
