@@ -78,9 +78,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // '85': 987.766602512248223,  //U - B
     };
 
-    // const userInput = document.querySelector('input:checked');
-    // const userInput = document.getElementById('65');
-    
     //LFO
     let lfo = audioCtx.createOscillator();
     lfo.type = 'square';
