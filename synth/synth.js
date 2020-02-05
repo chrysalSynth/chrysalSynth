@@ -16,9 +16,12 @@ let releasePlayback = 0.05;   // release speed
 let portamentoPlayback = 0;  // portamento/glide speed
 let recordStartTime = null;
 
+const userInfo = localStorage.getItem('userAccount');
+const userInfoParsed = JSON.parse(userInfo);
+console.log(userInfoParsed);
 
 // DOM RECORD BUTTONS
-const recordStartButton = document.getElementById('record-start');
+const recordStartButton = document.getElementById('recordButton');
 // const recordStopButton = document.getElementById('record-stop');
 const recordPlayButton = document.getElementById('record-play');
 
@@ -69,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         '76': 587.329535834815120,  //L - D
         '80': 622.253967444161821, //P - D#
         '186': 659.255113825739859,  //; - E
-        '219': 698.456462866007768,  //[ - F
-        '222': 739.988845423268797, //' - F#
+        '222': 698.456462866007768,  //' - F
+        '221': 739.988845423268797, //] - F#
         // '84': 783.990871963498588,  //T - G
         // '54': 830.609395159890277, //6 - G#
         // '89': 880.000000000000000,  //Y - A
@@ -89,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     lfo.connect(lfoGain);   
     lfo.start();
     lfoGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+
+
   
     //CONNECTIONS
     gain.connect(filterLP);
@@ -145,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         if (keyboardFrequencyMap[key] && !activeOscillators[key]) {
             playNote(key);
         }
-        lfoGain.connect(audioCtx.destination);
     }
   
     //STOPS & DELETES OSCILLATOR ON KEY RELEASE IF KEY RELEASED IS ON MUSICAL
@@ -165,7 +169,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[key].stop();
             delete activeOscillators[key];
         }
-        lfoGain.disconnect(audioCtx.destination);    
+        lfoGain.disconnect(audioCtx.destination);
+    }
   
         
     //HANDLES CREATION & STORING OF OSCILLATORS
@@ -187,7 +192,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         activeOscillators[noteNumber] = osc;
         activeOscillators[noteNumber].connect(gain);
         activeOscillators[noteNumber].start();
-        lfoGain.connect(audioCtx.destination);
     }
 
     function noteOff(noteNumber) {
@@ -202,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[noteNumber].stop();
             delete activeOscillators[noteNumber];
         }
-        lfoGain.disconnect(audioCtx.destination);
+
     }
 
     function frequencyFromNoteNumber(note) {
@@ -279,9 +283,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //PLAYBACK
 
-    recordPlayButton.addEventListener('click', () => {
-        {playStoredMusic(musicalLayer)}
-    });
+    //
 
     function playStoredMusic(musicalLayer) {
 
