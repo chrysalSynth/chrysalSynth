@@ -25,6 +25,7 @@ getUserFromLS();
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
+const recordKeyPress = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
 const savedSessions = document.getElementById('savedSession');
@@ -84,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         '76': 587.329535834815120,  //L - D
         '80': 622.253967444161821, //P - D#
         '186': 659.255113825739859,  //; - E
-        '219': 698.456462866007768,  //[ - F
-        '222': 739.988845423268797, //' - F#
+        '222': 698.456462866007768,  //' - F
+        '221': 739.988845423268797, //] - F#
         // '84': 783.990871963498588,  //T - G
         // '54': 830.609395159890277, //6 - G#
         // '89': 880.000000000000000,  //Y - A
@@ -135,14 +136,20 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //EVENT LISTENERS FOR THE KEYBOARD IMAGES FOR COMPUTER KEYBOARD
     window.addEventListener('keydown', function(e) {
-        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-        key.classList.add('active');
+        let x = e.keyCode;
+        if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            key.classList.add('active');    
+        } 
     });
-
     window.addEventListener('keyup', function(e) {
-        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-        key.classList.remove('active');
+        let x = e.keyCode;
+        if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            key.classList.remove('active');  
+        }
     });
+    
   
     //CALLED ON KEYDOWN EVENT - CALLS PLAYNOTE IF KEY PRESSED IS ON MUSICAL
     //KEYBOARD && THAT KEY IS NOT CURRENTLY ACTIVE
@@ -271,9 +278,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
 
 
-
-
-
     //RECORDING
 
     recordStartButton.addEventListener('click', () => {
@@ -284,6 +288,25 @@ document.addEventListener('DOMContentLoaded', function(event) {
             layerToStore = musicalLayer.slice();
         }
     });
+
+    window.addEventListener('keyup', (e) => {
+        if (e.keyCode === 82 && !recordStartButton.checked) {
+            musicalLayer = [];
+            recordStartTime = audioCtx.currentTime;
+            recordStartButton.checked;
+            console.log('r has been pressed');
+
+        } else if (e.keyCode === 82 && recordStartButton.checked) {
+            layerToStore = musicalLayer.slice(); 
+            !recordStartButton.checked;
+            console.log('r has been pressed again');  
+        } else if (recordStartButton.checked) {
+            console.log('r has been pressed again return'); 
+            return;
+        }
+    });
+
+
     
     function storingMusic(musicObject) {
         musicalLayer.push(musicObject);
