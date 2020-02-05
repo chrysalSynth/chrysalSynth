@@ -284,10 +284,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
 
     window.addEventListener('keyup', (e) => {
-        if (recordStartButton.checked === false){
+        const x = e.keyCode;
+        if (x === 82 && recordStartButton.checked === false){
             recordStartButton.checked = true;
-        } else recordStartButton.checked = false;
-        recordingEvents();
+            recordingEvents();
+        } else if (x === 82) {
+            recordStartButton.checked = false;
+            recordingEvents();
+        }        
     });
 
     function recordingEvents() {
