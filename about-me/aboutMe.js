@@ -11,6 +11,8 @@ function aboutMeNavigation(aboutUs) {
 
 
 
+
+
 // const aboutMeNavigation = new URLSearchParams(window.location.search);
 // const aboutMeId = aboutMeNavigation.get('id');
 
