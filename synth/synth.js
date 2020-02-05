@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     };
   
     //CONNECTIONS
-    gain.connect(myOscilloscope);
-    // filterLP.connect(filterHP);
+    gain.connect(filterLP);
+    filterLP.connect(myOscilloscope);
     // filterHP.connect(filterBP);
     // filterBP.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
@@ -271,31 +271,26 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //RECORDING
 
     recordStartButton.addEventListener('click', () => {
+        recordingEvents();
+    });
+
+    window.addEventListener('keyup', (e) => {
+        if (recordStartButton.checked === false){
+            recordStartButton.checked = true;
+        } else recordStartButton.checked = false;
+        recordingEvents();
+    });
+
+    function recordingEvents() {
         if (recordStartButton.checked) {
             musicalLayer = [];
             recordStartTime = audioCtx.currentTime;
+            console.log('recording');
         } else if (!recordStartButton.checked) {
             layerToStore = musicalLayer.slice();
+            console.log('stop recording');
         }
-    });
-
-    // window.addEventListener('keyup', (e) => {
-    //     if (e.keyCode === 82 && !recordStartButton.checked) {
-    //         recordStartButton.checked;
-    //         musicalLayer = [];
-    //         console.log(musicalLayer);
-    //         recordStartTime = audioCtx.currentTime;
-    //         console.log('r has been pressed');
-
-    //     } else if (e.keyCode === 82 && recordStartButton.checked) {
-    //         layerToStore = musicalLayer.slice(); 
-    //         !recordStartButton.checked;
-    //         console.log('r has been pressed again');  
-    //     } else if (recordStartButton.checked) {
-    //         console.log('r has been pressed again return'); 
-    //         return;
-    //     }
-    // });
+    }
 
 
     
