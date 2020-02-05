@@ -25,7 +25,7 @@ signUp.addEventListener('click', () => {
     console.log(localStorageAccount);
     const stringyUserAccount = JSON.stringify(localStorageAccount);
     localStorage.setItem('userAccount', stringyUserAccount);
-   // window.location.href = './synth';
+    window.location.href = './synth';
 });
 
 
