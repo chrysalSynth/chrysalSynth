@@ -1,6 +1,9 @@
 //IMPORT OSCILLOSCOPE JS
 import { OScope } from './oscope.js';
 
+let currentUserAccount;
+let userAccounts;
+
 var midiAccess = null;  // the MIDIAccess object.
 var portamento = 0;  // portamento/glide speed
 var activeNotes = []; // the stack of actively-pressed keys
@@ -8,6 +11,8 @@ var activeNotes = []; // the stack of actively-pressed keys
 let midiObject = {}; //midi event to store
 let keyObject = {}; //keyboard event to store
 let musicalLayer = []; //collection of musical events to store
+let layerToStore = [];
+
 let contextPlayback = null;
 let oscillatorPlayback = null;
 let envelopePlayback = null;
@@ -16,14 +21,21 @@ let releasePlayback = 0.05;   // release speed
 let portamentoPlayback = 0;  // portamento/glide speed
 let recordStartTime = null;
 
-const userInfo = localStorage.getItem('userAccount');
-const userInfoParsed = JSON.parse(userInfo);
-console.log(userInfoParsed);
+getUserFromLS();
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
+const recordSaveButton = document.getElementById('saveButton');
+const recordNameInput = document.getElementById('saveSession');
+const savedSessions = document.getElementById('savedSession');
+console.log(savedSessions);
+
+updateSongs();
+
+
+
 // const recordStopButton = document.getElementById('record-stop');
-const recordPlayButton = document.getElementById('record-play');
+const recordPlayButton = document.getElementById('playbutton');
 
 // DOM SYNTH CONTROLS
 const waveformControl = document.getElementById('waveform');
@@ -32,7 +44,7 @@ const gainControl = document.getElementById('gain');
 const frequencyControlLP = document.getElementById('filterFrequencyLP');
 const frequencyControlHP = document.getElementById('filterFrequencyHP');
 const frequencyControlBP = document.getElementById('filterFrequencyBP');
-const lfoControl = document.getElementById('lfoValue');
+// const lfoControl = document.getElementById('lfoValue');
 
 
 
@@ -72,60 +84,50 @@ document.addEventListener('DOMContentLoaded', function(event) {
         '76': 587.329535834815120,  //L - D
         '80': 622.253967444161821, //P - D#
         '186': 659.255113825739859,  //; - E
-        '222': 698.456462866007768,  //' - F
-        '221': 739.988845423268797, //] - F#
+        '219': 698.456462866007768,  //[ - F
+        '222': 739.988845423268797, //' - F#
         // '84': 783.990871963498588,  //T - G
         // '54': 830.609395159890277, //6 - G#
         // '89': 880.000000000000000,  //Y - A
         // '55': 932.327523036179832, //7 - A#
         // '85': 987.766602512248223,  //U - B
     };
-
-    //LFO
-    let lfo = audioCtx.createOscillator();
-    lfo.type = 'square';
-    lfo.frequency.value = 10;
-    let lfoGain = audioCtx.createGain();
-    lfo.connect(lfoGain);   
-    lfo.start();
-    lfoGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
-
-
   
     //CONNECTIONS
-    gain.connect(filterLP);
-    filterLP.connect(filterHP);
-    filterHP.connect(filterBP);
-    filterBP.connect(myOscilloscope);
+    gain.connect(myOscilloscope);
+    // filterLP.connect(filterHP);
+    // filterHP.connect(filterBP);
+    // filterBP.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
   
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
     waveformControl.addEventListener('change', function(event) {
         waveform = event.target.value;
+        console.log(waveform);
     });
   
-    gainControl.addEventListener('change', function(event) {
+    gainControl.addEventListener('mousemove', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlLP.addEventListener('change', function(event) {
+    frequencyControlLP.addEventListener('mousemove', function(event) {
         filterLP.type = 'lowpass';
         filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlHP.addEventListener('change', function(event) {
+    frequencyControlHP.addEventListener('mousemove', function(event) {
         filterHP.type = 'highpass';
         filterHP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlBP.addEventListener('change', function(event) {
+    frequencyControlBP.addEventListener('mousemove', function(event) {
         filterBP.type = 'bandpass';
         filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    lfoControl.addEventListener('change', function(event) {
-        lfo.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    });
+    // lfoControl.addEventListener('change', function(event) {
+    //     // lfo.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    // });
   
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
     window.addEventListener('keydown', keyDown, false);
@@ -146,17 +148,16 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //KEYBOARD && THAT KEY IS NOT CURRENTLY ACTIVE
     function keyDown(event) {
         const key = (event.detail || event.which).toString();
-
-        keyObject = {
-            note_switch: 144,
-            note_name: keyboardFrequencyMap[key],
-            note_velocity: 127,
-            note_time: audioCtx.currentTime - recordStartTime
-        };
-        storingMusic(keyObject);
-
         if (keyboardFrequencyMap[key] && !activeOscillators[key]) {
             playNote(key);
+
+            keyObject = {
+                note_switch: 144,
+                note_name: keyboardFrequencyMap[key],
+                note_velocity: 127,
+                note_time: audioCtx.currentTime - recordStartTime
+            };
+            storingMusic(keyObject);
         }
     }
   
@@ -177,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
             activeOscillators[key].stop();
             delete activeOscillators[key];
         }
-        lfoGain.disconnect(audioCtx.destination);
     }
   
         
@@ -277,26 +277,57 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //RECORDING
 
     recordStartButton.addEventListener('click', () => {
-        musicalLayer = [];
-        recordStartTime = audioCtx.currentTime;
+        if (recordStartButton.checked) {
+            musicalLayer = [];
+            recordStartTime = audioCtx.currentTime;
+        } else if (!recordStartButton.checked) {
+            layerToStore = musicalLayer.slice();
+        }
     });
     
     function storingMusic(musicObject) {
         musicalLayer.push(musicObject);
-        console.log(musicalLayer);
+        // console.log(musicalLayer);
     }
+
+    function SaveSong(name, layerToStore) {
+        this.name = name;
+        this.song = layerToStore;
+    }
+
+    recordSaveButton.addEventListener('click', () => {
+        const newSongName = recordNameInput.value.toString();
+        const newSong = new SaveSong(newSongName, layerToStore);
+        currentUserAccount.recordingSession[newSongName] = newSong;
+
+
+        for (let i = 0; i < userAccounts.length; i++) {
+            if (currentUserAccount.name === userAccounts[i].name) {
+                userAccounts[i] = currentUserAccount;
+            }
+        }
+
+        localStorage.setItem('userAccount', JSON.stringify(userAccounts));
+        updateSongs();
+    });
 
 
 
 
     //PLAYBACK
 
-    //
+    recordPlayButton.addEventListener('click', () => {
+        const songToPlayName = savedSessions.value;
+        const songToPlay = currentUserAccount.recordingSession[songToPlayName];
+        playStoredMusic(songToPlay.song);
+    });
+
 
     function playStoredMusic(musicalLayer) {
 
         contextPlayback = new AudioContext();
         const activeOscillatorsPlayback = {};
+        console.log('eh');
     
         // set up the basic oscillator chain, muted to begin with.
         // oscillatorPlayback = contextPlayback.createOscillator();
@@ -344,3 +375,33 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     }
 });
+
+
+function updateSongs() {
+    let usersSongs = Object.values(currentUserAccount.recordingSession);
+    for (let i = 0; i < usersSongs.length; i++) {
+        const newOption = document.createElement('option');
+        newOption.value = usersSongs[i].name;
+        newOption.textContent = usersSongs[i].name;
+        savedSessions.appendChild(newOption);
+    }
+}
+
+function getUserFromLS() {
+    // const lsUser = localStorage.getItem('name');
+    const user = localStorage.getItem('currentUser');
+    userAccounts = JSON.parse(localStorage.getItem('userAccount'));
+    // console.log(user);
+    // console.log(userAccounts);
+
+    for (let i = 0; i < userAccounts.length; i++) {
+        if (user === userAccounts[i].name) {
+            currentUserAccount = userAccounts[i];
+            // console.log(currentUserAccount);
+        }
+    }
+
+    // const songsInArray = Object.values(currentUserAccount.recordingSession);
+    // console.log(currentUserAccount);
+
+};
