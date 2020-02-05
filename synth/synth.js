@@ -1,6 +1,9 @@
 //IMPORT OSCILLOSCOPE JS
 import { OScope } from './oscope.js';
 
+let currentUserAccount;
+let userAccounts;
+
 var midiAccess = null;  // the MIDIAccess object.
 var portamento = 0;  // portamento/glide speed
 var activeNotes = []; // the stack of actively-pressed keys
@@ -9,6 +12,7 @@ let midiObject = {}; //midi event to store
 let keyObject = {}; //keyboard event to store
 let musicalLayer = []; //collection of musical events to store
 let layerToStore = [];
+
 let contextPlayback = null;
 let oscillatorPlayback = null;
 let envelopePlayback = null;
@@ -23,8 +27,15 @@ getUserFromLS();
 const recordStartButton = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
+const savedSessions = document.getElementById('savedSession');
+console.log(savedSessions);
+
+updateSongs();
+
+
+
 // const recordStopButton = document.getElementById('record-stop');
-// const recordPlayButton = document.getElementById('record-play');
+const recordPlayButton = document.getElementById('playbutton');
 
 // DOM SYNTH CONTROLS
 const waveformControl = document.getElementById('waveform');
@@ -269,15 +280,25 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // console.log(musicalLayer);
     }
 
-    function SaveSong(name, id, layerToStore) {
+    function SaveSong(name, layerToStore) {
         this.name = name;
-        this.id = id;
         this.song = layerToStore;
     }
 
     recordSaveButton.addEventListener('click', () => {
-        const newSong = new SaveSong(recordNameInput.value.toString(), recordNameInput.value.toString(), layerToStore);
-        console.log(newSong);
+        const newSongName = recordNameInput.value.toString();
+        const newSong = new SaveSong(newSongName, layerToStore);
+        currentUserAccount.recordingSession[newSongName] = newSong;
+
+
+        for (let i = 0; i < userAccounts.length; i++) {
+            if (currentUserAccount.name === userAccounts[i].name) {
+                userAccounts[i] = currentUserAccount;
+            }
+        }
+
+        localStorage.setItem('userAccount', JSON.stringify(userAccounts));
+        updateSongs();
     });
 
 
@@ -285,12 +306,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //PLAYBACK
 
-    //
+    recordPlayButton.addEventListener('click', () => {
+        const songToPlayName = savedSessions.value;
+        const songToPlay = currentUserAccount.recordingSession[songToPlayName];
+        playStoredMusic(songToPlay.song);
+    });
+
 
     function playStoredMusic(musicalLayer) {
 
         contextPlayback = new AudioContext();
         const activeOscillatorsPlayback = {};
+        console.log('eh');
     
         // set up the basic oscillator chain, muted to begin with.
         // oscillatorPlayback = contextPlayback.createOscillator();
@@ -340,8 +367,31 @@ document.addEventListener('DOMContentLoaded', function(event) {
 });
 
 
+function updateSongs() {
+    let usersSongs = Object.values(currentUserAccount.recordingSession);
+    for (let i = 0; i < usersSongs.length; i++) {
+        const newOption = document.createElement('option');
+        newOption.value = usersSongs[i].name;
+        newOption.textContent = usersSongs[i].name;
+        savedSessions.appendChild(newOption);
+    }
+}
+
 function getUserFromLS() {
     // const lsUser = localStorage.getItem('name');
-    const user = localStorage.getItem('name');
-    console.log(user);
+    const user = localStorage.getItem('currentUser');
+    userAccounts = JSON.parse(localStorage.getItem('userAccount'));
+    // console.log(user);
+    // console.log(userAccounts);
+
+    for (let i = 0; i < userAccounts.length; i++) {
+        if (user === userAccounts[i].name) {
+            currentUserAccount = userAccounts[i];
+            // console.log(currentUserAccount);
+        }
+    }
+
+    // const songsInArray = Object.values(currentUserAccount.recordingSession);
+    // console.log(currentUserAccount);
+
 };
