@@ -2314,12 +2314,12 @@ body .container {
 body .container #recordButton {
   display: none;
 }
-body .container #recordButton + label:before {
+/* body .container #recordButton + label:before {
   position: absolute;
-  left: 80%;
-  top: 91%;
-  width: 60px;
-  height: 60px;
+  left: 62%;
+  top: 62.25%;
+  width: 90px;
+  height: 90px;
   margin: -65px -65px;
   content: "";
   -webkit-transform: translate(-6px, -6px);
@@ -2328,11 +2328,11 @@ body .container #recordButton + label:before {
   border-radius: 50%;
   border: 6px solid #fff;
   cursor: pointer;
-}
+} */
 body .container #recordButton + label:after {
   position: absolute;
-  left: 80%;
-  top: 91%;
+  left: 70%;
+  top: 71%;
   width: 30px;
   height: 30px;
   margin: -50px -50px;
@@ -2342,10 +2342,10 @@ body .container #recordButton + label:after {
   cursor: pointer;
 }
 body .container #recordButton:checked + label:after {
-  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
-  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
-  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
-  animation: stop 0.5s infinite cubic-bezier(0.4, -4, 4, 1);
+  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
+  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
+  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
+  animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
