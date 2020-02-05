@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         lfoGain.disconnect(audioCtx.destination);
     }
   
+        
     //HANDLES CREATION & STORING OF OSCILLATORS
     function playNote(key) {
         const osc = audioCtx.createOscillator();
