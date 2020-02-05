@@ -17,6 +17,7 @@ let releasePlayback = 0.05;   // release speed
 let portamentoPlayback = 0;  // portamento/glide speed
 let recordStartTime = null;
 
+getUserFromLS();
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
@@ -268,16 +269,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // console.log(musicalLayer);
     }
 
-    function saveSong(name, id, layerToStore) {
+    function SaveSong(name, id, layerToStore) {
         this.name = name;
         this.id = id;
         this.song = layerToStore;
     }
 
     recordSaveButton.addEventListener('click', () => {
-        const newSong = new saveSong(recordNameInput.value.toString(), recordNameInput.value.toString(), layerToStore);
+        const newSong = new SaveSong(recordNameInput.value.toString(), recordNameInput.value.toString(), layerToStore);
         console.log(newSong);
     });
+
+
 
 
     //PLAYBACK
@@ -335,3 +338,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     }
 });
+
+
+function getUserFromLS() {
+    // const lsUser = localStorage.getItem('name');
+    const user = localStorage.getItem('name');
+    console.log(user);
+};
