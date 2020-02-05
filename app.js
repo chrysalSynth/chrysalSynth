@@ -1,43 +1,39 @@
 const name = document.getElementById('name');
 const signUp = document.getElementById('signUp');
-const avatar1_span = document.getElementById('avatar1');
-const avatar2_span = document.getElementById('avatar2');
-const avatar3_span = document.getElementById('avatar3');
 
 signUp.addEventListener('click', () => {
-
+    //get local storage user account data and parse them
+    let localStorageAccounts = JSON.parse(localStorage.getItem('userAccounts'));
+    //set the current user in local storage to the user entered value
     localStorage.setItem('currentUser', name.value);
-
-    let localStorageAccount = JSON.parse(localStorage.getItem('userAccount'));
-
+    // get user account data from localStorage
+    console.log(localStorageAccounts);
+    //create user account from form data
     const userAccount = new CreateUserAccount(name.value);
-
-    if (localStorageAccount){
-        localStorageAccount.push(userAccount);
-    } else {
-        localStorageAccount = [];
-        localStorageAccount.push(userAccount);
+    //if local storage accounts don't exist yet... create an empty array
+    if (!localStorageAccounts){
+        localStorageAccounts = [];
+        //push the constructed userAccount array into localStorage Account Array
+        localStorageAccounts.push(userAccount);
+        //set all of that into local storage
+        localStorage.setItem('userAccounts', JSON.stringify(localStorageAccounts));
+    } 
+    else {
+        //if localStorageAccounts DO exist... start looping through them to find a match
+        for (let i = 0 ; i < localStorageAccounts.length; i++){
+            const localStorageAccountObject = (localStorageAccounts[i]);
+            //if they match... shoot them over to the synth page
+            if (localStorageAccountObject.name === name.value){
+                window.location.href = './synth';
+                return;
+            } 
+        }
+        localStorageAccounts.push(userAccount);
+        localStorage.setItem('userAccounts', JSON.stringify(localStorageAccounts));
     }
-    function CreateUserAccount(name, avatar) {
+    function CreateUserAccount(name) {
         this.name = name;
         this.recordingSession = {};
-        this.userAvatar = avatar;
     }
-    console.log(localStorageAccount);
-    const stringyUserAccount = JSON.stringify(localStorageAccount);
-    localStorage.setItem('userAccount', stringyUserAccount);
     window.location.href = './synth';
 });
-
-// avatar1_span.addEventListener('click', function() {
-//     window.location.href = './synth';
-// });
-
-// avatar2_span.addEventListener('click', function() {
-//     window.location.href = './synth';
-// });
-
-// avatar3_span.addEventListener('click', function() {
-//     window.location.href = './synth';
-// });
-
