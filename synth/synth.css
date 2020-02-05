@@ -201,8 +201,11 @@ p {
 }
 
 #oscilloscope {
+  position: fixed;
   width: 600px;
   height: 300px;
+  top: 25%;
+  right: 75%;
 }
 
 .soundSwitches{
