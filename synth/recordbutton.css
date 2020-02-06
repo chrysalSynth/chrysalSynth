@@ -2315,26 +2315,18 @@ body .container {
 body .container #recordButton {
   display: none;
 }
-/* body .container #recordButton + label:before {
-  position: absolute;
-  left: 62%;
-  top: 62.25%;
-  width: 90px;
-  height: 90px;
-  margin: -65px -65px;
-  content: "";
-  -webkit-transform: translate(-6px, -6px);
-  -ms-transform: translate(-6px, -6px);
-  transform: translate(-6px, -6px);
-  border-radius: 50%;
-  border: 6px solid #fff;
-  cursor: pointer;
-} */
+
+#about {
+  margin-left: 90%;
+  opacity: 65%;
+  font-family: 'Amatic SC', cursive;
+  color: rgba(241, 238, 238, 0.74);
+}
 
 /* record button */
 body .container #recordButton + label:after {
   position: fixed;
-  left: 80%;
+  left: 75%;
   top: 62%;
   width: 30px;
   height: 30px;
