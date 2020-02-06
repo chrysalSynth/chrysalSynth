@@ -1,14 +1,16 @@
 //get the name value from end user and the signUp button for event listener
-const name = document.getElementById('name');
+const formName = document.getElementById('name');
 const signUp = document.getElementById('signUp');
 
 signUp.addEventListener('click', () => {
+    //get user name value and uppercase the input
+    const name = formName.value.toUpperCase();
     //set the current user in local storage to the user entered value
-    localStorage.setItem('currentUser', name.value);
+    localStorage.setItem('currentUser', name);
     //get local storage user account data and parse them
     let localStorageAccounts = JSON.parse(localStorage.getItem('userAccounts'));
     //create user account from form data
-    const userAccount = new CreateUserAccount(name.value);
+    const userAccount = new CreateUserAccount(name);
     //if local storage accounts don't exist yet... create one as an empty array
     if (!localStorageAccounts){
         localStorageAccounts = [];
@@ -22,7 +24,7 @@ signUp.addEventListener('click', () => {
         for (let i = 0 ; i < localStorageAccounts.length; i++){
             const localStorageAccountObject = (localStorageAccounts[i]);
             //if they match... shoot them over to the synth page
-            if (localStorageAccountObject.name === name.value){
+            if (localStorageAccountObject.name === name){
                 window.location.href = './synth';
                 //return to break the loop and not run the remaining lines of code
                 return;
