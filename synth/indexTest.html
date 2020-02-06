@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+        <!-- <link href="stylesheet" href="../keyboard.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="synth.css"> -->
+        <link rel="stylesheet" type="text/css" href="synthTest.css">
+        <link rel="stylesheet" type="text/css" href="recordbutton.css">
+        <link rel="stylesheet" type="text/css" href="play-pause-button.css">
+        <title>Welcome to ChrysalSynth...</title>
+    </head>
+    <body>
+<div class="parent">
+            <!-- <div class="div1"> </div>
+            <div class="div2"> </div>
+            <div class="div3"> </div>
+            <div class="div4"> </div>
+            <div class="div5"> </div>
+            <div class="div6"> </div>
+            <div class="div7"> </div>
+             -->
+
+
+
+        <!-- <div id="visualizer"> -->
+            <!-- <img src="../assets/visualizer_placeholder.gif"> -->
+            <!-- <img src="https://media.giphy.com/media/AHeTfHgVFPHgs/giphy.gif"> -->
+            
+        <!-- </div> -->
+        <section>
+        <div class="div1" id="oscilloscope"></div>
+    </section>
+    <section>
+        <div class="div2" id="piano">
+            <div class="keys" class="div2">
+                <div data-key="" class="white key a" data-note="A"></div>
+                <div data-key="" class="black key a sharp" data-note="A#"></div>
+                <div data-key="" class="white key b" data-note="B"></div>
+                <div data-key="65" class="white key c" data-note="C"></div>
+                <div data-key="87" class="black key c sharp" data-note="C#"></div>
+                <div data-key="83" class="white key d" data-note="D"></div>
+                <div data-key="69" class="black key d sharp" data-note="D#"></div>
+                <div data-key="68" class="white key e" data-note="E"></div>
+                <div data-key="70" class="white key f" data-note="F"></div>
+                <div data-key="84" class="black key f sharp" data-note="F#"></div>
+                <div data-key="71" class="white key g" data-note="G"></div>
+                <div data-key="89" class="black key g sharp" data-note="G#"></div>
+                <div data-key="72" class="white key a" data-note="A"></div>
+                <div data-key="85" class="black key a sharp" data-note="A#"></div>
+                <div data-key="74" class="white key b" data-note="B"></div>
+                <div data-key="75" class="white key c" data-note="C"></div>
+                <div data-key="79" class="black key c sharp" data-note="C#"></div>
+                <div data-key="76" class="white key d" data-note="D"></div>
+                <div data-key="80" class="black key d sharp" data-note="D#"></div>
+                <div data-key="186" class="white key e" data-note="E"></div>
+                <div data-key="222" class="white key f" data-note="F"></div> 
+                <div data-key="221" class="black key f sharp" data-note="F#"></div>
+                <div data-key="" class="white key g" data-note="G"></div>
+            </div>        
+            <!-- <br><br> -->
+        </div>
+    </section>
+
+        <!-- //////////////// -->
+        <div id="div1" class="container"  >
+            <input type="checkbox" id="recordButton"/>
+            <label for="recordButton"></label>
+            <div class="time">
+                <div class="h_m"></div>
+                <div class="s_ms"></div>
+            </div>
+        </div>
+        <footer class="div3">
+
+           <h5 id="name-input">NAME</h5>
+
+           
+
+        <div id="all-bit">
+                <div id="bit-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="bitcrush-toggle">
+                        <span class="slider round"></span>
+                      </label> 
+                    </div>
+                <h6>bitcrusher</h6>
+                <div class="bitKnobs">
+                <div class="effectsKnobs" id="bits">
+                </div>
+                <div class="effectsKnobs" id="sample-rate">
+                </div>
+            </div>
+        </div>
+        
+        <div id="all-verb">
+            <div id="verb-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="verb-toggle">
+                    <span class="slider round"></span>
+                  </label> 
+                </div>
+                <h6>reverb</h6>
+            <div class="verbKnob">
+                
+                <div class="effectsKnobs" id="time">
+                </div>
+            </div>
+        </div>  
+          
+        <div id="filterCon">
+            <div id="fil-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="filter-toggle">
+                    <span class="slider round"></span>
+                  </label> 
+                </div>
+            <div class="filterKnob">
+                <h6>lowpass filter</h6>
+                <div class="effectsKnobs" id="lowpass-filter">
+                </div>
+            </div>
+        </div>
+            
+
+                <div class="div3" id="soundSwitch">
+                    <div>
+                        <div id="waveshapes">
+                            <label>
+                                <input id="sine" type="radio" name="waveform" value="sine"><img class='image-class' src = "http://www.placekitten.com/30/30"/> sine
+                            </label>
+
+                            <label>
+                                <input id="square" type="radio" name="waveform" value="square" checked><img class='image-class' src = "http://www.placekitten.com/30/30"/> square
+                            </label>
+
+                            <label>
+                                <input id="triangle" type="radio" name="waveform" value="triangle" checked><img class='image-class' src = "http://www.placekitten.com/30/30"/> square
+                            </label>
+
+                            <label>
+                                <input id="sawtooth" type="radio" name="waveform" value="sawtooth" checked><img class='image-class' src = "http://www.placekitten.com/30/30"/> square
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                
+                    <div class="mainVolume">
+       
+                            <p id="sliderText">Volume</p>
+                            <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
+                   </div>
+                      
+
+                    
+                    <div id="saveLoadDiv">
+                        <div id="saveButtonDiv">
+                            <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
+                            <button class="saveButton" type="button" id="saveButton">save</button><br><br>
+                        </div>
+                        <div id="downloadButtonDiv">
+                            <select id="savedSession" name="savedSession">
+                            </select>
+                            <button id="downloadButton">load</button>
+                        </div>
+
+
+                        <a href="../about-me/index.html">about us</a>
+                    </div>
+                <div id="play-speed-loop">
+
+                    <a href="#" title="" class="play" id="playbutton"></a>
+                    <div id="speed-dropdown">
+                    <select id="playback-speed" name="playback-speed">
+                        <option value="0.5">x0.5</option>
+                        <option value="1.0">x1.0</option>
+                        <option value="2.0">x2.0</option>
+                        <option value="5.0">x5.0</option>
+                        <option value="10.0">x10.0</option>
+                        <option value="20.0">x20.0</option>
+                    </select> speed
+                    </div>
+
+                    
+                    <div id="loop-toggle">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                          </label> loop
+                    </div>
+                    <!-- <a href="#" title="" class="div3" class="play" id="playbutton"></a> -->
+
+                    
+                </div>
+                </footer>
+                
+    </div>   
+</div>
+</div>
+
+</body>
+<!-- <script src="../keyboard.js"></script> -->
+<script src="pureknob.js"></script>
+<script type="module" src="synth.js"></script>
+</html>
