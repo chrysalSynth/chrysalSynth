@@ -34,7 +34,7 @@ function PureKnob() {
         var widthString = width.toString();
         var canvas = document.createElement('canvas');
         var div = document.createElement('div');
-        div.style.display = 'inline-block';
+        // div.style.display = 'inline-block';
         div.style.height = heightString + 'px';
         div.style.position = 'relative';
         div.style.textAlign = 'center';
@@ -286,9 +286,9 @@ function PureKnob() {
         var fontSizeString = fontSize.toString();
         var canvas = document.createElement('canvas');
         var div = document.createElement('div');
-        div.style.display = 'inline-block';
+        // div.style.display = 'inline-block';
         div.style.height = heightString + 'px';
-        div.style.position = 'relative';
+        // div.style.position = 'relative';
         div.style.textAlign = 'center';
         div.style.width = widthString + 'px';
         div.appendChild(canvas);
@@ -1086,7 +1086,7 @@ function PureKnob() {
 			
         };
 		
-        canvas.addEventListener('dblclick', doubleClickListener);
+        // canvas.addEventListener('dblclick', doubleClickListener);
         canvas.addEventListener('mousedown', mouseDownListener);
         canvas.addEventListener('mouseleave', mouseCancelListener);
         canvas.addEventListener('mousemove', mouseMoveListener);
@@ -1104,43 +1104,58 @@ function PureKnob() {
 }
 var pureknob = new PureKnob();
 
-var resonanceKnob = pureknob.createKnob(75, 75);
-resonanceKnob.setProperty('angleStart', -0.75 * Math.PI);
-resonanceKnob.setProperty('angleEnd', 0.75 * Math.PI);
-resonanceKnob.setProperty('colorFG', '#88ff88');
-resonanceKnob.setProperty('trackWidth', 0.4);
-resonanceKnob.setProperty('valMin', 0);
-resonanceKnob.setProperty('valMax', 100);
-resonanceKnob.setProperty('label', 'Resonance');
-resonanceKnob.setProperty('textScale', 1);
-var node = resonanceKnob.node();
-var elem = document.getElementById('resonance');
+var bitsKnob = pureknob.createKnob(75, 75);
+bitsKnob.setProperty('angleStart', -0.75 * Math.PI);
+bitsKnob.setProperty('angleEnd', 0.75 * Math.PI);
+bitsKnob.setProperty('colorFG', 'white');
+bitsKnob.setProperty('trackWidth', 0.4);
+bitsKnob.setProperty('val', 4);
+bitsKnob.setProperty('valMin', 1);
+bitsKnob.setProperty('valMax', 16);
+bitsKnob.setProperty('label', 'bits');
+bitsKnob.setProperty('textScale', 1);
+var node = bitsKnob.node();
+var elem = document.getElementById('bits');
 elem.appendChild(node);
 
-var cutOffKnob = pureknob.createKnob(75, 75);
-cutOffKnob.setProperty('angleStart', -0.75 * Math.PI);
-cutOffKnob.setProperty('angleEnd', 0.75 * Math.PI);
-cutOffKnob.setProperty('colorFG', '#88ff88');
-cutOffKnob.setProperty('trackWidth', 0.4);
-cutOffKnob.setProperty('valMin', 0);
-cutOffKnob.setProperty('valMax', 100);
-cutOffKnob.setProperty('label', 'Cut Off');
-var node2 = cutOffKnob.node();
-var elem2 = document.getElementById('cutOff');
+var sampleRateKnob = pureknob.createKnob(75, 75);
+sampleRateKnob.setProperty('angleStart', -0.75 * Math.PI);
+sampleRateKnob.setProperty('angleEnd', 0.75 * Math.PI);
+sampleRateKnob.setProperty('colorFG', 'white');
+sampleRateKnob.setProperty('trackWidth', 0.4);
+sampleRateKnob.setProperty('val', 0.1);
+sampleRateKnob.setProperty('valMin', 0.1);
+sampleRateKnob.setProperty('valMax', 1.0);
+sampleRateKnob.setProperty('label', 'sample-rate');
+var node2 = sampleRateKnob.node();
+var elem2 = document.getElementById('sample-rate');
 elem2.appendChild(node2);
 
-var lfoKnob = pureknob.createKnob(75, 75);
-lfoKnob.setProperty('angleStart', -0.75 * Math.PI);
-lfoKnob.setProperty('angleEnd', 0.75 * Math.PI);
-lfoKnob.setProperty('colorFG', '#88ff88');
-lfoKnob.setProperty('trackWidth', 0.4);
-lfoKnob.setProperty('valMin', 0);
-lfoKnob.setProperty('valMax', 100);
-lfoKnob.setProperty('label', 'LFO');
-var node3 = lfoKnob.node();
-var elem3 = document.getElementById('lfo');
+var timeKnob = pureknob.createKnob(75, 75);
+timeKnob.setProperty('angleStart', -0.75 * Math.PI);
+timeKnob.setProperty('angleEnd', 0.75 * Math.PI);
+timeKnob.setProperty('colorFG', 'white');
+timeKnob.setProperty('trackWidth', 0.4);
+timeKnob.setProperty('val', 0.2);
+timeKnob.setProperty('valMin', 0.2);
+timeKnob.setProperty('valMax', 4.0);
+timeKnob.setProperty('label', 'seconds');
+var node3 = timeKnob.node();
+var elem3 = document.getElementById('time');
 elem3.appendChild(node3);
 
+var lowpassKnob = pureknob.createKnob(75, 75);
+lowpassKnob.setProperty('angleStart', -0.75 * Math.PI);
+lowpassKnob.setProperty('angleEnd', 0.75 * Math.PI);
+lowpassKnob.setProperty('colorFG', 'white');
+lowpassKnob.setProperty('trackWidth', 0.4);
+lowpassKnob.setProperty('val', 20000);
+lowpassKnob.setProperty('valMin', 10);
+lowpassKnob.setProperty('valMax', 20000);
+lowpassKnob.setProperty('label', 'lowpass');
+var node4 = lowpassKnob.node();
+var elem4 = document.getElementById('lowpass-filter');
+elem4.appendChild(node4);
 
 
 
