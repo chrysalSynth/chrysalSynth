@@ -42,3 +42,5 @@ signUp.addEventListener('click', () => {
     }
     window.location.href = './synth';
 });
+
+export default (CreateUserAccount);
