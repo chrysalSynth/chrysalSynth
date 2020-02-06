@@ -36,6 +36,10 @@ const frequencyControlLP = document.getElementById('filterFrequencyLP');
 const frequencyControlHP = document.getElementById('filterFrequencyHP');
 const frequencyControlBP = document.getElementById('filterFrequencyBP');
 
+//Things that need JS stuff - bitcrush on/off toggle, reverb on/off toggle, bits knob for bitcrusher, sample rate knob for bitcrusher, time knob for reverb, low pass knob, sine/square/sawtooth/triangle radio buttons, speed drop down menu, loop toggle on/off
+
+//Code would look like function()=> { if (convolverEffect.connect = true) {convolverEffect.disconnect}}
+
 //KEYBOARD STUFF
 document.addEventListener('DOMContentLoaded', function(event) {
     //SET UP AUDIO CONTEXT
@@ -57,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
     compressor.attack.setValueAtTime(0, audioCtx.currentTime);
     compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+      
   
     //OBJECT FOR STORING ACTIVE NOTES
     const activeOscillators = {};
@@ -88,15 +93,61 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // '55': 932.327523036179832, //7 - A#
         // '85': 987.766602512248223,  //U - B
     };
+
+
+    //CONVOLVER EFFECT
+    //convolverTime changes reverb time
+    let convolverTime = 0.1;
+    let convolverEffect = (function() {
+        let convolver = audioCtx.createConvolver(),
+            noiseBuffer = audioCtx.createBuffer(2, convolverTime * audioCtx.sampleRate, audioCtx.sampleRate),
+            left = noiseBuffer.getChannelData(0),
+            right = noiseBuffer.getChannelData(1);
+        for (let i = 0; i < noiseBuffer.length; i++) {
+            left[i] = Math.random() * 2 - 1;
+            right[i] = Math.random() * 2 - 1;
+        }
+        convolver.buffer = noiseBuffer;
+        return convolver;
+    })();
+
+    //BIT CRUSHER EFFECT
+    //USE bits AND normFreq TO CHANGE BIT RATE AND NORM FREQ
+    let bufferSize = 4096;
+    let bits = [1, 4, 8, 16];
+    let normFreq = [0.1, 0.2, 0.5, 1.0];
+    let bitcrushEffect = (function() {
+        let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
+        node.bits = bits[1]; // between 1 and 16
+        node.normfreq = normFreq[0]; // between 0.0 and 1.0
+        let step = Math.pow(1 / 2, node.bits);
+        let phaser = 0;
+        let last = 0;
+        node.onaudioprocess = function(e) {
+            let input = e.inputBuffer.getChannelData(0);
+            let output = e.outputBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                phaser += node.normfreq;
+                if (phaser >= 1.0) {
+                    phaser -= 1.0;
+                    last = step * Math.floor(input[i] / step + 0.5);
+                }
+                output[i] = last;
+            }
+        };
+        return node;
+    })();
+   
   
     //CONNECTIONS
+
     gain.connect(filterLP);
-    filterLP.connect(compressor);
+    filterLP.connect(bitcrushEffect);
+    bitcrushEffect.connect(convolverEffect);
+    convolverEffect.connect(compressor);
     compressor.connect(myOscilloscope);
-    // filterHP.connect(filterBP);
-    // filterBP.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
-  
+    
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
     waveformControl.addEventListener('change', function(event) {
         waveform = event.target.value;
@@ -280,30 +331,31 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //RECORDING
 
     recordStartButton.addEventListener('click', () => {
-        recordingEvents();
-    });
-
-    window.addEventListener('keyup', (e) => {
-        const x = e.keyCode;
-        if (x === 82 && recordStartButton.checked === false){
-            recordStartButton.checked = true;
-            recordingEvents();
-        } else if (x === 82) {
-            recordStartButton.checked = false;
-            recordingEvents();
-        }        
-    });
-
-    function recordingEvents() {
         if (recordStartButton.checked) {
             musicalLayer = [];
             recordStartTime = audioCtx.currentTime;
-            console.log('recording');
         } else if (!recordStartButton.checked) {
             layerToStore = musicalLayer.slice();
-            console.log('stop recording');
         }
-    }
+    });
+
+    // window.addEventListener('keyup', (e) => {
+    //     if (e.keyCode === 82 && !recordStartButton.checked) {
+    //         recordStartButton.checked;
+    //         musicalLayer = [];
+    //         console.log(musicalLayer);
+    //         recordStartTime = audioCtx.currentTime;
+    //         console.log('r has been pressed');
+
+    //     } else if (e.keyCode === 82 && recordStartButton.checked) {
+    //         layerToStore = musicalLayer.slice(); 
+    //         !recordStartButton.checked;
+    //         console.log('r has been pressed again');  
+    //     } else if (recordStartButton.checked) {
+    //         console.log('r has been pressed again return'); 
+    //         return;
+    //     }
+    // });
 
 
     
