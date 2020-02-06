@@ -28,8 +28,16 @@ input:checked + .image-class {
   /* margin: auto; */
 
 }
-
-
+#seconds_lowPass{
+  display: flex;
+  margin-bottom: 1.8vw;
+}
+#name-input{
+  position: fixed;
+  bottom: 2vw;
+  left: 18vw;
+  
+}
 
 .div1 {
   flex: 0 0 auto;
@@ -274,7 +282,7 @@ input:checked + .slider:before {
   bottom: 27%;
   left: 2%
 }
-    
+
 .white {
     height:14em;
     width:4em;
