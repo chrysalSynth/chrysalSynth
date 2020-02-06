@@ -31,7 +31,7 @@
             
         <!-- </div> -->
         <section>
-        <div class="div1" id="oscilloscope"></div>
+<div class="div1" id="oscilloscope"></div>
     </section>
     <section>
         <div class="div2" id="piano">
@@ -71,91 +71,66 @@
                 </div>
             </div>
 <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-
         </div>
     </section>
-
         <!-- //////////////// -->
         <footer class="div3">
-
-           <h5 id="name-input">NAME</h5>
-
-           
-
+           <!-- <h5 id="name-input">NAME</h5> -->
         <div id="all-bit">
-                <div id="bit-toggle">
-                    <label class="switch">
-                        <input type="checkbox" id="bitcrush-toggle">
-                        <span class="slider round"></span>
-                      </label> 
-                    </div>
-                <h6>bitcrusher</h6>
-                <div class="bitKnobs">
+            <div class="bitKnobs">
                 <div class="effectsKnobs" id="bits">
                 </div>
                 <div class="effectsKnobs" id="sample-rate">
                 </div>
             </div>
+             <div id="bit-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="bitcrush-toggle">
+                    <span class="slider round"></span>
+                </label> 
+            </div>
         </div>
         
         <div id="all-verb">
-            <div id="verb-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="verb-toggle">
-                    <span class="slider round"></span>
-                  </label> 
-                </div>
-                <h6>reverb</h6>
             <div class="verbKnob">
-                
                 <div class="effectsKnobs" id="time">
                 </div>
             </div>
         </div>  
           
         <div id="filterCon">
-            <div id="fil-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="filter-toggle">
-                    <span class="slider round"></span>
-                  </label> 
-                </div>
             <div class="filterKnob">
-                <h6>lowpass filter</h6>
                 <div class="effectsKnobs" id="lowpass-filter">
                 </div>
             </div>
         </div>
             
-
-                <div class="div3" id="soundSwitch">
-                    <div>
-                        <div id="waveshapes">
-                            <label>
-                                <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> sine
-                            </label>
-                            <label>
-                                <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> square
-                            </label>
-                            <label>
-                                <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> triangle
-                            </label>
-                            <label>
-                                <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> sawtooth
-                            </label>
-                        </div>
-
-                    </div>
+        <div class="div3" id="soundSwitch">
+            <div>
+                <div id="waveshapes">
+                    <label>
+                        <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> sine
+                    </label>
+                    <label>
+                        <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> square
+                    </label>
+                    <label>
+                        <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> triangle
+                    </label>
+                    <label>
+                        <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> sawtooth
+                    </label>
                 </div>
-                
-                    <div class="mainVolume">
-       
-                            <p id="sliderText">Volume</p>
-                            <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
-                   </div>
-                      
 
-                    
+            </div>
+        </div>
+                
+        <div class="mainVolume">
+
+                <p id="sliderText">Volume</p>
+                <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
+        </div>
+<!-- yooooooooooooooooooooo!    dont work past this!!!!! -->
                     <div id="saveLoadDiv">
                         <div id="saveButtonDiv">
                             <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
@@ -183,20 +158,15 @@
                         <option value="20.0">x20.0</option>
                     </select> speed
                     </div>
-
-                    
                     <div>
                         <label class="switch">
                             <input type="checkbox" id="loop-toggle">
                             <span class="slider round"></span>
                           </label> loop
                     </div>
-                    <!-- <a href="#" title="" class="div3" class="play" id="playbutton"></a> -->
-
-                    
+                    <!-- <a href="#" title="" class="div3" class="play" id="playbutton"></a> -->      
                 </div>
-                </footer>
-                
+                </footer>    
     </div>   
 </div>
 </div>
