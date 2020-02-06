@@ -1,6 +1,12 @@
 * {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
+}
+
+a {
+  font-family: 'Amatic SC', cursive;
+  color: rgba(241, 238, 238, 0.74);
+  opacity: 50%;
 }
 
 .slidecontainer {
@@ -10,72 +16,72 @@
 
 /* The switch - the box around the slider */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 4vw;
-    height: 1.6vw;
-    margin-top: .3vw;
-    margin-bottom: .02vw;
-  }
+  position: absolute;
+  display: inline-block;
+  width: 4vw;
+  height: 1.6vw;
+  margin-top: .3vw;
+  margin-bottom: .02vw;
+}
   
   /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
   
   /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
   
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: .9vw;
-    width: 1vw;
-    left: .5vw;
-    bottom: .3vw;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: .9vw;
+  width: 1vw;
+  left: .5vw;
+  bottom: .3vw;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
   
-  input:checked + .slider {
-    background-color: rgb(33, 177, 33);
-  }
+input:checked + .slider {
+  background-color: rgb(33, 177, 33);
+}
   
-  input:focus + .slider {
-    box-shadow: 0 0 .3vw rgb(33, 177, 33);
-  }
+input:focus + .slider {
+  box-shadow: 0 0 .3vw rgb(33, 177, 33);
+}
   
-  input:checked + .slider:before {
-    -webkit-transform: translateX(2vw);
-    -ms-transform: translateX(2vw);
-    transform: translateX(2vw);
-  }
+input:checked + .slider:before {
+  -webkit-transform: translateX(2vw);
+  -ms-transform: translateX(2vw);
+  transform: translateX(2vw);
+}
   
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 2vw;
-  }
+/* Rounded sliders */
+.slider.round {
+  border-radius: 2vw;
+}
   
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.slider.round:before {
+  border-radius: 50%;
+}
 
   /* creates a fixed footer */
 .footer {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -85,12 +91,12 @@
 }
 
 #piano {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     text-align: center;
     margin-bottom: 7vw;
-    top: 75%;
-    left: 25%;
+    top: 65%;
+    left: 27%;
     margin-top: -100px; /* Negative half of height. */
     margin-left: -20px; /* Negative half of width. */
 }
@@ -201,11 +207,12 @@ p {
 }
 
 #oscilloscope {
-  position: fixed;
-  width: 600px;
-  height: 300px;
-  top: 25%;
-  right: 75%;
+  position: absolute;
+  width: 900px;
+  height: 100px;
+  top: 5%;
+  right: 22%;
+  opacity: 50%;
 }
 
 .soundSwitches{
