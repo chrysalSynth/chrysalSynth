@@ -29,22 +29,18 @@ const recordPlayButton = document.getElementById('playbutton');
 updateSongs();
 
 // DOM SYNTH CONTROLS
-const waveformControlSine = document.getElementById('sine');
-const waveformControlSquare = document.getElementById('square');
-const waveformControlTriangle = document.getElementById('triangle');
-const waveformControlSawtooth = document.getElementById('sawtooth');
-let waveform = waveformControlSine.value || waveformControlSquare.value || waveformControlTriangle.value || waveformControlSawtooth.value;
-
+// const waveformControl = document.getElementById('waveform');
 
 const bitcrushToggle = document.getElementById('bitcrush-toggle');
 // const verbToggle = document.getElementById('verb-toggle');
 // const filterToggle = document.getElementById('filter-toggle');
 
-//NOT WORKING RN
-const waveformControl = document.querySelector('input[name="waveform"]:checked');
-let waveform = waveformControl.value;
-//NOT WORKING RN
-
+// DOM SYNTH CONTROLS
+const waveformControlSine = document.getElementById('sine');
+const waveformControlSquare = document.getElementById('square');
+const waveformControlTriangle = document.getElementById('triangle');
+const waveformControlSawtooth = document.getElementById('sawtooth');
+let waveform = waveformControlSine.value || waveformControlSquare.value || waveformControlTriangle.value || waveformControlSawtooth.value;
 // PLAYBACK DOM
 const playbackSpeed = document.getElementById('playback-speed');
 const loopToggle = document.getElementById('loop-toggle');
@@ -170,17 +166,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     compressor.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
     
-//EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
-    waveformControlSine.addEventListener('click', function(event) {
-        waveform = event.target.value;
-    });
-    waveformControlSquare.addEventListener('click', function(event) {
-        waveform = event.target.value;
-    });
-    waveformControlTriangle.addEventListener('click', function(event) {
-        waveform = event.target.value;
-    });
-    waveformControlSawtooth.addEventListener('click', function(event) {
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
 
     bitcrushToggle.addEventListener('click', () => {
@@ -194,8 +179,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     });
 
-    //NOT WORKING RN
-    waveformControl.addEventListener('click', function(event) {
+    //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
+    waveformControlSine.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
+    waveformControlSquare.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
+    waveformControlTriangle.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
+    waveformControlSawtooth.addEventListener('click', function(event) {
         waveform = event.target.value;
     });
   
