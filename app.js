@@ -1,4 +1,4 @@
-import { setCurrentUser, createUserAccount, getUserAccounts } from './utils.js';
+import { ConstructAccount, setCurrentUser, createUserAccount, getUserAccounts } from './utils.js';
 
 //get the name value from end user and the signUp button for event listener
 const formName = document.getElementById('name');
@@ -32,10 +32,6 @@ signUp.addEventListener('click', () => {
         }
         createUserAccount(userAccountsArray, userAccount);
     }
-    // this function constructs the user account
-    function ConstructAccount(name) {
-        this.name = name;
-        this.recordingSession = {};
-    }
+    //send user to synth page
     window.location.href = './synth';
-});
+}); 

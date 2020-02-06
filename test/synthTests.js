@@ -1,7 +1,16 @@
 // IMPORT MODULES under test here:
-import { createUserAccount, setCurrentUser, getUserAccounts } from '../utils.js';
+import { ConstructAccount, createUserAccount, setCurrentUser, getUserAccounts } from '../utils.js';
 
 const test = QUnit.test;
+
+//this test checks if the construct account function works
+test('construct a user', function(assert) {
+    //function that is being tested (setCurrentUser)
+    const userAccount = new ConstructAccount('Cody');
+    const expected = 'Cody';
+    const result = userAccount.name;
+    assert.equal(result, expected);
+});
 
 //this test determines if the setCurrentUser function works
 test('set the current user', function(assert) {
