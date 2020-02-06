@@ -328,7 +328,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
 
         localStorage.setItem('userAccounts', JSON.stringify(userAccounts));
-        updateSongs();
+        const newOption = document.createElement('option');
+        newOption.value = newSong.name;
+        newOption.textContent = newSong.name;
+        savedSessions.appendChild(newOption);
     });
 
 
@@ -348,10 +351,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
         contextPlayback = new AudioContext();
         const activeOscillatorsPlayback = {};
         const playbackMultiplier = 1;
+        // const lastNoteTime = musicalLayer.length; 
+        // const loopTime = (musicalLayer[lastNoteTime - 1].note_time);
+        // console.log(loopTime);
     
     
         for (let i = 0; i < musicalLayer.length; i++){
-            const currentNoteValue = musicalLayer[i];                       
+            const currentNoteValue = musicalLayer[i];              
             if (currentNoteValue.note_switch === 144) { //note on!
 
                 const oscillatorPlayback = contextPlayback.createOscillator();
@@ -373,7 +379,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 oscillatorPlayback.frequency.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));
                 envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));              
             }
+            
         }
+        // setTimeout(() => playStoredMusic(musicalLayer), (loopTime * (1 / playbackMultiplier)) * 1000); 
+        // contextPlayback.currentTime = loopTime       
     }
 });
 
