@@ -3,6 +3,7 @@ import { createUserAccount, setCurrentUser, getUserAccounts } from '../utils.js'
 
 const test = QUnit.test;
 
+//this test determines if the setCurrentUser function works
 test('set the current user', function(assert) {
    //function that is being tested (setCurrentUser)
     setCurrentUser('josh');
@@ -11,6 +12,7 @@ test('set the current user', function(assert) {
     assert.equal(result, expected);
 });
 
+//this test determines if the createUserAccount function works
 test('create a user account and push to local storage', function(assert) {
    
     const userAccount = {
@@ -30,6 +32,7 @@ test('create a user account and push to local storage', function(assert) {
     assert.equal(result, expected);
 });
 
+//this test determines if the getUserAccounts function works
 test('retrieve all user accounts', function(assert) {
 
     const userAccount = {

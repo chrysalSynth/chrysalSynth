@@ -10,28 +10,27 @@ signUp.addEventListener('click', () => {
     //set the current user in local storage to the user entered value
     setCurrentUser(name);
     //get local storage user account data and parse them
-    let localStorageAccounts = getUserAccounts();
+    let userAccountsArray = getUserAccounts();
     //create user account from form data
     const userAccount = new ConstructAccount(name);
-    //if local storage accounts don't exist yet... create one as an empty array
-    if (!localStorageAccounts){
-        localStorageAccounts = [];
-        //now push the constructed userAccount array into localStorage Account Array
-        //stringify that and put into local storage
-        createUserAccount(localStorageAccounts, userAccount);
+    //if the user accounts array in local storage doesn't exist... create one
+    if (!userAccountsArray){
+        userAccountsArray = [];
+        //now push the constructed userAccount into the localStorage Account Array, stringify and push into local storage
+        createUserAccount(userAccountsArray, userAccount);
     } 
     else {
-        //if localStorageAccounts DO exist... start looping through them to see if the current user has already created an account
-        for (let i = 0 ; i < localStorageAccounts.length; i++){
-            const localStorageAccountObject = (localStorageAccounts[i]);
-            //if they match... shoot them over to the synth page
-            if (localStorageAccountObject.name === name){
+        //if a userAccountsArray DOES exist... start looping through to see if the current user has already created an account
+        for (let i = 0 ; i < userAccountsArray.length; i++){
+            const userAccountObject = (userAccountsArray[i]);
+            //if they match... break out of loop and shoot them over to the synth page
+            if (userAccountObject.name === name){
                 window.location.href = './synth';
                 //return to break the loop and not run the remaining lines of code
                 return;
             } 
         }
-        createUserAccount(localStorageAccounts, userAccount);
+        createUserAccount(userAccountsArray, userAccount);
     }
     // this function constructs the user account
     function ConstructAccount(name) {
