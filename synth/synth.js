@@ -32,7 +32,7 @@ updateSongs();
 // const waveformControl = document.getElementById('waveform');
 
 const bitcrushToggle = document.getElementById('bitcrush-toggle');
-// const verbToggle = document.getElementById('verb-toggle');
+const verbToggle = document.getElementById('verb-toggle');
 // const filterToggle = document.getElementById('filter-toggle');
 
 // DOM SYNTH CONTROLS
@@ -44,9 +44,6 @@ let waveform = waveformControlSine.value || waveformControlSquare.value || wavef
 // PLAYBACK DOM
 const playbackSpeed = document.getElementById('playback-speed');
 const loopToggle = document.getElementById('loop-toggle');
-
-
-
 
 // let waveform = waveformControl.value;
 const gainControl = document.getElementById('gain');
@@ -69,8 +66,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //PROCESSING CHAIN
     const gain = audioCtx.createGain();
     const filterLP = audioCtx.createBiquadFilter();
-    const filterHP = audioCtx.createBiquadFilter();
-    const filterBP = audioCtx.createBiquadFilter();
+    // const filterHP = audioCtx.createBiquadFilter();
+    // const filterBP = audioCtx.createBiquadFilter();
 
     //COMPRESSOR
     const compressor = audioCtx.createDynamicsCompressor();
@@ -115,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //CONVOLVER EFFECT
     //convolverTime changes reverb time
-    let convolverTime = 0.1;
+    let convolverTime = 1.00;
     let convolverEffect = (function() {
         let convolver = audioCtx.createConvolver(),
             noiseBuffer = audioCtx.createBuffer(2, convolverTime * audioCtx.sampleRate, audioCtx.sampleRate),
@@ -165,6 +162,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     convolverEffect.connect(compressor);
     compressor.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
+
+    // bitcrushEffect.disconnect(0);
     
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
 
@@ -178,6 +177,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
             filterLP.connect(convolverEffect);
         }
     });
+
+    // verbToggle.addEventListener('click', () => {
+    //     if (verbToggle.checked) {
+    //         bitcrushEffect.disconnect(convolverEffect);
+    //         bitcrushEffect.connect(bitcrushEffect);
+    //         bitcrushEffect.connect(convolverEffect);
+    //     } else {
+    //         filterLP.disconnect(bitcrushEffect);
+    //         filterLP.connect(convolverEffect);
+    //     }
+    // });
 
     //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
     waveformControlSine.addEventListener('click', function(event) {
@@ -521,4 +531,3 @@ function getUserFromLS() {
         }
     }
 }
-
