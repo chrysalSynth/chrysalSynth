@@ -24,7 +24,7 @@ const recordStartButton = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
 const savedSessions = document.getElementById('savedSession');
-const recordPlayButton = document.getElementById('playbutton');
+const recordPlayButton = document.getElementById('playpause');
 
 updateSongs();
 
