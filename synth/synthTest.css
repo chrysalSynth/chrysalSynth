@@ -11,21 +11,17 @@ input:checked + .image-class {
   border: 2px dotted white;
 }
 
-
-/* #waveshapes + input {
-  display: none;
-} */
-
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 #waveshapes {
   display: flex;
-  align-items: left;
-  /* justify-content: left; */
-  flex-direction: column;
+  justify-content: left;
   justify-content: space-between;
-  /* float: left; */
-
-  /* text-align: center; */
-  /* margin: auto; */
+  cursor: pointer;
 
 }
 #seconds_lowPass{
