@@ -29,12 +29,21 @@ const recordPlayButton = document.getElementById('playbutton');
 updateSongs();
 
 // DOM SYNTH CONTROLS
-const waveformControl = document.getElementById('waveform');
+// const waveformControl = document.getElementById('waveform');
+
+//NOT WORKING RN
+const waveformControl = document.querySelector('input[name="waveform"]:checked');
 let waveform = waveformControl.value;
+//NOT WORKING RN
+
+
+
+
+// let waveform = waveformControl.value;
 const gainControl = document.getElementById('gain');
-const frequencyControlLP = document.getElementById('filterFrequencyLP');
-const frequencyControlHP = document.getElementById('filterFrequencyHP');
-const frequencyControlBP = document.getElementById('filterFrequencyBP');
+const frequencyControlLP = document.getElementById('lowpass-filter');
+// const frequencyControlHP = document.getElementById('filterFrequencyHP');
+// const frequencyControlBP = document.getElementById('filterFrequencyBP');
 
 //Things that need JS stuff - bitcrush on/off toggle, reverb on/off toggle, bits knob for bitcrusher, sample rate knob for bitcrusher, time knob for reverb, low pass knob, sine/square/sawtooth/triangle radio buttons, speed drop down menu, loop toggle on/off
 
@@ -149,9 +158,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     myOscilloscope.connect(audioCtx.destination);
     
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
-    waveformControl.addEventListener('change', function(event) {
+
+    //NOT WORKING RN
+    waveformControl.addEventListener('click', function(event) {
         waveform = event.target.value;
+        console.log(waveform);
     });
+    //NOT WORKING RN
   
     gainControl.addEventListener('mousemove', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
@@ -162,15 +175,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
         filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlHP.addEventListener('mousemove', function(event) {
-        filterHP.type = 'highpass';
-        filterHP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    });
+    // frequencyControlHP.addEventListener('mousemove', function(event) {
+    //     filterHP.type = 'highpass';
+    //     filterHP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    // });
 
-    frequencyControlBP.addEventListener('mousemove', function(event) {
-        filterBP.type = 'bandpass';
-        filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    });
+    // frequencyControlBP.addEventListener('mousemove', function(event) {
+    //     filterBP.type = 'bandpass';
+    //     filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    // });
   
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
     window.addEventListener('keydown', keyDown, false);
@@ -465,9 +478,16 @@ function getUserFromLS() {
     const user = localStorage.getItem('currentUser');
     userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
 
+    console.log(user);
+
+    const nameDIV = document.getElementById('name-input');
+
+    nameDIV.textContent = user;
+
     for (let i = 0; i < userAccounts.length; i++) {
         if (user === userAccounts[i].name) {
             currentUserAccount = userAccounts[i];
         }
     }
 }
+
