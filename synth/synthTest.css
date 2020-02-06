@@ -11,12 +11,22 @@ input:checked + .image-class {
   border: 2px dotted white;
 }
 
+
 [type=radio] { 
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
+
+#saveLoadDiv {
+  margin: auto;
+}
+
+/* #waveshapes + input {
+    display: none;
+} */
+
 #waveshapes {
   display: flex;
   justify-content: left;
