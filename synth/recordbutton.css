@@ -2305,10 +2305,10 @@ body {
 }
 body .container {
   position: absolute;
-  left: 82.5%;
-  top: 70%;
-  width: 170px;
-  height: 170px;
+  left: 85%;
+  top: 45%;
+  width: 70px;
+  height: 70px;
   margin: -85px -85px;
 }
 body .container #recordButton {
@@ -2395,7 +2395,7 @@ body .container #recordButton:checked ~ .time .s_ms:after {
 body .container .time {
   position: absolute;
   width: 100%;
-  top: 110%;
+  top: 100%;
   opacity: 0;
 }
 body .container .time > * {

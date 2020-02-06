@@ -80,7 +80,7 @@ input:checked + .slider:before {
 }
 
   /* creates a fixed footer */
-.footer {
+footer {
   position: absolute;
   left: 0;
   bottom: 0;
