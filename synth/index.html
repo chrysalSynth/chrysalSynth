@@ -28,6 +28,9 @@
         <div id="oscilloscope"></div>
         <div id="piano">
             <div class="keys">
+                <div data-key="" class="white key a" data-note="A"></div>
+                <div data-key="" class="black key a sharp" data-note="A#"></div>
+                <div data-key="" class="white key b" data-note="B"></div>
                 <div data-key="65" class="white key c" data-note="C"></div>
                 <div data-key="87" class="black key c sharp" data-note="C#"></div>
                 <div data-key="83" class="white key d" data-note="D"></div>
@@ -47,6 +50,7 @@
                 <div data-key="186" class="white key e" data-note="E"></div>
                 <div data-key="222" class="white key f" data-note="F"></div> 
                 <div data-key="221" class="black key f sharp" data-note="F#"></div>
+                <div data-key="" class="white key g" data-note="G"></div>
             </div>        
             <br><br>
         </div>
@@ -73,7 +77,6 @@
                             <input id="filterFrequencyBP" type="range" min="20.0" max="10000.0" step=".01" value="5000.0">
                         </div>
                     </div>
-                    <div id="soundSwitch">
                         <div>
                             <select id="waveform" name="waveform">
                                 <option value="sine">Sine</option>
