@@ -459,4 +459,3 @@ function getUserFromLS() {
         }
     }
 }
-export default (getUserFromLS);

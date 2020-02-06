@@ -1,3 +1,5 @@
+import { setCurrentUser, createUserAccount, getUserAccounts } from './utils.js';
+
 //get the name value from end user and the signUp button for event listener
 const formName = document.getElementById('name');
 const signUp = document.getElementById('signUp');
@@ -6,18 +8,17 @@ signUp.addEventListener('click', () => {
     //get user name value and uppercase the input
     const name = formName.value.toUpperCase();
     //set the current user in local storage to the user entered value
-    localStorage.setItem('currentUser', name);
+    setCurrentUser(name);
     //get local storage user account data and parse them
-    let localStorageAccounts = JSON.parse(localStorage.getItem('userAccounts'));
+    let localStorageAccounts = getUserAccounts();
     //create user account from form data
-    const userAccount = new CreateUserAccount(name);
+    const userAccount = new ConstructAccount(name);
     //if local storage accounts don't exist yet... create one as an empty array
     if (!localStorageAccounts){
         localStorageAccounts = [];
         //now push the constructed userAccount array into localStorage Account Array
-        localStorageAccounts.push(userAccount);
         //stringify that and put into local storage
-        localStorage.setItem('userAccounts', JSON.stringify(localStorageAccounts));
+        createUserAccount(localStorageAccounts, userAccount);
     } 
     else {
         //if localStorageAccounts DO exist... start looping through them to see if the current user has already created an account
@@ -30,17 +31,12 @@ signUp.addEventListener('click', () => {
                 return;
             } 
         }
-        //if we couldn't find an existing user account create one and push it into localStorageAccount variable
-        localStorageAccounts.push(userAccount);
-        //now stringify that and put it into local storage
-        localStorage.setItem('userAccounts', JSON.stringify(localStorageAccounts));
+        createUserAccount(localStorageAccounts, userAccount);
     }
     // this function constructs the user account
-    function CreateUserAccount(name) {
+    function ConstructAccount(name) {
         this.name = name;
         this.recordingSession = {};
     }
     window.location.href = './synth';
 });
-
-export default (CreateUserAccount);
