@@ -365,8 +365,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 activeOscillatorsPlayback[currentNoteValue.note_name] = oscillatorPlayback;  
                 activeOscillatorsPlayback[currentNoteValue.note_name].start(); 
                 envelopePlayback = contextPlayback.createGain();
-               
-                oscillatorPlayback.connect(envelopePlayback);
+
+                const filterLPPlayback = contextPlayback.createBiquadFilter();
+                filterLPPlayback.type = 'lowpass';
+                filterLPPlayback.frequency.setValueAtTime(18000, 0);
+
+                const compressorPlayback = contextPlayback.createDynamicsCompressor();
+                compressorPlayback.threshold.setValueAtTime(-50, 0);
+                compressorPlayback.knee.setValueAtTime(40, 0);
+                compressorPlayback.ratio.setValueAtTime(12, 0);
+                compressorPlayback.attack.setValueAtTime(0, 0);
+                compressorPlayback.release.setValueAtTime(0.25, 0);
+                        
+                oscillatorPlayback.connect(filterLPPlayback);
+                filterLPPlayback.connect(compressorPlayback);
+                compressorPlayback.connect(envelopePlayback);
                 oscillatorPlayback.type = currentNoteValue.note_waveform;
                 envelopePlayback.connect(contextPlayback.destination);
                 envelopePlayback.gain.value = 0.0;
