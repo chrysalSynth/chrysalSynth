@@ -11,6 +11,9 @@ input:checked + .image-class {
     border: 2px dotted white;
 }
 
+#saveLoadDiv {
+  margin: auto;
+}
 
 /* #waveshapes + input {
     display: none;
