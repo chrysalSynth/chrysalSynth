@@ -32,8 +32,8 @@ updateSongs();
 // const waveformControl = document.getElementById('waveform');
 
 const bitcrushToggle = document.getElementById('bitcrush-toggle');
-const verbToggle = document.getElementById('verb-toggle');
-const filterToggle = document.getElementById('filter-toggle');
+// const verbToggle = document.getElementById('verb-toggle');
+// const filterToggle = document.getElementById('filter-toggle');
 
 //NOT WORKING RN
 const waveformControl = document.querySelector('input[name="waveform"]:checked');
@@ -159,13 +159,24 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //CONNECTIONS
 
     gain.connect(filterLP);
-    filterLP.connect(bitcrushEffect);
-    bitcrushEffect.connect(convolverEffect);
+    filterLP.connect(convolverEffect);
+    // bitcrushEffect.connect(convolverEffect);
     convolverEffect.connect(compressor);
     compressor.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
     
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
+
+    bitcrushToggle.addEventListener('click', () => {
+        if (bitcrushToggle.checked) {
+            filterLP.disconnect(convolverEffect);
+            filterLP.connect(bitcrushEffect);
+            bitcrushEffect.connect(convolverEffect);
+        } else {
+            filterLP.disconnect(bitcrushEffect);
+            filterLP.connect(convolverEffect);
+        }
+    });
 
     //NOT WORKING RN
     waveformControl.addEventListener('click', function(event) {
