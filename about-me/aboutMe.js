@@ -1,7 +1,5 @@
 import { findById } from '../common/find-by-id.js';
 
-
-
 function aboutMeNavigation(aboutUs) {
     const link = document.createElement('a');
     link.classList.add();
