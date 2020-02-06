@@ -1086,7 +1086,7 @@ function PureKnob() {
 			
         };
 		
-        canvas.addEventListener('dblclick', doubleClickListener);
+        // canvas.addEventListener('dblclick', doubleClickListener);
         canvas.addEventListener('mousedown', mouseDownListener);
         canvas.addEventListener('mouseleave', mouseCancelListener);
         canvas.addEventListener('mousemove', mouseMoveListener);
@@ -1123,7 +1123,7 @@ sampleRateKnob.setProperty('angleStart', -0.75 * Math.PI);
 sampleRateKnob.setProperty('angleEnd', 0.75 * Math.PI);
 sampleRateKnob.setProperty('colorFG', 'white');
 sampleRateKnob.setProperty('trackWidth', 0.4);
-sampleRateKnob.setProperty('val', 0.5);
+sampleRateKnob.setProperty('val', 0.1);
 sampleRateKnob.setProperty('valMin', 0.1);
 sampleRateKnob.setProperty('valMax', 1.0);
 sampleRateKnob.setProperty('label', 'sample-rate');

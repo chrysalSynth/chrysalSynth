@@ -2303,13 +2303,14 @@ body {
   overflow: hidden;
   background: #000;
 }
+/* stop button */
 body .container {
   position: absolute;
-  left: 85%;
-  top: 45%;
+  left: 96%;
+  top: 35%;
   width: 70px;
   height: 70px;
-  margin: -85px -85px;
+  /* margin: -85px -85px; */
 }
 body .container #recordButton {
   display: none;
@@ -2329,10 +2330,12 @@ body .container #recordButton {
   border: 6px solid #fff;
   cursor: pointer;
 } */
+
+/* record button */
 body .container #recordButton + label:after {
-  position: absolute;
-  left: 70%;
-  top: 71%;
+  position: fixed;
+  left: 80%;
+  top: 62%;
   width: 30px;
   height: 30px;
   margin: -50px -50px;

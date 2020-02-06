@@ -29,17 +29,12 @@ const recordPlayButton = document.getElementById('playbutton');
 updateSongs();
 
 // DOM SYNTH CONTROLS
-// const waveformControl = document.getElementById('waveform');
+const waveformControlSine = document.getElementById('sine');
+const waveformControlSquare = document.getElementById('square');
+const waveformControlTriangle = document.getElementById('triangle');
+const waveformControlSawtooth = document.getElementById('sawtooth');
+let waveform = waveformControlSine.value || waveformControlSquare.value || waveformControlTriangle.value || waveformControlSawtooth.value;
 
-//NOT WORKING RN
-const waveformControl = document.querySelector('input[name="waveform"]:checked');
-let waveform = waveformControl.value;
-//NOT WORKING RN
-
-
-
-
-// let waveform = waveformControl.value;
 const gainControl = document.getElementById('gain');
 const frequencyControlLP = document.getElementById('lowpass-filter');
 // const frequencyControlHP = document.getElementById('filterFrequencyHP');
@@ -157,14 +152,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
     compressor.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
     
-    //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
-
-    //NOT WORKING RN
-    waveformControl.addEventListener('click', function(event) {
+//EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
+    waveformControlSine.addEventListener('click', function(event) {
         waveform = event.target.value;
-        console.log(waveform);
     });
-    //NOT WORKING RN
+    waveformControlSquare.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
+    waveformControlTriangle.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
+    waveformControlSawtooth.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
   
     gainControl.addEventListener('mousemove', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);

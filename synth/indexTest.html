@@ -59,20 +59,23 @@
                 <div data-key="222" class="white key f" data-note="F"></div> 
                 <div data-key="221" class="black key f sharp" data-note="F#"></div>
                 <div data-key="" class="white key g" data-note="G"></div>
-            </div>        
-            <!-- <br><br> -->
+            </div>   
+
+<!-- this div1 container must remain as they are together for the record button -->
+            <div id="div1" class="container"  >
+                <input type="checkbox" id="recordButton"/>
+                <label for="recordButton"></label>
+                <div class="time">
+                    <div class="h_m"></div>
+                    <div class="s_ms"></div>
+                </div>
+            </div>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
         </div>
     </section>
 
         <!-- //////////////// -->
-        <div id="div1" class="container"  >
-            <input type="checkbox" id="recordButton"/>
-            <label for="recordButton"></label>
-            <div class="time">
-                <div class="h_m"></div>
-                <div class="s_ms"></div>
-            </div>
-        </div>
         <footer class="div3">
 
            <h5 id="name-input">NAME</h5>
@@ -129,19 +132,16 @@
                     <div>
                         <div id="waveshapes">
                             <label>
-                                <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "http://www.placekitten.com/30/30"/> sine
+                                <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> sine
                             </label>
-
                             <label>
-                                <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "http://www.placekitten.com/30/30"/> square
+                                <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> square
                             </label>
-
                             <label>
-                                <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "http://www.placekitten.com/30/30"/> triangle
+                                <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> triangle
                             </label>
-
                             <label>
-                                <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "http://www.placekitten.com/30/30"/> sawtooth
+                                <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> sawtooth
                             </label>
                         </div>
 
