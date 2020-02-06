@@ -36,6 +36,10 @@ const frequencyControlLP = document.getElementById('filterFrequencyLP');
 const frequencyControlHP = document.getElementById('filterFrequencyHP');
 const frequencyControlBP = document.getElementById('filterFrequencyBP');
 
+//Things that need JS stuff - bitcrush on/off toggle, reverb on/off toggle, bits knob for bitcrusher, sample rate knob for bitcrusher, time knob for reverb, low pass knob, sine/square/sawtooth/triangle radio buttons, speed drop down menu, loop toggle on/off
+
+//Code would look like function()=> { if (convolverEffect.connect = true) {convolverEffect.disconnect}}
+
 //KEYBOARD STUFF
 document.addEventListener('DOMContentLoaded', function(event) {
     //SET UP AUDIO CONTEXT
@@ -92,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
     //CONVOLVER EFFECT
-    let convolverTime = 3;
+    //convolverTime changes reverb time
+    let convolverTime = 0.1;
     let convolverEffect = (function() {
         let convolver = audioCtx.createConvolver(),
             noiseBuffer = audioCtx.createBuffer(2, convolverTime * audioCtx.sampleRate, audioCtx.sampleRate),
