@@ -244,10 +244,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     window.addEventListener('keydown', function(e) {
         let x = e.keyCode;
         if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
-            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            key.classList.add('active');    
+            if (!keyOff) {
+                const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+                key.classList.add('active');    
+            }            
         } 
     });
+    
     window.addEventListener('keyup', function(e) {
         let x = e.keyCode;
         if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
