@@ -2,8 +2,8 @@
 
 .help-tip{
     position: absolute;
-    top: 5px;
-    left: 200px;
+    top: 1vw;
+    right: 1vw;
     text-align: center;
     background-color: #BCDBEA;
     border-radius: 50%;
@@ -39,7 +39,7 @@
     position: absolute;
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    left: -4px;
+    right: -4px;
     color: #FFF;
     font-size: 13px;
     line-height: 1.4;
