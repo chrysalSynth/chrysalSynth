@@ -20,6 +20,7 @@ getUserFromLS();
 
 // DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
+
 // const recordKeyPress = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
@@ -452,9 +453,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     function playStoredMusic(musicalLayer) {
 
-        // console.log(playbackSpeed.value);
-
         contextPlayback = new AudioContext();
+
+        if (!recordPlayButton.checked) {
+            contextPlayback.close();
+            return;
+        }
+
         const activeOscillatorsPlayback = {};
         const playbackMultiplier = playbackSpeed.value;
         const lastNoteTime = musicalLayer.length; 
@@ -470,20 +475,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 activeOscillatorsPlayback[currentNoteValue.note_name].start(); 
                 envelopePlayback = contextPlayback.createGain();
 
-                // const filterLPPlayback = contextPlayback.createBiquadFilter();
-                // filterLPPlayback.type = 'lowpass';
-                // filterLPPlayback.frequency.setValueAtTime(18000, 0);
-
-                // const compressorPlayback = contextPlayback.createDynamicsCompressor();
-                // compressorPlayback.threshold.setValueAtTime(-50, 0);
-                // compressorPlayback.knee.setValueAtTime(40, 0);
-                // compressorPlayback.ratio.setValueAtTime(12, 0);
-                // compressorPlayback.attack.setValueAtTime(0, 0);
-                // compressorPlayback.release.setValueAtTime(0.25, 0);
+                if (!recordPlayButton.checked) {
+                    activeOscillatorsPlayback[currentNoteValue.note_name].stop(); 
+                }
                         
                 oscillatorPlayback.connect(envelopePlayback);
-                // filterLPPlayback.connect(compressorPlayback);
-                // compressorPlayback.connect(envelopePlayback);
                 oscillatorPlayback.type = currentNoteValue.note_waveform;
                 envelopePlayback.connect(contextPlayback.destination);
                 envelopePlayback.gain.value = 0.0;
@@ -498,9 +494,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
             }
             
         }
-        if (loopToggle.checked) {
+        if (loopToggle.checked && recordPlayButton.checked) {
             setTimeout(() => playStoredMusic(musicalLayer), (loopTime * (1 / playbackMultiplier)) * 1000); 
-            // contextPlayback.currentTime = loopTime; 
         }
      
     }
@@ -533,3 +528,5 @@ function getUserFromLS() {
         }
     }
 }
+
+// recordNameInput.addEventListener()
