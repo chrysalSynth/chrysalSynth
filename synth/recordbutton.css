@@ -2307,7 +2307,7 @@ body {
 body .container {
   position: absolute;
   left: 96%;
-  top: 35%;
+  top: 33%;
   width: 70px;
   height: 70px;
   /* margin: -85px -85px; */
@@ -2328,12 +2328,9 @@ body .container #recordButton {
 
 /* record button */
 body .container #recordButton + label:after {
-  position: fixed;
-  left: 65%;
-  top: 62%;
-  width: 30px;
-  height: 30px;
-  margin: -50px -50px;
+  display: flex;
+  width: 70px;
+  height: 70px;
   content: "";
   border-radius: 50px;
   background: #e80415;
