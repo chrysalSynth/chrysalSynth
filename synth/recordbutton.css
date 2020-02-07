@@ -2318,9 +2318,9 @@ body .container #recordButton {
 
 #about {
   position: relative;
-  margin-right: 90%;
-  bottom: 100px;
-  opacity: 65%;
+  /* margin-right: 70%; */
+  bottom: 5px;
+  opacity: 100%;
   font-family: 'Teko', sans-serif;
   color: rgba(241, 238, 238, 0.74);
   font-size: .75em;
