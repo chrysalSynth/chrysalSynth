@@ -5,8 +5,9 @@
   color: white;
   box-sizing: border-box;
 }
-input:checked + .image-class {  padding: 1px;
+input:checked + .image-class {  padding: .5px;
   border-radius: 90%;
+  border: 2px dotted grey
 }
 
 img {
@@ -21,7 +22,8 @@ h5{
   margin-left: 10px;
 }
 p {
-  margin-bottom: 5px;
+  margin-left: 6px;
+  margin-bottom: 0px;
   font-size: 20px;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
@@ -49,19 +51,26 @@ p {
   height: 33px;
   display: flex;
   justify-content: left; 
+  
 }
 #speedDisplay{
   margin-top: 30px;
+  
 }
 
 #saveLoadDiv {
-  margin: auto;}
+  margin: auto;
+}
 
 #mainVolume {
   margin-top: 20px;
-  margin-left: 2px;}
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
 #reverbLoop {
-  display: flex;  margin-left: 20px;
+  display: flex;  
+  margin-left: 10px;
 
 }
 #waveshapes {
@@ -72,32 +81,73 @@ p {
   justify-content: space-between;
   cursor: pointer;
 }
+
+#reverbAndLoopButtons{
+  text-align: center;
+  margin-left: 0px;
+}
+
+#loopingContainer{
+  display: flex;
+  justify-content: left;
+  margin: auto;
+  margin-top: 12px;
+  margin-right: 0px;
+  border: 2px dotted grey
+}
+
+#loopingSwitch{
+  display: flex;
+  margin-right: 30px;
+  margin-top: 20px;
+}
 #seconds_lowPass{
   display: flex;
-  margin-bottom: 1.8vw;}
+  margin-bottom: 1.8vw;
+}
+
 #name-input{
   display: flex;
+}
+#saveSession{
+  height: 33px;
+  width: 150px;
+  font-size: 20px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#saveButton{
+  height: 30px;
+  cursor: pointer;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 20px;
+}
+Button:hover {
+  cursor: pointer;
+  background: #eeff00; 
+  color:black;
+}
+#savedSession{
+  height:33px;
+  width:150px;
 }
 
 .div1 {
   display: flex;
   justify-content: left;
-  margin: auto;}
+  margin: auto;
+}
 
 #play-speed-loop {
   display: flex;
   text-align: center;
-  margin: auto;  /* margin-top: 10%; */
+  margin: auto;
 }
 
 #div1 {
   flex: 0 0 auto;
-  /* margin: 4px; */
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
   flex-direction: column;
-
   text-align: center;
   margin: auto;
 }
@@ -113,7 +163,6 @@ p {
   width: 65em;
   text-align: center;
   margin: auto;  
-  
 }
 
 .div3 {
@@ -126,7 +175,7 @@ footer {
 position: absolute;
 bottom: 0;
 left: 7%;
-width: 900px;
+width: 950px;
 padding-left: 10px;
 color: white;
 text-align: center;
@@ -139,8 +188,7 @@ text-align: center;
   opacity: 50%;
 }
 
-
-  /* The switch - the box around the slider */
+/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;

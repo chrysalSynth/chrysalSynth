@@ -12,14 +12,17 @@
         <title>Welcome to ChrysalSynth...</title>
     </head>
 <body>
-
-<div id="oscilloscope"></div>
-<div id="aboutUs">
-    <a id="about" href="../about-me/index.html">about_us</a>
-</div>
-<div class="help-tip">
-    <p>Try out the different sound styles located next to your name.  When you're ready, hit the record button to begin a session.  When you're done... hit stop, enter the name of your song and save it.  Your songs will be stored in the drop down box below.  Remember what user name you picked when you entered as an account was created for you that will save your sessions.  Have fun and enjoy!</p>
-</div>
+    <!-- displays the oscilloscope -->
+    <div id="oscilloscope"></div>
+    <!-- Navigation -->
+    <div id="aboutUs">
+        <a id="about" href="../about-me/index.html">about_us</a>
+    </div>
+    <!-- Info about the site on hover of question mark -->
+    <div class="help-tip">
+        <p>Try out the different sound styles located next to your name.  When you're ready, hit the record button to begin a session.  When you're done... hit stop, enter the name of your song and save it.  Your songs will be stored in the drop down box below.  Remember what user name you picked when you entered as an account was created for you that will save your sessions.  Have fun and enjoy!</p>
+    </div>
+<!-- Main Keyboard -->
     <section>
         <div class="div2" id="piano">
             <div class="keys" class="div2">
@@ -46,7 +49,8 @@
                 <div data-key="222" class="white key f" data-note="F"></div> 
                 <div data-key="221" class="black key f sharp" data-note="F#"></div>
                 <div data-key="" class="white key g" data-note="G"></div>
-            </div>   
+            </div>
+            <!-- Record Button -->   
             <div id="div1" class="container"  >
                 <input type="checkbox" id="recordButton"/>
                 <label for="recordButton"></label>
@@ -55,12 +59,11 @@
                     <div class="s_ms"></div>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
-        <footer class="div3">
+    <footer class="div3">
             <!-- loads user name -->
            <h5 id="name-input"></h5>
-        </div>
         <!-- wave shape selections -->
         <div class="div3" id="soundSwitch">
             <div id="waveshapes">
@@ -78,25 +81,12 @@
                 </label>
             </div>
         </div>
+        <!-- Volume Slider -->
             <div id="mainVolume">
                 <p id="sliderText">Volume</p>
                 <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
             </div>
-            <div id="reverbLoop">
-                <div id="v-toggle">
-                    <p>REVERB</p>
-                    <label class="switch">
-                        <input type="checkbox" id="verb-toggle">
-                        <span class="slider round"></span>
-                    </label> 
-                    <div>
-                        <label class="switch">
-                            <input type="checkbox" id="loop-toggle">
-                            <span class="slider round"></span>
-                          </label> loop
-                    </div>
-                </div>
-            </div>
+            <!-- Save Load Container-->
             <div id="saveLoadDiv">
                 <div id="saveButtonDiv">
                     <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
@@ -106,6 +96,26 @@
                     <select id="savedSession" name="savedSession"></select>
                 </div>
             </div>
+            <!-- Reverb and Looping Toggles -->
+            <div id="reverbAndLoopButtons">
+                <!-- Reverb Button -->
+                <div id="reverb">
+                    <p>Reverb</p>
+                        <label class="switch">
+                            <input type="checkbox" id="verb-toggle">
+                            <span class="slider round"></span>
+                        </label> 
+                </div>
+                <!-- Looping Switch -->
+                <div id="loop">
+                    <p>Loop</p>
+                        <label class="switch">
+                            <input type="checkbox" id="loop-toggle">
+                            <span class="slider round"></span>
+                        </label> 
+                </div>
+            </div>
+            <!-- Playback-->
             <div id="play-speed-loop">
                 <div id="wrapper">
                     <div class="playpause">
@@ -114,6 +124,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Playback Speed-->
             <div id="speedContainer">
                 <p id="speedDisplay">SPEED</p>
                 <div id="speed-dropdown">                
@@ -127,12 +138,7 @@
                     </select> 
                 </div>
             </div>
-                </footer>    
-            
-            </div>
-        </footer>
-        
-      
+        </footer>    
 </body>
 <script type="module" src="synth.js"></script>
 </html>
