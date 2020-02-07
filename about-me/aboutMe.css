@@ -4,7 +4,7 @@ body {
 }
 
 p {
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Teko', sans-serif;
     font-size: 175%;
 }
 
@@ -24,7 +24,7 @@ button {
 }
 
 a {
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Teko', sans-serif;
     color: rgba(241, 238, 238, 0.74);
     text-transform: capitalize;
 }

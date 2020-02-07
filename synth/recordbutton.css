@@ -2321,8 +2321,9 @@ body .container #recordButton {
   margin-right: 90%;
   bottom: 100px;
   opacity: 65%;
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Teko', sans-serif;
   color: rgba(241, 238, 238, 0.74);
+  font-size: .75em;
 }
 
 /* record button */
@@ -2400,7 +2401,7 @@ body .container .time > * {
   width: 50%;
   margin: -2px;
   color: #a2a2a2;
-  font-family: "Fjalla One", sans-serif;
+  font-family: 'Teko', sans-serif;
   font-size: 1.3em;
 }
 body .container .time .h_m:after {
