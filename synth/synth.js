@@ -44,7 +44,6 @@ const loopToggle = document.getElementById('loop-toggle');
 
 //DOM GAIN CONTROL
 const gainControl = document.getElementById('gain');
-// const bitsControl = document.getElementById('bits');
 
 //KEYBOARD STUFF
 document.addEventListener('DOMContentLoaded', function() {
@@ -110,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //BIT CRUSHER EFFECT
     //USE bits AND normFreq TO CHANGE BIT RATE AND NORM FREQ
     let bufferSize = 4096;
-    let bits = 1;
+    let bits = 4;
     let normFreq = [0.1, 0.2, 0.5, 1.0];
     let bitcrushEffect = (function() {
         let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
@@ -209,7 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 note_velocity: 127,
                 note_time: audioCtx.currentTime - recordStartTime,
                 note_waveform: waveform,
-                note_gain: gain.gain.value
+                note_gain: gain.gain.value,
+                note_verb: verbToggle.checked
             };
             storingMusic(keyObject);
         }
@@ -226,7 +226,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 note_velocity: 0,
                 note_time: audioCtx.currentTime - recordStartTime,
                 note_waveform: waveform,
-                note_gain: gain.gain.value
+                note_gain: gain.gain.value,
+                note_verb: verbToggle.checked
             };
             storingMusic(keyObject);
 
@@ -306,7 +307,8 @@ document.addEventListener('DOMContentLoaded', function() {
             note_velocity: event.data[2],
             note_time: audioCtx.currentTime - recordStartTime,
             note_waveform: waveform,
-            note_gain: gain.gain.value
+            note_gain: gain.gain.value,
+            note_verb: verbToggle.checked
         };
         storingMusic(midiObject);
 
@@ -331,6 +333,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //RECORDING
     recordStartButton.addEventListener('click', () => { // start recording on click
         recordingEvents(); // call recording function
+        if (recordStartButton.checked) {
+            verbToggle.disabled = true; // disable verb toggle during recording
+        } else verbToggle.disabled = false; // re-enable
     });
 
     window.addEventListener('keyup', (e) => { // start recording from keyboard
@@ -395,6 +400,55 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        //PLAYBACK COMPRESSOR
+        const compressorPB = contextPlayback.createDynamicsCompressor();
+        compressorPB.threshold.setValueAtTime(-50, contextPlayback.currentTime);
+        compressorPB.knee.setValueAtTime(40, contextPlayback.currentTime);
+        compressorPB.ratio.setValueAtTime(12, contextPlayback.currentTime);
+        compressorPB.attack.setValueAtTime(0, contextPlayback.currentTime);
+        compressorPB.release.setValueAtTime(0.25, contextPlayback.currentTime);
+
+        //PLAYBACK CONVOLVER EFFECT
+        let convolverTimePB = 1.00;
+        let convolverEffectPB = (function() {
+            let convolverPB = contextPlayback.createConvolver(),
+                noiseBufferPB = contextPlayback.createBuffer(2, convolverTimePB * contextPlayback.sampleRate, contextPlayback.sampleRate),
+                leftPB = noiseBufferPB.getChannelData(0),
+                rightPB = noiseBufferPB.getChannelData(1);
+            for (let i = 0; i < noiseBufferPB.length; i++) {
+                leftPB[i] = Math.random() * 2 - 1;
+                rightPB[i] = Math.random() * 2 - 1;
+            }
+            convolverPB.buffer = noiseBufferPB;
+            return convolverPB;
+        })();
+
+        //PLAYBACK BIT CRUSHER EFFECT
+        let bufferSizePB = 4096;
+        let bitsPB = 4;
+        let normFreqPB = [0.1, 0.2, 0.5, 1.0];
+        let bitcrushEffectPB = (function() {
+            let nodePB = contextPlayback.createScriptProcessor(bufferSizePB, 1, 1);
+            nodePB.bitsPB = bitsPB; // between 1 and 16
+            nodePB.normFreqPB = normFreqPB[0]; // between 0.0 and 1.0
+            let stepPB = Math.pow(1 / 2, nodePB.bitsPB);
+            let phaserPB = 0;
+            let lastPB = 0;
+            nodePB.onaudioprocess = function(e) {
+                let inputPB = e.inputBuffer.getChannelData(0);
+                let outputPB = e.outputBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSizePB; i++) {
+                    phaserPB += nodePB.normFreqPB;
+                    if (phaserPB >= 1.0) {
+                        phaserPB -= 1.0;
+                        lastPB = stepPB * Math.floor(inputPB[i] / stepPB + 0.5);
+                    }
+                    outputPB[i] = lastPB;
+                }
+            };
+            return nodePB;
+        })();
+
         const activeOscillatorsPlayback = {}; // object for oscillators incase more than one note is played at a time
         const playbackMultiplier = playbackSpeed.value;
         const lastNoteTime = musicalLayer.length; // store the last musical event in case of loop
@@ -416,8 +470,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 oscillatorPlayback.connect(envelopePlayback); // route oscillator to gain
                 oscillatorPlayback.type = currentNoteValue.note_waveform; // set waveform type
-                envelopePlayback.connect(contextPlayback.destination); // route gain to output
+                envelopePlayback.connect(bitcrushEffectPB); // route gain to output
                 envelopePlayback.gain.value = 0.0; // set initial value
+                bitcrushEffectPB.connect(compressorPB);
+                compressorPB.connect(contextPlayback.destination);
+
+                if (currentNoteValue.note_verb) { // check if verb is on during recording
+                    bitcrushEffectPB.disconnect(compressorPB); // if on, re-reoute to include convolver
+                    bitcrushEffectPB.connect(convolverEffectPB);
+                    convolverEffectPB.connect(compressorPB);
+                } else {
+                    bitcrushEffectPB.connect(compressorPB); // if off, route back to normal
+                }
 
                 oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule frequency of current note
                 envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule gain level of current note

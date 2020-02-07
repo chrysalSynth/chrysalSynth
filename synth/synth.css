@@ -3,7 +3,9 @@
   background-color: black;
   color: white;
   box-sizing: border-box;
+  
 }
+
 input:checked + .image-class {  padding: .5px;
   border-radius: 90%;
   border: 2px dotted grey
@@ -15,17 +17,20 @@ img {
   margin-top: 0px;
   cursor: pointer;
 }
+
 h5{
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 30px;
   margin-left: 10px;
 }
+
 p {
   margin-left: 6px;
   margin-bottom: 0px;
   font-size: 20px;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
+
 [type=radio] {
   position: absolute;
   opacity: 0;
@@ -39,23 +44,33 @@ p {
   top: 1%;
 }
 
+#logout {
+  position: absolute;
+  margin-left: 1vw;
+  margin-top: -.25vw;
+  opacity: 100%;
+  font-size: .75em;
+  font-family: 'Amatic SC', cursive;
+  color: rgba(241, 238, 238, 0.74);
+}
+
 #piano {
   position: absolute;
-  bottom: 17%;
+  bottom: 20%;
   left: 2%
-
+  
 }
+
 #speed-dropdown{
   margin-top: 5px;
   height: 33px;
   display: flex;
   justify-content: left;
-
 }
+
 #speedDisplay{
   margin-top: 30px;
   margin-right: 8px;
-
 }
 
 #saveLoadDiv {
@@ -71,8 +86,8 @@ p {
 #reverbLoop {
   display: flex;
   margin-left: 10px;
-
 }
+
 #waveshapes {
   display: flex;
   justify-content: left;
@@ -101,6 +116,7 @@ p {
   margin-right: 30px;
   margin-top: 20px;
 }
+
 #seconds_lowPass{
   display: flex;
   margin-bottom: 1.8vw;
@@ -109,6 +125,7 @@ p {
 #name-input{
   display: flex;
 }
+
 #saveSession{
   height: 33px;
   width: 150px;
@@ -122,11 +139,13 @@ p {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 20px;
 }
+
 Button:hover {
   cursor: pointer;
   background: #eeff00;
   color:black;
 }
+
 #savedSession{
   height:33px;
   width:150px;
@@ -167,20 +186,20 @@ Button:hover {
 }
 
 .div3 {
-display: flex;
-text-align: center;
-margin: auto;
+  display: flex;
+  text-align: center;
+  margin: auto;
 }
 
 footer {
-position: absolute;
-bottom: 0;
-left: 7%;
-width: 950px;
-padding-left: 10px;
-padding-bottom: 15px;
-color: white;
-text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 7%;
+  width: 950px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+  color: white;
+  text-align: center;
 }
 
 #oscilloscope {
@@ -247,24 +266,24 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
+  border-radius: 34px;
 }
 
 .slider.round:before {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .white {
-    height:14em;
-    width:4em;
-    z-index:1;
-    border-left:1px solid #bbb;
-    border-bottom:1px solid #bbb;
-    border-radius:0 0 5px 5px;
-    box-shadow:-1px 0 0 rgba(255,255,255,0.8) inset,0 0 5px #ccc inset,0 0 3px rgba(0,0,0,0.2);
-    background:linear-gradient(to bottom,#eee 0%,#fff 100%);
-    position:relative;
-    float:left
+  height:14em;
+  width:4em;
+  z-index:1;
+  border-left:1px solid #bbb;
+  border-bottom:1px solid #bbb;
+  border-radius:0 0 5px 5px;
+  box-shadow:-1px 0 0 rgba(255,255,255,0.8) inset,0 0 5px #ccc inset,0 0 3px rgba(0,0,0,0.2);
+  background:linear-gradient(to bottom,#eee 0%,#fff 100%);
+  position:relative;
+  float:left
 }
 
 .white:active{

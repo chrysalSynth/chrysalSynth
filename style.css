@@ -58,17 +58,17 @@ div {
 }
 
 a {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Amatic SC', cursive;
     color: rgba(241, 238, 238, 0.74);
 }
 
 label {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Amatic SC', cursive;
     font-size: 175%;
     opacity: 59%;
 }
 
 input {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Amatic SC', cursive;
     font-size: 175%;
 }
