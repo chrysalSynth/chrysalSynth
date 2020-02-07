@@ -4,9 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-        <!-- <link href="stylesheet" href="../keyboard.css"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="synth.css"> -->
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="synth.css">
         <link rel="stylesheet" type="text/css" href="recordbutton.css">
         <link rel="stylesheet" type="text/css" href="play-pause-button.css">
@@ -60,18 +58,12 @@
     </section>
         <footer class="div3">
         <!-- seconds and low pass knobs div -->
-            <div id="v-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="verb-toggle">
-                    <span class="slider round"></span>
-                </label> 
-            </div>
             <!-- loads user name -->
            <h5 id="name-input"></h5>
         </div>
         <!-- wave shape selections -->
         <div class="div3" id="soundSwitch">
-            <div>
+
                 <div id="waveshapes">
                     <label>
                         <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> 
@@ -87,15 +79,19 @@
                     </label>
                 </div>
 
-            </div>
+                <div class="mainVolume">
+                    <p id="sliderText">Volume</p>
+                    <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
+                </div>
         </div>
-                
-<!-- yooooooooooooooooooooo!    dont work past this!!!!! -->
-            <div class="mainVolume">
-                
-                <p id="sliderText">Volume</p>
-                <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
-            </div>
+        <div id="v-toggle">
+            <p>REVERB</p>
+            <label class="switch">
+                <input type="checkbox" id="verb-toggle">
+                <span class="slider round"></span>
+            </label> 
+        </div>
+            
             <div id="saveLoadDiv">
                 <div id="saveButtonDiv">
                     <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
