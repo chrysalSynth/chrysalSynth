@@ -6,6 +6,7 @@ body {
 p {
     font-family: 'Amatic SC', cursive;
     font-size: 175%;
+    text-align: center;
 }
 
 button {
