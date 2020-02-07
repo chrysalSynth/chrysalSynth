@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         contextPlayback = new AudioContext();
 
-        if (recordPlayButton.checked) {
+        if (!recordPlayButton.checked) {
             contextPlayback.close();
             return;
         }
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 activeOscillatorsPlayback[currentNoteValue.note_name].start(); 
                 envelopePlayback = contextPlayback.createGain();
 
-                if (recordPlayButton.checked) {
+                if (!recordPlayButton.checked) {
                     activeOscillatorsPlayback[currentNoteValue.note_name].stop(); 
                 }
                         
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             }
             
         }
-        if (loopToggle.checked && !recordPlayButton.checked) {
+        if (loopToggle.checked && recordPlayButton.checked) {
             setTimeout(() => playStoredMusic(musicalLayer), (loopTime * (1 / playbackMultiplier)) * 1000); 
         }
      
