@@ -4,25 +4,41 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+        <!-- <link href="stylesheet" href="../keyboard.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="synth.css"> -->
         <link rel="stylesheet" type="text/css" href="synth.css">
         <link rel="stylesheet" type="text/css" href="recordbutton.css">
         <link rel="stylesheet" type="text/css" href="play-pause-button.css">
         <link rel="stylesheet" type="text/css" href="helpButton.css">
         <title>Welcome to ChrysalSynth...</title>
     </head>
-<body>
-    <!-- displays the oscilloscope -->
-    <div id="oscilloscope"></div>
-    <!-- Navigation -->
-    <div id="aboutUs">
-        <a id="about" href="../about-me/index.html">about_us</a>
-    </div>
-    <!-- Info about the site on hover of question mark -->
-    <div class="help-tip">
-        <p>Try out the different sound styles located next to your name.  When you're ready, hit the record button to begin a session.  When you're done... hit stop, enter the name of your song and save it.  Your songs will be stored in the drop down box below.  Remember what user name you picked when you entered as an account was created for you that will save your sessions.  Have fun and enjoy!</p>
-    </div>
-<!-- Main Keyboard -->
+    <body>
+<div class="div1" id="oscilloscope"></div>
+<div class="help-tip">
+    <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
+</div>
+<div class="parent">
+
+            <!-- <div class="div1"> </div>
+            <div class="div2"> </div>
+            <div class="div3"> </div>
+            <div class="div4"> </div>
+            <div class="div5"> </div>
+            <div class="div6"> </div>
+            <div class="div7"> </div>
+             -->
+
+
+
+        <!-- <div id="visualizer"> -->
+            <!-- <img src="../assets/visualizer_placeholder.gif"> -->
+            <!-- <img src="https://media.giphy.com/media/AHeTfHgVFPHgs/giphy.gif"> -->
+            
+        <!-- </div> -->
+        <section>
+        
+    </section>
     <section>
         <div class="div2" id="piano">
             <div class="keys" class="div2">
@@ -49,8 +65,9 @@
                 <div data-key="222" class="white key f" data-note="F"></div> 
                 <div data-key="221" class="black key f sharp" data-note="F#"></div>
                 <div data-key="" class="white key g" data-note="G"></div>
-            </div>
-            <!-- Record Button -->   
+            </div>   
+
+<!-- this div1 container must remain as they are together for the record button -->
             <div id="div1" class="container"  >
                 <input type="checkbox" id="recordButton"/>
                 <label for="recordButton"></label>
@@ -59,75 +76,125 @@
                     <div class="s_ms"></div>
                 </div>
             </div>
-        </div> 
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        </div>
     </section>
-    <footer class="div3">
-            <!-- loads user name -->
-           <h5 id="name-input"></h5>
-        <!-- wave shape selections -->
-        <div class="div3" id="soundSwitch">
-            <div id="waveshapes">
-                <label>
-                    <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> 
-                </label>
-                <label>
-                    <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> 
-                </label>
-                <label>
-                    <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> 
-                </label>
-                <label>
-                    <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> 
-                </label>
+        <!-- //////////////// -->
+        <footer class="div3">
+        <div id="all-bit">
+
+            <!-- <div class="bitKnobs">
+                <div class="effectsKnobs" id="bits">
+                </div>
+                <div class="effectsKnobs" id="sample-rate">
+                </div>
+            </div> -->
+            <div class="bitsSlider">
+                
+                <p id="sliderText">bits</p>
+                <input id="bits" class="gain" type="range" min="1" max="16" step="1" value="4">
+            </div>
+
+            <div class="sampleRateSlider">
+                
+                <p id="sliderText">sample rate</p>
+                <input id="sample" class="gain" type="range" min="0.1" max="1.0" step="0.1" value="1.0">
+            </div>
+
+             <div id="bit-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="bitcrush-toggle">
+                    <span class="slider round"></span>
+                </label> 
             </div>
         </div>
-        <!-- Volume Slider -->
-            <div id="mainVolume">
+
+        <!-- seconds and low pass knobs div -->
+        <div id ="seconds_lowPass">
+            <!-- <div id="all-verb">
+                <div class="verbKnob">
+                    <div class="effectsKnobs" id="time">
+                    </div>
+                </div>
+            </div>   -->
+            <div class="timeSlider">
+                
+                <p id="sliderText">reverb time</p>
+                <input id="time" class="gain" type="range" min="0.1" max="3.0" step="0.1" value="1.0">
+            </div>
+            <div id="v-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="verb-toggle">
+                    <span class="slider round"></span>
+                </label> 
+            </div>
+              
+            <!-- <div id="filterCon">
+                <div class="filterKnob">
+
+                    <div class="effectsKnobs" id="lowpass-filter">
+                    </div>
+                </div>
+            </div> -->
+
+           <h5 id="name-input"></h5>
+        </div>
+        <!-- wave shape selections -->
+        <div class="div3" id="soundSwitch">
+            <div>
+                <div id="waveshapes">
+                    <label>
+                        <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> 
+                    </label>
+                    <label>
+                        <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> 
+                    </label>
+                    <label>
+                        <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> 
+                    </label>
+                    <label>
+                        <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> 
+                    </label>
+                </div>
+
+            </div>
+        </div>
+                
+<!-- yooooooooooooooooooooo!    dont work past this!!!!! -->
+            <div class="mainVolume">
+                
                 <p id="sliderText">Volume</p>
                 <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
             </div>
-            <!-- Save Load Container-->
+ 
             <div id="saveLoadDiv">
                 <div id="saveButtonDiv">
                     <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
                     <button class="saveButton" type="button" id="saveButton">save</button><br><br>
                 </div>
                 <div id="downloadButtonDiv">
-                    <select id="savedSession" name="savedSession"></select>
+                    <select id="savedSession" name="savedSession">
+                    </select>
+                    <!-- <button id="downloadButton">load</button> -->
                 </div>
+                
+                
             </div>
-            <!-- Reverb and Looping Toggles -->
-            <div id="reverbAndLoopButtons">
-                <!-- Reverb Button -->
-                <div id="reverb">
-                    <p>Reverb</p>
-                        <label class="switch">
-                            <input type="checkbox" id="verb-toggle">
-                            <span class="slider round"></span>
-                        </label> 
-                </div>
-                <!-- Looping Switch -->
-                <div id="loop">
-                    <p>Loop</p>
-                        <label class="switch">
-                            <input type="checkbox" id="loop-toggle">
-                            <span class="slider round"></span>
-                        </label> 
-                </div>
-            </div>
-            <!-- Playback-->
             <div id="play-speed-loop">
+                
                 <div id="wrapper">
                     <div class="playpause">
+                        
                         <input type="checkbox" value="None" id="playpause" name="check" />
-                        <label for="playpause"></label>
+                        <label for="playpause">
+                            
+                        </label>
+
                     </div>
                 </div>
-            </div>
-            <!-- Playback Speed-->
-            <div id="speedContainer">
-                <p id="speedDisplay">SPEED</p>
-                <div id="speed-dropdown">                
+                
+                <!-- <a href="#" title="" class="play" id="playbutton"></a> -->
+                <div id="speed-dropdown">
                     <select id="playback-speed" name="playback-speed">
                         <option value="0.5">x0.5</option>
                         <option value="1.0" selected>x1.0</option>
@@ -135,10 +202,30 @@
                         <option value="5.0">x5.0</option>
                         <option value="10.0">x10.0</option>
                         <option value="20.0">x20.0</option>
-                    </select> 
+                    </select> speed
+
+                    </div>
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox" id="loop-toggle">
+                            <span class="slider round"></span>
+                          </label> loop
+                    </div>
+                    <!-- <a href="#" title="" class="div3" class="play" id="playbutton"></a> -->      
+                </div>
+                </footer>    
                 </div>
             </div>
         </footer>
+        
+        <a id="about" href="../about-me/index.html">ABOUT US</a>
+
+    </div>   
+</div>
+</div>
+
 </body>
+<!-- <script src="../keyboard.js"></script> -->
+<!-- <script src="pureknob.js"></script> -->
 <script type="module" src="synth.js"></script>
 </html>
