@@ -49,7 +49,17 @@ const loopToggle = document.getElementById('loop-toggle');
 
 // let waveform = waveformControl.value;
 const gainControl = document.getElementById('gain');
-const frequencyControlLP = document.getElementById('lowpass-filter');
+const bitsControl = document.getElementById('bits');
+const sampleControl = document.getElementById('sample');
+const timeControl = document.getElementById('time');
+
+console.log (bitsControl);
+console.log (sampleControl);
+console.log (timeControl);
+
+
+
+// const frequencyControlLP = document.getElementById('lowpass-filter');
 // const frequencyControlHP = document.getElementById('filterFrequencyHP');
 // const frequencyControlBP = document.getElementById('filterFrequencyBP');
 
@@ -211,10 +221,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
 
-    frequencyControlLP.addEventListener('mousemove', function(event) {
-        filterLP.type = 'lowpass';
-        filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    });
+    // frequencyControlLP.addEventListener('mousemove', function(event) {
+    //     filterLP.type = 'lowpass';
+    //     filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
+    // });
 
     // frequencyControlHP.addEventListener('mousemove', function(event) {
     //     filterHP.type = 'highpass';
@@ -489,7 +499,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time * (1 / playbackMultiplier));
                 envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time * (1 / playbackMultiplier));
             } else if (currentNoteValue.note_switch === 128) { //note off!      
-
                 const oscillatorPlayback = activeOscillatorsPlayback[currentNoteValue.note_name];
                 oscillatorPlayback.frequency.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));
                 envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));              

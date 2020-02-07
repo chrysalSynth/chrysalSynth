@@ -78,12 +78,24 @@
         <footer class="div3">
         <div id="all-bit">
 
-            <div class="bitKnobs">
+            <!-- <div class="bitKnobs">
                 <div class="effectsKnobs" id="bits">
                 </div>
                 <div class="effectsKnobs" id="sample-rate">
                 </div>
+            </div> -->
+            <div class="bitsSlider">
+                
+                <p id="sliderText">bits</p>
+                <input id="bits" class="gain" type="range" min="1" max="16" step="1" value="4">
             </div>
+
+            <div class="sampleRateSlider">
+                
+                <p id="sliderText">sample rate</p>
+                <input id="sample" class="gain" type="range" min="0.1" max="1.0" step="0.1" value="1.0">
+            </div>
+
              <div id="bit-toggle">
                 <label class="switch">
                     <input type="checkbox" id="bitcrush-toggle">
@@ -94,12 +106,17 @@
 
         <!-- seconds and low pass knobs div -->
         <div id ="seconds_lowPass">
-            <div id="all-verb">
+            <!-- <div id="all-verb">
                 <div class="verbKnob">
                     <div class="effectsKnobs" id="time">
                     </div>
                 </div>
-            </div>  
+            </div>   -->
+            <div class="timeSlider">
+                
+                <p id="sliderText">reverb time</p>
+                <input id="time" class="gain" type="range" min="0.1" max="3.0" step="0.1" value="1.0">
+            </div>
             <div id="v-toggle">
                 <label class="switch">
                     <input type="checkbox" id="verb-toggle">
@@ -107,13 +124,13 @@
                 </label> 
             </div>
               
-            <div id="filterCon">
+            <!-- <div id="filterCon">
                 <div class="filterKnob">
 
                     <div class="effectsKnobs" id="lowpass-filter">
                     </div>
                 </div>
-            </div>
+            </div> -->
 
            <h5 id="name-input"></h5>
         </div>
