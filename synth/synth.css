@@ -46,8 +46,9 @@ p {
 
 #piano {
   position: absolute;
-  bottom: 17%;
+  bottom: 20%;
   left: 2%
+  
 }
 
 #speed-dropdown{
