@@ -449,8 +449,6 @@ function getUserFromLS() {
     const user = localStorage.getItem('currentUser');
     userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
 
-    console.log(user);
-
     const nameDIV = document.getElementById('name-input');
 
     nameDIV.textContent = user;
