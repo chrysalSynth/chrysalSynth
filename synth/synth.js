@@ -208,7 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 note_velocity: 127,
                 note_time: audioCtx.currentTime - recordStartTime,
                 note_waveform: waveform,
-                note_gain: gain.gain.value
+                note_gain: gain.gain.value,
+                note_verb: verbToggle.checked
             };
             storingMusic(keyObject);
         }
@@ -225,7 +226,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 note_velocity: 0,
                 note_time: audioCtx.currentTime - recordStartTime,
                 note_waveform: waveform,
-                note_gain: gain.gain.value
+                note_gain: gain.gain.value,
+                note_verb: verbToggle.checked
             };
             storingMusic(keyObject);
 
@@ -305,7 +307,8 @@ document.addEventListener('DOMContentLoaded', function() {
             note_velocity: event.data[2],
             note_time: audioCtx.currentTime - recordStartTime,
             note_waveform: waveform,
-            note_gain: gain.gain.value
+            note_gain: gain.gain.value,
+            note_verb: verbToggle.checked
         };
         storingMusic(midiObject);
 
@@ -330,6 +333,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //RECORDING
     recordStartButton.addEventListener('click', () => { // start recording on click
         recordingEvents(); // call recording function
+        if (recordStartButton.checked) {
+            verbToggle.disabled = true; // disable verb toggle during recording
+        } else verbToggle.disabled = false; // re-enable
     });
 
     window.addEventListener('keyup', (e) => { // start recording from keyboard
@@ -466,9 +472,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 oscillatorPlayback.type = currentNoteValue.note_waveform; // set waveform type
                 envelopePlayback.connect(bitcrushEffectPB); // route gain to output
                 envelopePlayback.gain.value = 0.0; // set initial value
-                bitcrushEffectPB.connect(convolverEffectPB);
-                convolverEffectPB.connect(compressorPB);
+                bitcrushEffectPB.connect(compressorPB);
                 compressorPB.connect(contextPlayback.destination);
+
+                if (currentNoteValue.note_verb) { // check if verb is on during recording
+                    bitcrushEffectPB.disconnect(compressorPB); // if on, re-reoute to include convolver
+                    bitcrushEffectPB.connect(convolverEffectPB);
+                    convolverEffectPB.connect(compressorPB);
+                } else {
+                    bitcrushEffectPB.connect(compressorPB); // if off, route back to normal
+                }
 
                 oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule frequency of current note
                 envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule gain level of current note
