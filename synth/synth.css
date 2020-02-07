@@ -44,6 +44,14 @@ p {
   top: 1%;
 }
 
+#logout {
+  position: relative;
+  margin-left: 7vw;
+  margin-top: -9.5vw;
+  opacity: 75%;
+  font-size: .85em;
+}
+
 #piano {
   position: absolute;
   bottom: 20%;
