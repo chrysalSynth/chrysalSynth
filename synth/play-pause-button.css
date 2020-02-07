@@ -105,8 +105,8 @@ h1 {
     border-color: transparent transparent transparent white; 
     transition: 100ms all ease; 
     cursor: pointer; 
-    border-style: double; 
-    border-width: 0px 0 0px 35px;
+    border-style: solid; 
+    border-width: 20px 0 20px 30px; 
   } 
  
   .playpause input[type="checkbox"] { 
@@ -114,8 +114,15 @@ h1 {
   } 
   
   .playpause input[type="checkbox"]:checked + label { 
-    border-style: solid; 
-    border-width: 20px 0 20px 30px; 
+    display: block; 
+    box-sizing: border-box; 
+    width: 0; 
+    height: 40px; 
+    border-color: transparent transparent transparent white; 
+    transition: 100ms all ease; 
+    cursor: pointer; 
+    border-style: double; 
+    border-width: 0px 0 0px 35px;
   } 
   
   .playpause {
