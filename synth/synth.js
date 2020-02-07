@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
     //CONNECTIONS
 
-    gain.connect(filterLP);
-    filterLP.connect(convolverEffect);
-    // bitcrushEffect.connect(convolverEffect);
-    convolverEffect.connect(compressor);
+    gain.connect(bitcrushEffect);
+    // filterLP.connect(myOscilloscope);
+    bitcrushEffect.connect(compressor);
+    // convolverEffect.connect(compressor);
     compressor.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
 
@@ -168,27 +168,29 @@ document.addEventListener('DOMContentLoaded', function(event) {
     
     //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
 
-    bitcrushToggle.addEventListener('click', () => {
-        if (bitcrushToggle.checked) {
-            filterLP.disconnect(convolverEffect);
-            filterLP.connect(bitcrushEffect);
-            bitcrushEffect.connect(convolverEffect);
-        } else {
-            filterLP.disconnect(bitcrushEffect);
-            filterLP.connect(convolverEffect);
-        }
-    });
-
-    // verbToggle.addEventListener('click', () => {
-    //     if (verbToggle.checked) {
-    //         bitcrushEffect.disconnect(convolverEffect);
-    //         bitcrushEffect.connect(bitcrushEffect);
+    // bitcrushToggle.addEventListener('click', () => {
+    //     if (bitcrushToggle.checked) {
+    //         filterLP.disconnect(convolverEffect);
+    //         filterLP.connect(bitcrushEffect);
     //         bitcrushEffect.connect(convolverEffect);
     //     } else {
     //         filterLP.disconnect(bitcrushEffect);
     //         filterLP.connect(convolverEffect);
     //     }
     // });
+
+    verbToggle.addEventListener('click', () => {
+        if (verbToggle.checked) {
+            bitcrushEffect.disconnect(compressor);
+            bitcrushEffect.connect(convolverEffect);
+            convolverEffect.connect(compressor);
+            console.log('verb checked');
+        } else {
+            bitcrushEffect.disconnect(convolverEffect);
+            bitcrushEffect.connect(compressor);
+            console.log('verb unchecked');
+        }
+    });
 
     //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
     waveformControlSine.addEventListener('click', function(event) {

@@ -7,13 +7,12 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
         <!-- <link href="stylesheet" href="../keyboard.css"> -->
         <!-- <link rel="stylesheet" type="text/css" href="synth.css"> -->
-        <link rel="stylesheet" type="text/css" href="synth.css">
+        <link rel="stylesheet" type="text/css" href="synthTest.css">
         <link rel="stylesheet" type="text/css" href="recordbutton.css">
         <link rel="stylesheet" type="text/css" href="play-pause-button.css">
         <title>Welcome to ChrysalSynth...</title>
     </head>
     <body>
-<div class="div1" id="oscilloscope"></div>
 <div class="parent">
             <!-- <div class="div1"> </div>
             <div class="div2"> </div>
@@ -32,7 +31,7 @@
             
         <!-- </div> -->
         <section>
-        
+<div class="div1" id="oscilloscope"></div>
     </section>
     <section>
         <div class="div2" id="piano">
@@ -100,12 +99,6 @@
                     </div>
                 </div>
             </div>  
-            <div id="v-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="verb-toggle">
-                    <span class="slider round"></span>
-                </label> 
-            </div>
               
             <div id="filterCon">
                 <div class="filterKnob">
@@ -138,13 +131,55 @@
             </div>
         </div>
                 
+        <div class="mainVolume">
+
+                <p id="sliderText">Volume</p>
+                <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
+        </div>
 <!-- yooooooooooooooooooooo!    dont work past this!!!!! -->
+                    <div id="saveLoadDiv">
+                        <div id="saveButtonDiv">
+                            <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
+                            <button class="saveButton" type="button" id="saveButton">save</button><br><br>
+                        </div>
+                        <div id="downloadButtonDiv">
+                            <select id="savedSession" name="savedSession">
+                            </select>
+                            <!-- <button id="downloadButton">load</button> -->
+                        </div>
+
+
+                        <a href="../about-me/index.html">about us</a>
+            
+            
+            <div class="div3" id="soundSwitch">
+                <div>
+                    <div id="waveshapes">
+                        <label>
+                            <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> sine
+                        </label>
+                        <label>
+                            <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> square
+                        </label>
+                        <label>
+                            <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> triangle
+                        </label>
+                        <label>
+                            <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> sawtooth
+                        </label>
+                    </div>
+                    
+                </div>
+            </div>
+            
             <div class="mainVolume">
                 
                 <p id="sliderText">Volume</p>
                 <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
             </div>
- 
+            
+            
+            
             <div id="saveLoadDiv">
                 <div id="saveButtonDiv">
                     <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
@@ -192,6 +227,15 @@
                     <!-- <a href="#" title="" class="div3" class="play" id="playbutton"></a> -->      
                 </div>
                 </footer>    
+
+                </div>
+                
+                
+                <div>
+                    <label class="switch">
+                        <input type="checkbox" id="loop-toggle">
+                        <span class="slider round"></span>
+                    </label> loop
                 </div>
             </div>
         </footer>
