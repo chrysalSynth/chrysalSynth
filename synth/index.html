@@ -11,10 +11,14 @@
         <link rel="stylesheet" type="text/css" href="helpButton.css">
         <title>Welcome to ChrysalSynth...</title>
     </head>
-    <body>
-<div class="div1" id="oscilloscope"></div>
+<body>
+
+<div id="oscilloscope"></div>
+<div id="aboutUs">
+    <a id="about" href="../about-me/index.html">about_us</a>
+</div>
 <div class="help-tip">
-    <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
+    <p>Try out the different sound styles located next to your name.  When you're ready, hit the record button to begin a session.  When you're done... hit stop, enter the name of your song and save it.  Your songs will be stored in the drop down box below.  Remember what user name you picked when you entered as an account was created for you that will save your sessions.  Have fun and enjoy!</p>
 </div>
     <section>
         <div class="div2" id="piano">
@@ -108,11 +112,8 @@
                     <div class="playpause">
                         <input type="checkbox" value="None" id="playpause" name="check" />
                         <label for="playpause"></label>
-
                     </div>
                 </div>
-                
-                <!-- <a href="#" title="" class="play" id="playbutton"></a> -->
                 <div id="speed-dropdown">
                     <select id="playback-speed" name="playback-speed">
                         <option value="0.5">x0.5</option>
@@ -122,22 +123,20 @@
                         <option value="10.0">x10.0</option>
                         <option value="20.0">x20.0</option>
                     </select> speed
-
-                    </div>
                     <div>
                         <label class="switch">
                             <input type="checkbox" id="loop-toggle">
                             <span class="slider round"></span>
                           </label> loop
                     </div>
-                    <!-- <a href="#" title="" class="div3" class="play" id="playbutton"></a> -->      
                 </div>
+            </div>
                 </footer>    
             
             </div>
         </footer>
         
-        <a id="about" href="../about-me/index.html">about us</a>
+      
 </body>
 <script type="module" src="synth.js"></script>
 </html>

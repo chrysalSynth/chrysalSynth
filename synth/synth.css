@@ -30,65 +30,58 @@ p {
   height: 0;
 }
 
-#saveLoadDiv {
-  margin: auto;
+#aboutUs {
+  position: fixed;
+  left: 5;
+  top: 1%;
 }
 
-/* #waveshapes + input {
-    display: none;
-} */
+#piano {
+  position: absolute;
+  bottom: 17%;
+  left: 2%
+  
+}
+
+#saveLoadDiv {
+  margin: auto;
+  border: 1px dotted white;
+}
+
+#wrapper{
+  width: 50px;
+}
 
 #waveshapes {
   display: flex;
   justify-content: left;
+  margin-top: 12px;
   justify-content: space-between;
   cursor: pointer;
+  border: 1px dotted white;
 
 }
 #seconds_lowPass{
   display: flex;
   margin-bottom: 1.8vw;
+  border: 1px dotted white;
 }
 #name-input{
-  position: fixed;
-  bottom: 2vw;
-  left: 18vw;
+  display: flex;
 }
 
 .div1 {
-  flex: 0 0 auto;
-  /* margin: 4px; */
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  flex-direction: column;
-
-  text-align: center;
+  justify-content: left;
   margin: auto;
-}
-
-.play {
-  flex: 0 0 auto;
-  /* margin: 4px; */
-  display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  flex-direction: column;
-
-  text-align: center;
-  margin: auto;
-
+  border: 1px dotted white;
 }
 
 #play-speed-loop {
   display: flex;
-  
-  /* align-items: center; */
-  /* justify-content: center; */
-  flex-direction: column;
-
   text-align: center;
   margin: auto;
+  border: 1px dotted white;
   /* margin-top: 10%; */
 }
 
@@ -102,6 +95,7 @@ p {
 
   text-align: center;
   margin: auto;
+  border: 1px dotted white;
 
 }
 
@@ -116,104 +110,33 @@ p {
   width: 65em;
   text-align: center;
   margin: auto;
+  
+  
 }
 
 .div3 {
-flex: 0 0 auto;
-padding: 10px;
 display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: row;
 text-align: center;
 margin: auto;
-bottom: 0;
-text-align: center;
 }
+
 footer {
 position: absolute;
-left: 0;
 bottom: 0;
-width: 100%;
-border-top: 2vw grey !important;
+left: 7%;
+width: 900px;
+padding-left: 10px;
 color: white;
 text-align: center;
-}
-.bitKnobs {
-  flex: 0 0 auto;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  /* width: 20%; */
-  text-align: center;
-  margin: auto;
-
-}
-
-.verbKnob {
-  flex: 0 0 auto;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  /* width: 20%; */
-  text-align: center;
-  margin: auto;
-
-}
-
-#allVerb {
-  flex: 0 0 auto;
-  /* margin: 4px; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  /* width: 20%; */
-  text-align: center;
-  margin: auto;
-
-}
-
-.filterKnob {
-  flex: 0 0 auto;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  /* width: 20%; */
-  text-align: center;
-  margin: auto;
-
-}
-
-
-/* #filterCon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  /* width: 20%; */
-  /* text-align: center;
-  margin: auto; */
-.div4 {
-  flex: 0 0 auto;
-  margin: 4px;
+border: 1px dotted white;
 }
 
 #oscilloscope {
-  /* position: absolute; */
-  width: 100%;
   height: 100px;
-  margin-left: 4.5%;
-  /* top: 5%;
-  right: 22%; */
+  margin-left: 2.5%;
   opacity: 50%;
 }
+
 
   /* The switch - the box around the slider */
 .switch {
@@ -279,11 +202,7 @@ input:checked + .slider:before {
     border-radius: 50%;
   }
 
-#piano {
-  position: absolute;
-  bottom: 27%;
-  left: 2%
-}
+
 
 .white {
     height:14em;
