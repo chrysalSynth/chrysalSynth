@@ -2317,7 +2317,9 @@ body .container #recordButton {
 }
 
 #about {
-  margin-left: 90%;
+  position: relative;
+  margin-right: 90%;
+  bottom: 100px;
   opacity: 65%;
   font-family: 'Amatic SC', cursive;
   color: rgba(241, 238, 238, 0.74);

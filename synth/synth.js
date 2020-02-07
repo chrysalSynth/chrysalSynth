@@ -3,6 +3,7 @@ import { OScope } from './oscope.js';
 
 let currentUserAccount;
 let userAccounts;
+let keyOff;
 
 var midiAccess = null;  // the MIDIAccess object.
 var activeNotes = []; // the stack of actively-pressed keys
@@ -252,10 +253,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     window.addEventListener('keydown', function(e) {
         let x = e.keyCode;
         if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
-            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            key.classList.add('active');    
+            if (!keyOff) {
+                const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+                key.classList.add('active');    
+            }            
         } 
     });
+    
     window.addEventListener('keyup', function(e) {
         let x = e.keyCode;
         if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
@@ -269,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //KEYBOARD && THAT KEY IS NOT CURRENTLY ACTIVE
     function keyDown(event) {
         const key = (event.detail || event.which).toString();
-        if (keyboardFrequencyMap[key] && !activeOscillators[key]) {
+        if (keyboardFrequencyMap[key] && !activeOscillators[key] && !keyOff) {
             playNote(key);
 
             keyObject = {
@@ -288,18 +292,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //KEYBOARD && THAT KEY IS CURRENTLY ACTIVE
     function keyUp(event) {
         const key = (event.detail || event.which).toString();
+        if (keyboardFrequencyMap[key] && activeOscillators[key] && !keyOff) {
+            keyObject = {
+                note_switch: 128,
+                note_name: keyboardFrequencyMap[key],
+                note_velocity: 0,
+                note_time: audioCtx.currentTime - recordStartTime,
+                note_waveform: waveform,
+                note_gain: gain.gain.value
+            };
+            storingMusic(keyObject);
 
-        keyObject = {
-            note_switch: 128,
-            note_name: keyboardFrequencyMap[key],
-            note_velocity: 0,
-            note_time: audioCtx.currentTime - recordStartTime,
-            note_waveform: waveform,
-            note_gain: gain.gain.value
-        };
-        storingMusic(keyObject);
-
-        if (keyboardFrequencyMap[key] && activeOscillators[key]) {
             activeOscillators[key].stop();
             delete activeOscillators[key];
         }
@@ -413,14 +416,16 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
 
     window.addEventListener('keyup', (e) => {
-        const x = e.keyCode;
-        if (x === 82 && recordStartButton.checked === false){
-            recordStartButton.checked = true;
-            recordingEvents();
-        } else if (x === 82) {
-            recordStartButton.checked = false;
-            recordingEvents();
-        }        
+        if (!keyOff) {
+            const x = e.keyCode;
+            if (x === 82 && recordStartButton.checked === false){
+                recordStartButton.checked = true;
+                recordingEvents();
+            } else if (x === 82) {
+                recordStartButton.checked = false;
+                recordingEvents();
+            }       
+        }
     });
 
     function recordingEvents() {
@@ -547,4 +552,12 @@ function getUserFromLS() {
     }
 }
 
-// recordNameInput.addEventListener()
+recordNameInput.addEventListener('focus', () => {
+    keyOff = true; 
+    console.log(keyOff);
+});
+
+recordNameInput.addEventListener('blur', () => {
+    keyOff = false;  
+    console.log(keyOff);
+});
