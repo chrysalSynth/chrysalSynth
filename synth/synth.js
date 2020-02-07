@@ -52,9 +52,9 @@ const bitsControl = document.getElementById('bits');
 const sampleControl = document.getElementById('sample');
 const timeControl = document.getElementById('time');
 
-console.log (bitsControl);
-console.log (sampleControl);
-console.log (timeControl);
+console.log (bitsControl.value);
+console.log (sampleControl.value);
+console.log (timeControl.value);
 
 
 
@@ -137,14 +137,23 @@ document.addEventListener('DOMContentLoaded', function(event) {
         return convolver;
     })();
 
+    bitsControl.addEventListener('click', function(event) {
+        waveform = event.target.value;
+    });
+
+    bitsControl.addEventListener('mousemove', function(event) {
+        gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
+    });
+
     //BIT CRUSHER EFFECT
     //USE bits AND normFreq TO CHANGE BIT RATE AND NORM FREQ
     let bufferSize = 4096;
-    let bits = [1, 4, 8, 16];
+    let bits = bitsControl.value;
+    console.log (bitsControl.value);
     let normFreq = [0.1, 0.2, 0.5, 1.0];
     let bitcrushEffect = (function() {
         let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
-        node.bits = bits[1]; // between 1 and 16
+        node.bits = bits; // between 1 and 16
         node.normfreq = normFreq[0]; // between 0.0 and 1.0
         let step = Math.pow(1 / 2, node.bits);
         let phaser = 0;
