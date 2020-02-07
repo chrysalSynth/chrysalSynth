@@ -1,6 +1,7 @@
 /*  HELP BUTTON POSITIONING */
 .help-tip{
     position: absolute;
+
     top: 1%;
     left: 8%;
     text-align: center;
@@ -38,7 +39,7 @@
     position: absolute;
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    left: -4px;
+    right: -4px;
     color: #FFF;
     font-size: 18px;
     line-height: 1.4;

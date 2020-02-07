@@ -1,17 +1,22 @@
 body {
     background-image: url(https://media.giphy.com/media/e331cVEDmOAco/giphy.gif);
-    background-repeat: no-repeat;
+    background-repeat: inherit;
     background-size: 100% auto;
+    /* background-size:20% auto; */
 }
 
 h1 {
+    position: relative;
+    top: 7vw;
     font-size: 555%;
-     font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     font-variant: small-caps;
-    color: rgba(241, 238, 238, 0.74);
+    color: white(241, 238, 238, 0.74);
 }
 
 h4 {
+    position: relative;
+    top: 2vw;
     font-size: 200%;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     color: white;
@@ -23,7 +28,7 @@ button {
     line-height: 10px; 
     padding: 8px; 
     border-radius: 100px; 
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: 'Teko', sans-serif;
     font-style: italic; 
     font-variant: normal; 
     text-transform: capitalize; 
@@ -40,7 +45,6 @@ Button:active {
     cursor: pointer;
     background: #000000; 
 }
-
 div {
     text-align: center;
     margin-top: 10vh;

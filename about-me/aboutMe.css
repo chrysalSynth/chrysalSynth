@@ -1,11 +1,12 @@
 body {
-    /* background-image: url(https://2.bp.blogspot.com/-OSSWUfClO1s/We7QrpdcTHI/AAAAAAAAC0o/Izd2-o2YKxYFvOsHX3QvxzFZcuLwLbomQCEwYBhgL/s1600/standingwavegreeneg.gif);
-    background-repeat: no-repeat;
-    background-size: 100% auto; */
     background-color: black;
     position: relative;
 }
 
+p {
+    font-family: 'Teko', sans-serif;
+    font-size: 175%;
+}
 
 button {
     background-color: white;
@@ -23,16 +24,14 @@ button {
 }
 
 a {
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Teko', sans-serif;
     color: rgba(241, 238, 238, 0.74);
     text-transform: capitalize;
 }
 
-
 .hidden {
     display: none;
 }
-
 
 .img-wrap {
     position: relative;
@@ -40,20 +39,17 @@ a {
     width: 257px;
 }
 
-
 .img-description {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    /* background: rgba(29, 106, 154, 0.72); */
     color: #fff;
     visibility: hidden;
     opacity: 0;
     font-size: xx-large;
 }
-
 
 .img-wrap:hover .img-description {
     visibility: visible;
@@ -61,7 +57,6 @@ a {
     position: relative;
     top: 150;
 }
-
 
 #about-me-images {
     height: 80%;
@@ -73,14 +68,11 @@ a {
     text-align: center;
 }
 
-
 #profile-info {
     display: flex;
     justify-content: space-around;
-    /* justify-content: center; */
     align-items: center;
 }
-
 
 #name-container {
     display: flex;
