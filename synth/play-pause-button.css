@@ -22,7 +22,7 @@
     border-color: transparent transparent transparent white; 
     transition: 100ms all ease; 
     cursor: pointer; 
-    border-style: double; 
+    /* border-style: double;  */
     border-width: 0px 0 0px 35px;
   } 
   
