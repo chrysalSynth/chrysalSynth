@@ -2303,6 +2303,7 @@ body {
   overflow: hidden;
   background: #000;
 }
+
 /* stop button */
 body .container {
   position: absolute;
@@ -2310,18 +2311,17 @@ body .container {
   top: 33%;
   width: 70px;
   height: 70px;
-  /* margin: -85px -85px; */
 }
+
 body .container #recordButton {
   display: none;
 }
 
 #about {
   position: relative;
-  /* margin-right: 70%; */
   bottom: 5px;
   opacity: 100%;
-  font-family: 'Teko', sans-serif;
+  font-family: 'Amatic SC', cursive;
   color: rgba(241, 238, 238, 0.74);
   font-size: .75em;
 }

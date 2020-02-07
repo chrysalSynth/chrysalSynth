@@ -1,15 +1,10 @@
 body {
     background-color: black;
-    position: relative;
-
+    position: relative;    
 }
 
-
-#howwedo {
-    
-}
 p {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Amatic SC', cursive;
     font-size: 175%;
 }
 
@@ -29,7 +24,7 @@ button {
 }
 
 a {
-    font-family: 'Teko', sans-serif;
+    /* font-family: 'Teko', sans-serif; */
     color: rgba(241, 238, 238, 0.74);
     text-transform: capitalize;
 }
