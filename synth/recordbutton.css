@@ -2326,7 +2326,7 @@ body .container #recordButton {
 /* record button */
 body .container #recordButton + label:after {
   position: fixed;
-  left: 75%;
+  left: 65%;
   top: 62%;
   width: 30px;
   height: 30px;
@@ -2337,10 +2337,10 @@ body .container #recordButton + label:after {
   cursor: pointer;
 }
 body .container #recordButton:checked + label:after {
-  -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
-  -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
-  -o-animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
-  animation: stop 0.5s infinite cubic-bezier(0.4, -.9, .9, 1);
+  -webkit-animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
+  -moz-animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
+  -o-animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
+  animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
