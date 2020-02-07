@@ -2307,7 +2307,7 @@ body {
 body .container {
   position: absolute;
   left: 96%;
-  top: 35%;
+  top: 33%;
   width: 70px;
   height: 70px;
   /* margin: -85px -85px; */
@@ -2321,18 +2321,16 @@ body .container #recordButton {
   margin-right: 90%;
   bottom: 100px;
   opacity: 65%;
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Teko', sans-serif;
   color: rgba(241, 238, 238, 0.74);
+  font-size: .75em;
 }
 
 /* record button */
 body .container #recordButton + label:after {
-  position: fixed;
-  left: 65%;
-  top: 62%;
-  width: 30px;
-  height: 30px;
-  margin: -50px -50px;
+  display: flex;
+  width: 70px;
+  height: 70px;
   content: "";
   border-radius: 50px;
   background: #e80415;
@@ -2400,7 +2398,7 @@ body .container .time > * {
   width: 50%;
   margin: -2px;
   color: #a2a2a2;
-  font-family: "Fjalla One", sans-serif;
+  font-family: 'Teko', sans-serif;
   font-size: 1.3em;
 }
 body .container .time .h_m:after {
