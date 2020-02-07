@@ -46,10 +46,12 @@ p {
 
 #logout {
   position: relative;
-  margin-left: 7vw;
+  margin-left: 3vw;
   margin-top: -9.5vw;
   opacity: 75%;
-  font-size: .85em;
+  font-size: .75em;
+  font-family: 'Amatic SC', cursive;
+  color: rgba(241, 238, 238, 0.74);
 }
 
 #piano {
