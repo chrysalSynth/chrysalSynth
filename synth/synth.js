@@ -19,10 +19,8 @@ let recordStartTime = null;
 
 getUserFromLS();
 
-// DOM RECORD BUTTONS
+//DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
-
-// const recordKeyPress = document.getElementById('recordButton');
 const recordSaveButton = document.getElementById('saveButton');
 const recordNameInput = document.getElementById('saveSession');
 const savedSessions = document.getElementById('savedSession');
@@ -30,45 +28,26 @@ const recordPlayButton = document.getElementById('playpause');
 
 updateSongs();
 
-// DOM SYNTH CONTROLS
-// const waveformControl = document.getElementById('waveform');
-
-const bitcrushToggle = document.getElementById('bitcrush-toggle');
+//DOM REVERB TOGGLE
 const verbToggle = document.getElementById('verb-toggle');
-// const filterToggle = document.getElementById('filter-toggle');
 
-// DOM SYNTH CONTROLS
+//DOM SYNTH CONTROLS
 const waveformControlSine = document.getElementById('sine');
 const waveformControlSquare = document.getElementById('square');
 const waveformControlTriangle = document.getElementById('triangle');
 const waveformControlSawtooth = document.getElementById('sawtooth');
 let waveform = waveformControlSine.value || waveformControlSquare.value || waveformControlTriangle.value || waveformControlSawtooth.value;
-// PLAYBACK DOM
+
+//PLAYBACK DOM
 const playbackSpeed = document.getElementById('playback-speed');
 const loopToggle = document.getElementById('loop-toggle');
 
-// let waveform = waveformControl.value;
+//DOM GAIN CONTROL
 const gainControl = document.getElementById('gain');
 const bitsControl = document.getElementById('bits');
-const sampleControl = document.getElementById('sample');
-const timeControl = document.getElementById('time');
-
-console.log (bitsControl.value);
-console.log (sampleControl.value);
-console.log (timeControl.value);
-
-
-
-// const frequencyControlLP = document.getElementById('lowpass-filter');
-// const frequencyControlHP = document.getElementById('filterFrequencyHP');
-// const frequencyControlBP = document.getElementById('filterFrequencyBP');
-
-//Things that need JS stuff - bitcrush on/off toggle, reverb on/off toggle, bits knob for bitcrusher, sample rate knob for bitcrusher, time knob for reverb, low pass knob, sine/square/sawtooth/triangle radio buttons, speed drop down menu, loop toggle on/off
-
-//Code would look like function()=> { if (convolverEffect.connect = true) {convolverEffect.disconnect}}
 
 //KEYBOARD STUFF
-document.addEventListener('DOMContentLoaded', function(event) {
+document.addEventListener('DOMContentLoaded', function() {
     //SET UP AUDIO CONTEXT
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -77,9 +56,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
     //PROCESSING CHAIN
     const gain = audioCtx.createGain();
-    const filterLP = audioCtx.createBiquadFilter();
-    // const filterHP = audioCtx.createBiquadFilter();
-    // const filterBP = audioCtx.createBiquadFilter();
 
     //COMPRESSOR
     const compressor = audioCtx.createDynamicsCompressor();
@@ -89,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     compressor.attack.setValueAtTime(0, audioCtx.currentTime);
     compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
       
-  
     //OBJECT FOR STORING ACTIVE NOTES
     const activeOscillators = {};
   
@@ -114,16 +89,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         '186': 659.255113825739859,  //; - E
         '222': 698.456462866007768,  //' - F
         '221': 739.988845423268797, //] - F#
-        // '84': 783.990871963498588,  //T - G
-        // '54': 830.609395159890277, //6 - G#
-        // '89': 880.000000000000000,  //Y - A
-        // '55': 932.327523036179832, //7 - A#
-        // '85': 987.766602512248223,  //U - B
     };
 
-
     //CONVOLVER EFFECT
-    //convolverTime changes reverb time
+    //convolverTime CHANGES REVERB TIME
     let convolverTime = 1.00;
     let convolverEffect = (function() {
         let convolver = audioCtx.createConvolver(),
@@ -138,19 +107,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         return convolver;
     })();
 
-    bitsControl.addEventListener('click', function(event) {
-        waveform = event.target.value;
-    });
-
-    bitsControl.addEventListener('mousemove', function(event) {
-        gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
-    });
-
     //BIT CRUSHER EFFECT
     //USE bits AND normFreq TO CHANGE BIT RATE AND NORM FREQ
     let bufferSize = 4096;
     let bits = bitsControl.value;
-    console.log (bitsControl.value);
     let normFreq = [0.1, 0.2, 0.5, 1.0];
     let bitcrushEffect = (function() {
         let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
@@ -174,41 +134,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
         return node;
     })();
    
-  
-    //CONNECTIONS
-
+    //AUDIO CONNECTIONS
     gain.connect(bitcrushEffect);
-    // filterLP.connect(myOscilloscope);
     bitcrushEffect.connect(compressor);
-    // convolverEffect.connect(compressor);
     compressor.connect(myOscilloscope);
     myOscilloscope.connect(audioCtx.destination);
 
-    // bitcrushEffect.disconnect(0);
-    
-    //EVENT LISTENERS FOR SYNTH PARAMETER INTERFACE
-
-    // bitcrushToggle.addEventListener('click', () => {
-    //     if (bitcrushToggle.checked) {
-    //         filterLP.disconnect(convolverEffect);
-    //         filterLP.connect(bitcrushEffect);
-    //         bitcrushEffect.connect(convolverEffect);
-    //     } else {
-    //         filterLP.disconnect(bitcrushEffect);
-    //         filterLP.connect(convolverEffect);
-    //     }
-    // });
-
+    //TOGGLE FOR TURNING ON AND OFF REVERB
     verbToggle.addEventListener('click', () => {
         if (verbToggle.checked) {
             bitcrushEffect.disconnect(compressor);
             bitcrushEffect.connect(convolverEffect);
             convolverEffect.connect(compressor);
-            console.log('verb checked');
         } else {
             bitcrushEffect.disconnect(convolverEffect);
             bitcrushEffect.connect(compressor);
-            console.log('verb unchecked');
         }
     });
 
@@ -225,31 +165,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
     waveformControlSawtooth.addEventListener('click', function(event) {
         waveform = event.target.value;
     });
-  
+    
+    //EVENT LISTENER FOR GAIN (MAIN VOLUME) SLIDER
     gainControl.addEventListener('mousemove', function(event) {
         gain.gain.setValueAtTime(event.target.value, audioCtx.currentTime);
     });
-
-    // frequencyControlLP.addEventListener('mousemove', function(event) {
-    //     filterLP.type = 'lowpass';
-    //     filterLP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    // });
-
-    // frequencyControlHP.addEventListener('mousemove', function(event) {
-    //     filterHP.type = 'highpass';
-    //     filterHP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    // });
-
-    // frequencyControlBP.addEventListener('mousemove', function(event) {
-    //     filterBP.type = 'bandpass';
-    //     filterBP.frequency.setValueAtTime(event.target.value, audioCtx.currentTime);
-    // });
   
     //EVENT LISTENERS FOR MUSICAL KEYBOARD
     window.addEventListener('keydown', keyDown, false);
     window.addEventListener('keyup', keyUp, false);
 
     //EVENT LISTENERS FOR THE KEYBOARD IMAGES FOR COMPUTER KEYBOARD
+    //ONLY ACCEPTS CERTAIN KEYCODES AND SENDS AN 'ACTIVE' STATUS TO A PARAMETER IN CSS
     window.addEventListener('keydown', function(e) {
         let x = e.keyCode;
         if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
@@ -307,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
             delete activeOscillators[key];
         }
     }
-  
         
     //HANDLES CREATION & STORING OF OSCILLATORS
     function playNote(key) {
@@ -318,7 +244,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         activeOscillators[key].connect(gain);
         activeOscillators[key].start();
     }
-
 
     //MIDI
     function noteOn(noteNumber) {
@@ -365,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
             haveAtLeastOneDevice = true;
         }
         if (!haveAtLeastOneDevice)
-            // alert("No MIDI input devices present.  You're gonna have a bad time.");
             return;
     }
 
@@ -386,8 +310,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         };
         storingMusic(midiObject);
 
-        console.log(gain);
-
         switch (event.data[0] & 0xf0) {
             case 0x90:
                 if (event.data[2] !== 0) {  // if velocity != 0, this is a note-on message
@@ -406,11 +328,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         musicalLayer.push(musicObject);
     }
 
-
-
-
     //RECORDING
-
     recordStartButton.addEventListener('click', () => {
         recordingEvents();
     });
@@ -432,10 +350,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         if (recordStartButton.checked) {
             musicalLayer = [];
             recordStartTime = audioCtx.currentTime;
-            console.log('recording');
         } else if (!recordStartButton.checked) {
             layerToStore = musicalLayer.slice();
-            console.log('stop recording');
         }
     }
 
@@ -463,11 +379,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         savedSessions.appendChild(newOption);
     });
 
-
-
-
     //PLAYBACK
-
     recordPlayButton.addEventListener('click', () => {
         const songToPlayName = savedSessions.value;
         const songToPlay = currentUserAccount.recordingSession[songToPlayName];
@@ -478,7 +390,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     function playStoredMusic(musicalLayer) {
 
         contextPlayback = new AudioContext();
-
         if (!recordPlayButton.checked) {
             contextPlayback.close();
             return;
@@ -502,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 if (!recordPlayButton.checked) {
                     activeOscillatorsPlayback[currentNoteValue.note_name].stop(); 
                 }
-                        
+
                 oscillatorPlayback.connect(envelopePlayback);
                 oscillatorPlayback.type = currentNoteValue.note_waveform;
                 envelopePlayback.connect(contextPlayback.destination);
@@ -523,7 +434,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
      
     }
 });
-
 
 function updateSongs() {
     let usersSongs = Object.values(currentUserAccount.recordingSession);
@@ -554,10 +464,8 @@ function getUserFromLS() {
 
 recordNameInput.addEventListener('focus', () => {
     keyOff = true; 
-    console.log(keyOff);
 });
 
 recordNameInput.addEventListener('blur', () => {
     keyOff = false;  
-    console.log(keyOff);
 });
