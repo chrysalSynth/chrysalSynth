@@ -8,16 +8,16 @@ let keyOff;
 var midiAccess = null;  // the MIDIAccess object.
 var activeNotes = []; // the stack of actively-pressed keys
 
-let midiObject = {}; //midi event to store
-let keyObject = {}; //keyboard event to store
-let musicalLayer = []; //collection of musical events to store
-let layerToStore = [];
+let midiObject = {}; // midi event to store
+let keyObject = {}; // keyboard event to store
+let musicalLayer = []; // collection of musical events to store
+let layerToStore = []; // collection of musical events to put in local storage
 
 let contextPlayback = null;
 let envelopePlayback = null;
 let recordStartTime = null;
 
-getUserFromLS();
+getUserFromLS(); // get user from local storage
 
 //DOM RECORD BUTTONS
 const recordStartButton = document.getElementById('recordButton');
@@ -26,7 +26,7 @@ const recordNameInput = document.getElementById('saveSession');
 const savedSessions = document.getElementById('savedSession');
 const recordPlayButton = document.getElementById('playpause');
 
-updateSongs();
+updateSongs(); // add user's songs to dom list
 
 //DOM REVERB TOGGLE
 const verbToggle = document.getElementById('verb-toggle');
@@ -44,7 +44,7 @@ const loopToggle = document.getElementById('loop-toggle');
 
 //DOM GAIN CONTROL
 const gainControl = document.getElementById('gain');
-const bitsControl = document.getElementById('bits');
+// const bitsControl = document.getElementById('bits');
 
 //KEYBOARD STUFF
 document.addEventListener('DOMContentLoaded', function() {
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //BIT CRUSHER EFFECT
     //USE bits AND normFreq TO CHANGE BIT RATE AND NORM FREQ
     let bufferSize = 4096;
-    let bits = bitsControl.value;
+    let bits = 1;
     let normFreq = [0.1, 0.2, 0.5, 1.0];
     let bitcrushEffect = (function() {
         let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
     }
 
-    function onMIDIReject(err) {
+    function onMIDIReject() {
         alert("The MIDI system failed to start.  You're gonna have a bad time.");
     }
 
@@ -325,16 +325,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function storingMusic(musicObject) {
-        musicalLayer.push(musicObject);
+        musicalLayer.push(musicObject); // store musical event
     }
 
     //RECORDING
-    recordStartButton.addEventListener('click', () => {
-        recordingEvents();
+    recordStartButton.addEventListener('click', () => { // start recording on click
+        recordingEvents(); // call recording function
     });
 
-    window.addEventListener('keyup', (e) => {
-        if (!keyOff) {
+    window.addEventListener('keyup', (e) => { // start recording from keyboard
+        if (!keyOff) { // allow r key for record if user isn't typing in the song name field
             const x = e.keyCode;
             if (x === 82 && recordStartButton.checked === false){
                 recordStartButton.checked = true;
@@ -346,24 +346,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function recordingEvents() {
-        if (recordStartButton.checked) {
-            musicalLayer = [];
-            recordStartTime = audioCtx.currentTime;
-        } else if (!recordStartButton.checked) {
-            layerToStore = musicalLayer.slice();
+    function recordingEvents() { // actual recording process
+        if (recordStartButton.checked) { // start recording
+            musicalLayer = []; // clear array of musical events
+            recordStartTime = audioCtx.currentTime; // stamp time the recording starts
+        } else if (!recordStartButton.checked) { // stop recording
+            layerToStore = musicalLayer.slice(); // make new array from musical events to save
         }
     }
 
-    function SaveSong(name, layerToStore) {
+    function SaveSong(name, layerToStore) { // object constructor for new song
         this.name = name;
         this.song = layerToStore;
     }
 
-    recordSaveButton.addEventListener('click', () => {
-        const newSongName = recordNameInput.value.toString();
-        const newSong = new SaveSong(newSongName, layerToStore);
-        currentUserAccount.recordingSession[newSongName] = newSong;
+    recordSaveButton.addEventListener('click', () => { // save recorded song
+        const newSongName = recordNameInput.value.toString(); // name the song using dom input
+        const newSong = new SaveSong(newSongName, layerToStore); // construct new song object with song name current music events array
+        currentUserAccount.recordingSession[newSongName] = newSong; // add new song to user's list
 
         for (let i = 0; i < userAccounts.length; i++) {
             if (currentUserAccount.name === userAccounts[i].name) {
@@ -371,38 +371,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        localStorage.setItem('userAccounts', JSON.stringify(userAccounts));
-        const newOption = document.createElement('option');
+        localStorage.setItem('userAccounts', JSON.stringify(userAccounts)); // update user's song list in local storage
+        const newOption = document.createElement('option'); 
         newOption.value = newSong.name;
         newOption.textContent = newSong.name;
         newOption.selected = true;
-        savedSessions.appendChild(newOption);
+        savedSessions.appendChild(newOption); // show user's new song in dom
     });
 
     //PLAYBACK
-    recordPlayButton.addEventListener('click', () => {
-        const songToPlayName = savedSessions.value;
-        const songToPlay = currentUserAccount.recordingSession[songToPlayName];
-        playStoredMusic(songToPlay.song);
+    recordPlayButton.addEventListener('click', () => { // play recording button
+        const songToPlayName = savedSessions.value; // grab selected song's name from dom
+        const songToPlay = currentUserAccount.recordingSession[songToPlayName]; // match song name to song in user's collection
+        playStoredMusic(songToPlay.song); // call recording playback function with selected song
     });
 
 
-    function playStoredMusic(musicalLayer) {
+    function playStoredMusic(musicalLayer) { // recording playback function
 
         contextPlayback = new AudioContext();
         if (!recordPlayButton.checked) {
-            contextPlayback.close();
+            contextPlayback.close(); // break playback if record button is not checked
             return;
         }
 
-        const activeOscillatorsPlayback = {};
+        const activeOscillatorsPlayback = {}; // object for oscillators incase more than one note is played at a time
         const playbackMultiplier = playbackSpeed.value;
-        const lastNoteTime = musicalLayer.length; 
-        const loopTime = (musicalLayer[lastNoteTime - 1].note_time);   
+        const lastNoteTime = musicalLayer.length; // store the last musical event in case of loop
+        const loopTime = (musicalLayer[lastNoteTime - 1].note_time); // store the last musical event's scheduled time in case of loop
     
-        for (let i = 0; i < musicalLayer.length; i++){
+        for (let i = 0; i < musicalLayer.length; i++){ // loop through the song's scheduled events
             const currentNoteValue = musicalLayer[i];              
-            if (currentNoteValue.note_switch === 144) { //note on!
+            if (currentNoteValue.note_switch === 144) { // if saved musical note is being pressed down
 
                 const oscillatorPlayback = contextPlayback.createOscillator();
 
@@ -411,33 +411,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 envelopePlayback = contextPlayback.createGain();
 
                 if (!recordPlayButton.checked) {
-                    activeOscillatorsPlayback[currentNoteValue.note_name].stop(); 
+                    activeOscillatorsPlayback[currentNoteValue.note_name].stop(); // stop playback
                 }
 
-                oscillatorPlayback.connect(envelopePlayback);
-                oscillatorPlayback.type = currentNoteValue.note_waveform;
-                envelopePlayback.connect(contextPlayback.destination);
-                envelopePlayback.gain.value = 0.0;
+                oscillatorPlayback.connect(envelopePlayback); // route oscillator to gain
+                oscillatorPlayback.type = currentNoteValue.note_waveform; // set waveform type
+                envelopePlayback.connect(contextPlayback.destination); // route gain to output
+                envelopePlayback.gain.value = 0.0; // set initial value
 
-                oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time * (1 / playbackMultiplier));
-                envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time * (1 / playbackMultiplier));
-            } else if (currentNoteValue.note_switch === 128) { //note off!      
+                oscillatorPlayback.frequency.setValueAtTime(currentNoteValue.note_name, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule frequency of current note
+                envelopePlayback.gain.setValueAtTime(currentNoteValue.note_gain, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule gain level of current note
+            } else if (currentNoteValue.note_switch === 128) { // if saved musical note is being lifted up    
                 const oscillatorPlayback = activeOscillatorsPlayback[currentNoteValue.note_name];
                 oscillatorPlayback.frequency.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));
-                envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier));              
+                envelopePlayback.gain.setValueAtTime(0, currentNoteValue.note_time * (1 / playbackMultiplier)); // schedule note to turn off              
             }
             
         }
-        if (loopToggle.checked && recordPlayButton.checked) {
-            setTimeout(() => playStoredMusic(musicalLayer), (loopTime * (1 / playbackMultiplier)) * 1000); 
+        if (loopToggle.checked && recordPlayButton.checked) { // if loop toggle is checked, restart play function with same song after last scheduled event
+            setTimeout(() => playStoredMusic(musicalLayer), (loopTime * (1 / playbackMultiplier)) * 1000);
         }
      
     }
 });
 
 function updateSongs() {
-    let usersSongs = Object.values(currentUserAccount.recordingSession);
-    for (let i = 0; i < usersSongs.length; i++) {
+    let usersSongs = Object.values(currentUserAccount.recordingSession); // get the current user's list of songs
+    for (let i = 0; i < usersSongs.length; i++) { // loop through the user's songs and create selectable list on dom
         const newOption = document.createElement('option');
         newOption.value = usersSongs[i].name;
         newOption.textContent = usersSongs[i].name;
@@ -446,14 +446,14 @@ function updateSongs() {
 }
 
 function getUserFromLS() {
-    const user = localStorage.getItem('currentUser');
-    userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
+    const user = localStorage.getItem('currentUser'); // get current user
+    userAccounts = JSON.parse(localStorage.getItem('userAccounts')); // get all users
 
     const nameDIV = document.getElementById('name-input');
 
     nameDIV.textContent = user;
 
-    for (let i = 0; i < userAccounts.length; i++) {
+    for (let i = 0; i < userAccounts.length; i++) { // match user to all users
         if (user === userAccounts[i].name) {
             currentUserAccount = userAccounts[i];
         }
@@ -461,9 +461,9 @@ function getUserFromLS() {
 }
 
 recordNameInput.addEventListener('focus', () => {
-    keyOff = true; 
+    keyOff = true; // boolean for disabling synth and record button when entering name for save file
 });
 
 recordNameInput.addEventListener('blur', () => {
-    keyOff = false;  
+    keyOff = false; // boolean for disabling synth and record button when entering name for save file 
 });
