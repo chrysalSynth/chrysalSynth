@@ -5,9 +5,7 @@
   color: white;
   box-sizing: border-box;
 }
-input:checked + .image-class {
-  border: 1px dotted white;
-  padding: 1px;
+input:checked + .image-class {  padding: 1px;
   border-radius: 90%;
 }
 
@@ -17,7 +15,11 @@ img {
   margin-top: 0px;
   cursor: pointer;
 }
-
+h5{
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 30px;
+  margin-left: 10px;
+}
 p {
   margin-bottom: 5px;
   font-size: 20px;
@@ -42,30 +44,37 @@ p {
   left: 2%
   
 }
+#speed-dropdown{
+  margin-top: 5px;
+  height: 33px;
+  display: flex;
+  justify-content: left; 
+}
+#speedDisplay{
+  margin-top: 30px;
+}
 
 #saveLoadDiv {
-  margin: auto;
-  border: 1px dotted white;
-}
+  margin: auto;}
 
-#wrapper{
-  width: 50px;
-}
+#mainVolume {
+  margin-top: 20px;
+  margin-left: 2px;}
+#reverbLoop {
+  display: flex;  margin-left: 20px;
 
+}
 #waveshapes {
   display: flex;
   justify-content: left;
   margin-top: 12px;
+  margin-right: 0px;
   justify-content: space-between;
   cursor: pointer;
-  border: 1px dotted white;
-
 }
 #seconds_lowPass{
   display: flex;
-  margin-bottom: 1.8vw;
-  border: 1px dotted white;
-}
+  margin-bottom: 1.8vw;}
 #name-input{
   display: flex;
 }
@@ -73,16 +82,12 @@ p {
 .div1 {
   display: flex;
   justify-content: left;
-  margin: auto;
-  border: 1px dotted white;
-}
+  margin: auto;}
 
 #play-speed-loop {
   display: flex;
   text-align: center;
-  margin: auto;
-  border: 1px dotted white;
-  /* margin-top: 10%; */
+  margin: auto;  /* margin-top: 10%; */
 }
 
 #div1 {
@@ -95,8 +100,6 @@ p {
 
   text-align: center;
   margin: auto;
-  border: 1px dotted white;
-
 }
 
 .div2 {
@@ -109,8 +112,7 @@ p {
   height: 14em;
   width: 65em;
   text-align: center;
-  margin: auto;
-  
+  margin: auto;  
   
 }
 
@@ -128,12 +130,12 @@ width: 900px;
 padding-left: 10px;
 color: white;
 text-align: center;
-border: 1px dotted white;
 }
 
 #oscilloscope {
   height: 100px;
   margin-left: 2.5%;
+  margin-top: 3.3%;
   opacity: 50%;
 }
 
@@ -142,8 +144,8 @@ border: 1px dotted white;
 .switch {
   position: relative;
   display: inline-block;
-  width: 7vw;
-  height: 1.5vw;
+  width: 44px;
+  height: 19px;
 }
 
 /* Hide default HTML checkbox */
@@ -169,10 +171,10 @@ border: 1px dotted white;
 .slider:before {
   position: absolute;
   content: "";
-  height: .9vw;
-  width: .9vw;
-  left: .3vw;
-  bottom: .3vw;
+  height: 13px;
+  width: 13px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -187,22 +189,20 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(5.5vw);
-  -ms-transform: translateX(5.5vw);
-  transform: translateX(5.5vw);
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
   background-color: rgb(214, 214, 214);
 }
 
 /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
-  }
+}
   
-  .slider.round:before {
+.slider.round:before {
     border-radius: 50%;
-  }
-
-
+}
 
 .white {
     height:14em;

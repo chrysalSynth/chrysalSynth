@@ -47,8 +47,6 @@
                 <div data-key="221" class="black key f sharp" data-note="F#"></div>
                 <div data-key="" class="white key g" data-note="G"></div>
             </div>   
-
-<!-- this div1 container must remain as they are together for the record button -->
             <div id="div1" class="container"  >
                 <input type="checkbox" id="recordButton"/>
                 <label for="recordButton"></label>
@@ -57,54 +55,55 @@
                     <div class="s_ms"></div>
                 </div>
             </div>
-
         </div>
     </section>
         <footer class="div3">
-        <!-- seconds and low pass knobs div -->
             <!-- loads user name -->
            <h5 id="name-input"></h5>
         </div>
         <!-- wave shape selections -->
         <div class="div3" id="soundSwitch">
-
-                <div id="waveshapes">
-                    <label>
-                        <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> 
-                    </label>
-                    <label>
-                        <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> 
-                    </label>
-                    <label>
-                        <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> 
-                    </label>
-                    <label>
-                        <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> 
-                    </label>
-                </div>
-
-                <div class="mainVolume">
-                    <p id="sliderText">Volume</p>
-                    <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
-                </div>
+            <div id="waveshapes">
+                <label>
+                    <input id="sine" type="radio" name="waveform" value="sine" checked><img class='image-class' src = "../assets/images/sine.png"/> 
+                </label>
+                <label>
+                    <input id="square" type="radio" name="waveform" value="square"><img class='image-class' src = "../assets/images/square.png"/> 
+                </label>
+                <label>
+                    <input id="triangle" type="radio" name="waveform" value="triangle"><img class='image-class' src = "../assets/images/triangle.png"/> 
+                </label>
+                <label>
+                    <input id="sawtooth" type="radio" name="waveform" value="sawtooth"><img class='image-class' src = "../assets/images/sawtooth.png"/> 
+                </label>
+            </div>
         </div>
-        <div id="v-toggle">
-            <p>REVERB</p>
-            <label class="switch">
-                <input type="checkbox" id="verb-toggle">
-                <span class="slider round"></span>
-            </label> 
-        </div>
-            
+            <div id="mainVolume">
+                <p id="sliderText">Volume</p>
+                <input id="gain" class="gain" type="range" min="0" max="1.0" step=".1" value="0.8">
+            </div>
+            <div id="reverbLoop">
+                <div id="v-toggle">
+                    <p>REVERB</p>
+                    <label class="switch">
+                        <input type="checkbox" id="verb-toggle">
+                        <span class="slider round"></span>
+                    </label> 
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox" id="loop-toggle">
+                            <span class="slider round"></span>
+                          </label> loop
+                    </div>
+                </div>
+            </div>
             <div id="saveLoadDiv">
                 <div id="saveButtonDiv">
                     <input class="saveButton" id="saveSession" type="text" placeholder="   session name...">
                     <button class="saveButton" type="button" id="saveButton">save</button><br><br>
                 </div>
                 <div id="downloadButtonDiv">
-                    <select id="savedSession" name="savedSession">
-                    </select>
-                    <!-- <button id="downloadButton">load</button> -->
+                    <select id="savedSession" name="savedSession"></select>
                 </div>
             </div>
             <div id="play-speed-loop">
@@ -114,7 +113,10 @@
                         <label for="playpause"></label>
                     </div>
                 </div>
-                <div id="speed-dropdown">
+            </div>
+            <div id="speedContainer">
+                <p id="speedDisplay">SPEED</p>
+                <div id="speed-dropdown">                
                     <select id="playback-speed" name="playback-speed">
                         <option value="0.5">x0.5</option>
                         <option value="1.0" selected>x1.0</option>
@@ -122,13 +124,7 @@
                         <option value="5.0">x5.0</option>
                         <option value="10.0">x10.0</option>
                         <option value="20.0">x20.0</option>
-                    </select> speed
-                    <div>
-                        <label class="switch">
-                            <input type="checkbox" id="loop-toggle">
-                            <span class="slider round"></span>
-                          </label> loop
-                    </div>
+                    </select> 
                 </div>
             </div>
                 </footer>    
