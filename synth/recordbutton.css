@@ -2303,14 +2303,14 @@ body {
   overflow: hidden;
   background: #000;
 }
-
+/* stop button */
 body .container {
   position: absolute;
   left: 96%;
-  top: 33%;
+  top: 35%;
   width: 70px;
   height: 70px;
-
+  /* margin: -85px -85px; */
 }
 body .container #recordButton {
   display: none;
@@ -2328,19 +2328,22 @@ body .container #recordButton {
 
 /* record button */
 body .container #recordButton + label:after {
-  display: flex;
-  width: 70px;
-  height: 70px;
+  position: fixed;
+  left: 65%;
+  top: 62%;
+  width: 30px;
+  height: 30px;
+  margin: -50px -50px;
   content: "";
   border-radius: 50px;
   background: #e80415;
   cursor: pointer;
 }
 body .container #recordButton:checked + label:after {
-  -webkit-animation: stop 0.20s infinite cubic-bezier(1, 1, 1, 1);
-  -moz-animation: stop 0.20s infinite cubic-bezier(1, 1, 1, 1);
-  -o-animation: stop 0.20s infinite cubic-bezier(1, 1, 1, 1);
-  animation: stop 0.0s infinite cubic-bezier(1, 1, 1, 1);
+  -webkit-animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
+  -moz-animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
+  -o-animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
+  animation: stop 0.00s infinite cubic-bezier(1, 1, 1, 1);
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
