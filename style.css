@@ -41,7 +41,6 @@ Button:active {
     background: #000000; 
 }
 
-
 p {
     font-family: 'Amatic SC', cursive;
     font: small-caption;
@@ -69,6 +68,3 @@ input {
     font-family: 'Amatic SC', cursive;
     font-size: 175%;
 }
-
-.avatar-radio {
-    display: none;
