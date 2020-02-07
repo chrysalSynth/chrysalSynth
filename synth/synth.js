@@ -44,7 +44,7 @@ const loopToggle = document.getElementById('loop-toggle');
 
 //DOM GAIN CONTROL
 const gainControl = document.getElementById('gain');
-const bitsControl = document.getElementById('bits');
+// const bitsControl = document.getElementById('bits');
 
 //KEYBOARD STUFF
 document.addEventListener('DOMContentLoaded', function() {
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //BIT CRUSHER EFFECT
     //USE bits AND normFreq TO CHANGE BIT RATE AND NORM FREQ
     let bufferSize = 4096;
-    let bits = bitsControl.value;
+    let bits = 1;
     let normFreq = [0.1, 0.2, 0.5, 1.0];
     let bitcrushEffect = (function() {
         let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
