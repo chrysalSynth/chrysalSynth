@@ -1,11 +1,10 @@
 /*  HELP BUTTON POSITIONING */
-
 .help-tip{
     position: absolute;
     top: 5px;
     left: 200px;
     text-align: center;
-    background-color: #BCDBEA;
+    background-color: rgb(190, 190, 190);
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -17,17 +16,15 @@
 .help-tip:before{
     content:'?';
     font-weight: bold;
-    color:#fff;
+    color:rgb(0, 0, 0);
 }
 
 .help-tip:hover p{
     cursor: pointer;
     display:block;
     transform-origin: 100% 0%;
-
     -webkit-animation: fadeIn 0.3s ease-in-out;
     animation: fadeIn 0.3s ease-in-out;
-
 }
 
 .help-tip p{ 
