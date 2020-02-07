@@ -1,8 +1,13 @@
 body {
     background-color: black;
     position: relative;
+
 }
 
+
+#howwedo {
+    
+}
 p {
     font-family: 'Teko', sans-serif;
     font-size: 175%;
@@ -79,7 +84,5 @@ a {
     justify-content: space-evenly;
     align-items: baseline; 
 }
-
-
 
 

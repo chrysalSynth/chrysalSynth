@@ -17,7 +17,7 @@
 .help-tip:before{
     content:'?';
     font-weight: bold;
-    color:#fff;
+    color:rgb(0, 0, 0);
 }
 
 .help-tip:hover p{
