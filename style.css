@@ -9,7 +9,7 @@ h1 {
     position: relative;
     top: 7vw;
     font-size: 555%;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     font-variant: small-caps;
     color: white(241, 238, 238, 0.74);
 }
@@ -18,7 +18,7 @@ h4 {
     position: relative;
     top: 2vw;
     font-size: 200%;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     color: white;
 }
 
@@ -45,12 +45,6 @@ Button:active {
     cursor: pointer;
     background: #000000; 
 }
-
-p {
-    font-family: 'Teko', sans-serif;
-    font: small-caption;
-}
-
 div {
     text-align: center;
     margin-top: 10vh;
@@ -59,17 +53,11 @@ div {
 }
 
 a {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     color: rgba(241, 238, 238, 0.74);
 }
 
-label {
-    font-family: 'Teko', sans-serif;
-    font-size: 175%;
-    opacity: 59%;
-}
-
 input {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 175%;
 }
