@@ -55,6 +55,7 @@ p {
 }
 #speedDisplay{
   margin-top: 30px;
+  margin-right: 8px;
 
 }
 
@@ -138,10 +139,11 @@ Button:hover {
   margin: auto;
 }
 
-#play-speed-loop {
+#play{
   display: flex;
   text-align: center;
   margin: auto;
+  width:33px;
 }
 
 #div1 {
