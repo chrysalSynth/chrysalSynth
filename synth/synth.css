@@ -42,14 +42,15 @@ p {
   position: fixed;
   left: 5;
   top: 1%;
+  font-size: 1em;
 }
 
 #logout {
   position: absolute;
   margin-left: 1vw;
-  margin-top: -.25vw;
+  margin-top: -.35vw;
   opacity: 100%;
-  font-size: .75em;
+  font-size: 1em;
   font-family: 'Amatic SC', cursive;
   color: rgba(241, 238, 238, 0.74);
 }

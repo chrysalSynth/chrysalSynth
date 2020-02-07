@@ -2323,7 +2323,7 @@ body .container #recordButton {
   opacity: 100%;
   font-family: 'Amatic SC', cursive;
   color: rgba(241, 238, 238, 0.74);
-  font-size: .75em;
+  font-size: 1em;
 }
 
 /* record button */
