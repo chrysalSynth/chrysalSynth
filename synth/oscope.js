@@ -39,6 +39,13 @@ export var OScope = function(context, elem) {
             }
         }
 
+        // freqData.forEach(item => {
+        //     if (item % noDataPoints) {
+        //         var point = (freqData[item] / 128) * (analyser.height / 2);
+        //         graphPoints.push('L' + item + ', ' + point); 
+        //     }
+        // });
+
         for (i = 0; i < graphPoints.length; i++) {
             graphStr += graphPoints[i];
         }
