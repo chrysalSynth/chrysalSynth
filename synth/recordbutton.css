@@ -1,3 +1,5 @@
+/* bulk of code is using percent and time. Could create a function for it but not sure how... */
+
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
 @-webkit-keyframes to_24 {
   4.1666666667% {
@@ -2401,23 +2403,23 @@ body .container .time > * {
   font-family: 'Teko', sans-serif;
   font-size: 1.3em;
 }
-body .container .time .h_m:after {
+body .container .time .h_m:after, body .container .time .h_m:before {
   float: right;
   position: relative;
   content: "00";
 }
-body .container .time .h_m:before {
+ /* {
   float: right;
   position: relative;
   content: ":00";
-}
-body .container .time .s_ms:before {
+} */
+body .container .time .s_ms:before, body .container .time .s_ms:after {
   float: left;
   position: relative;
   content: ":00";
 }
-body .container .time .s_ms:after {
+/* body .container .time .s_ms:after {
   float: left;
   position: relative;
   content: ":00";
-}
+} */
