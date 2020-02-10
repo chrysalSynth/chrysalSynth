@@ -6,12 +6,27 @@
   
 }
 
-input:checked + .image-class {  padding: .5px;
+#giantBox {
+  border: 1px solid red;
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+
+}
+
+
+
+input:checked + .image-class {  
+  border: 1px solid red;
+  padding: .5px;
   border-radius: 90%;
   border: 2px dotted grey
 }
 
 img {
+  border: 1px solid red;
   width: 33px;
   margin-left: 5px;
   margin-top: 0px;
@@ -38,7 +53,10 @@ p {
   height: 0;
 }
 
+
+
 #aboutUs {
+  border: 1px solid red;
   position: fixed;
   left: 5;
   top: 1%;
@@ -46,6 +64,7 @@ p {
 }
 
 #logout {
+  border: 1px solid red;
   position: absolute;
   margin-left: 1vw;
   margin-top: -.35vw;
@@ -56,13 +75,15 @@ p {
 }
 
 #piano {
-  position: absolute;
-  bottom: 20%;
-  left: 2%
+  border: 1px solid red;
+  /* position: absolute; */
+  /* bottom: 20%; */
+  /* left: 2% */
   
 }
 
 #speed-dropdown{
+  border: 1px solid red;
   margin-top: 5px;
   height: 33px;
   display: flex;
@@ -90,6 +111,7 @@ p {
 }
 
 #waveshapes {
+  border: 1px solid red;
   display: flex;
   justify-content: left;
   margin-top: 12px;
@@ -99,11 +121,13 @@ p {
 }
 
 #reverbAndLoopButtons{
+  border: 1px solid red;
   text-align: center;
   margin-left: 0px;
 }
 
 #loopingContainer{
+  border: 1px solid red;
   display: flex;
   justify-content: left;
   margin: auto;
@@ -113,12 +137,14 @@ p {
 }
 
 #loopingSwitch{
+  border: 1px solid red;
   display: flex;
   margin-right: 30px;
   margin-top: 20px;
 }
 
 #seconds_lowPass{
+  border: 1px solid red;
   display: flex;
   margin-bottom: 1.8vw;
 }
@@ -128,6 +154,7 @@ p {
 }
 
 #saveSession{
+  border: 1px solid red;
   height: 33px;
   width: 150px;
   font-size: 20px;
@@ -135,6 +162,7 @@ p {
 }
 
 #saveButton{
+  border: 1px solid red;
   height: 30px;
   cursor: pointer;
   font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -142,23 +170,27 @@ p {
 }
 
 Button:hover {
+  border: 1px solid red;
   cursor: pointer;
   background: #eeff00;
   color:black;
 }
 
 #savedSession{
+  border: 1px solid red;
   height:33px;
   width:150px;
 }
 
 .div1 {
+  border: 1px solid red;
   display: flex;
   justify-content: left;
   margin: auto;
 }
 
 #play{
+  border: 1px solid red;
   display: flex;
   text-align: center;
   margin: auto;
@@ -166,34 +198,47 @@ Button:hover {
 }
 
 #div1 {
+  border: 1px solid red;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   text-align: center;
   margin: auto;
+}
+
+.pianoContainer {
+  /* border: 1px solid red; */
 }
 
 .div2 {
-  flex: 0 0 auto;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 14em;
-  width: 65em;
-  text-align: center;
-  margin: auto;
+  border: 1px solid red;
+  /* border: 1px solid red; */
+  /* flex: 0 0 auto; */
+  /* margin: 4px; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* flex-direction: column; */
+  /* height: 14em; */
+  /* width: 1200px; */
+  margin: 0 auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* text-align: center; */
+  /* margin: auto; */
 }
 
 .div3 {
+  border: 1px solid red;
   display: flex;
   text-align: center;
   margin: auto;
 }
 
 footer {
-  position: absolute;
+  border: 1px solid red;
+  /* position: absolute; */
+  display: block;
   bottom: 0;
   left: 7%;
   width: 950px;
@@ -204,6 +249,7 @@ footer {
 }
 
 #oscilloscope {
+  border: 1px solid red;
   height: 100px;
   margin-left: 2.5%;
   margin-top: 3.3%;
@@ -212,6 +258,7 @@ footer {
 
 /* The switch - the box around the slider */
 .switch {
+  border: 1px solid red;
   position: relative;
   display: inline-block;
   width: 44px;
@@ -227,6 +274,7 @@ footer {
 
 /* The slider */
 .slider {
+  border: 1px solid red;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -239,6 +287,7 @@ footer {
 }
 
 .slider:before {
+  border: 1px solid red;
   position: absolute;
   content: "";
   height: 13px;
