@@ -20,6 +20,7 @@ signUp.addEventListener('click', () => {
         createUserAccount(userAccountsArray, userAccount);
     } 
     else {
+        // i wonder if this should all be moved into your createUserAccount function
         //if a userAccountsArray DOES exist... start looping through to see if the current user has already created an account
         for (let i = 0 ; i < userAccountsArray.length; i++){
             const userAccountObject = (userAccountsArray[i]);

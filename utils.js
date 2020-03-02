@@ -1,4 +1,6 @@
 //this class builds a user account with an empty object 
+
+// oooo a class!
 export class ConstructAccount {
     constructor(name) {
         this.name = name;
@@ -7,6 +9,7 @@ export class ConstructAccount {
 }
 //takes in the user account array and the new user account, pushes the account into the user array then pushes it back into local storage after stringify
 function createUserAccount(userAccountArray, userAccount) {
+    // very cool!
     userAccountArray.push(userAccount);
     localStorage.setItem('userAccounts', JSON.stringify(userAccountArray));
 }   
@@ -19,4 +22,8 @@ function getUserAccounts(){
     const userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
     return userAccounts;
 }
-export { setCurrentUser, createUserAccount, getUserAccounts };
+export { 
+    setCurrentUser, 
+    createUserAccount, 
+    getUserAccounts, 
+};
