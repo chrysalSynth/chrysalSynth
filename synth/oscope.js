@@ -1,3 +1,4 @@
+// curious where this code came from, since i'm seeing a lot of vars here. copying big bundles of code and using the functions isn't a problem generally (it's basically like using a library), but when it's this much code and in a class setting, i'd like to know what i should grade and what i should ignore
 export var OScope = function(context, elem) {
     var analyser = context.createAnalyser();
     var elem = document.getElementById(elem);

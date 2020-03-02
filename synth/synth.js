@@ -1,3 +1,7 @@
+/*
+I would have liked to see a lot of these functions moved into other files. This is a huge wall of javascript
+*/
+
 //IMPORT OSCILLOSCOPE JS
 import { OScope } from './oscope.js';
 
@@ -5,6 +9,7 @@ let currentUserAccount;
 let userAccounts;
 let keyOff;
 
+// why the vars?
 var midiAccess = null;  // the MIDIAccess object.
 var activeNotes = []; // the stack of actively-pressed keys
 
@@ -36,6 +41,7 @@ const waveformControlSine = document.getElementById('sine');
 const waveformControlSquare = document.getElementById('square');
 const waveformControlTriangle = document.getElementById('triangle');
 const waveformControlSawtooth = document.getElementById('sawtooth');
+// nice fallbackin'!
 let waveform = waveformControlSine.value || waveformControlSquare.value || waveformControlTriangle.value || waveformControlSawtooth.value;
 
 //PLAYBACK DOM
@@ -68,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeOscillators = {};
   
     //KEYCODE TO MUSICAL FREQUENCY CONVERSION
+    // coooooool...though i do thing event.key = 'f', for example, exists these days
     const keyboardFrequencyMap = {
         '65': 261.625565300598634,  //A - C
         '87': 277.182630976872096, //W - C#
@@ -141,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //TOGGLE FOR TURNING ON AND OFF REVERB
     verbToggle.addEventListener('click', () => {
+        // very cool!
         if (verbToggle.checked) {
             bitcrushEffect.disconnect(compressor);
             bitcrushEffect.connect(convolverEffect);
@@ -152,6 +160,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     //EVENT LISTENERS FOR SYNTH WAVESHAPE PARAMETER INTERFACE
+    // could refactor with a silly forEach here . . . 
+    /*
+    [
+        waveformControlSine,
+        waveformControlSquare,
+        waveformControlTriangle,
+        waveformControlSawtooth,
+    ].forEach(node => node.addEventListener('click', (event) => {
+                waveform = event.target.value;
+    }))
+
+    */
     waveformControlSine.addEventListener('click', function(event) {
         waveform = event.target.value;
     });
@@ -174,11 +194,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('keydown', keyDown, false);
     window.addEventListener('keyup', keyUp, false);
 
+    const keyMatches = keyCode => [65, 87, 83, 69, ...etc].includes(keyCode);
+
     //EVENT LISTENERS FOR THE KEYBOARD IMAGES FOR COMPUTER KEYBOARD
     //ONLY ACCEPTS CERTAIN KEYCODES AND SENDS AN 'ACTIVE' STATUS TO A PARAMETER IN CSS
     window.addEventListener('keydown', function(e) {
-        let x = e.keyCode;
-        if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
+        if (keyMatches(e.keyCode)) {
             if (!keyOff) {
                 const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
                 key.classList.add('active');    
@@ -187,8 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     window.addEventListener('keyup', function(e) {
-        let x = e.keyCode;
-        if (x === 65 || x === 87 || x === 83 || x === 69 || x === 68 || x === 70 || x === 84 || x === 71 || x === 89 || x === 72 || x === 85 || x === 74 || x === 75 || x === 79 || x === 76 || x === 80 || x === 186 || x === 222 || x === 221) {
+        if (keyMatches(e.keyCode)) {
             const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
             key.classList.remove('active');  
         }
@@ -312,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         storingMusic(midiObject);
 
+        // hmmm, i would like some consts here for these magic quantities
         switch (event.data[0] & 0xf0) {
             case 0x90:
                 if (event.data[2] !== 0) {  // if velocity != 0, this is a note-on message
@@ -360,16 +381,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function SaveSong(name, layerToStore) { // object constructor for new song
-        this.name = name;
-        this.song = layerToStore;
+    class Song { // object constructor for new song
+        constructor(name, layerToStore) {
+            this.name = name;
+            this.song = layerToStore;
+        }
     }
 
     recordSaveButton.addEventListener('click', () => { // save recorded song
         const newSongName = recordNameInput.value.toString(); // name the song using dom input
-        const newSong = new SaveSong(newSongName, layerToStore); // construct new song object with song name current music events array
+        const newSong = new Song(newSongName, layerToStore); // construct new song object with song name current music events array
         currentUserAccount.recordingSession[newSongName] = newSong; // add new song to user's list
 
+        // userAccounts.forEach
         for (let i = 0; i < userAccounts.length; i++) {
             if (currentUserAccount.name === userAccounts[i].name) {
                 userAccounts[i] = currentUserAccount;
