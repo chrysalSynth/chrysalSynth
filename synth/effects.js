@@ -26,14 +26,14 @@ export function bitCrushFunction(audioCtx) {
     let bufferSize = 4096;
     let bits = 4;
     let normFreq = [0.1, 0.2, 0.5, 1.0];
-    let bitcrushEffect = (function () {
+    let bitcrushEffect = (function() {
         let node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
         node.bits = bits; // between 1 and 16
         node.normfreq = normFreq[0]; // between 0.0 and 1.0
         let step = Math.pow(1 / 2, node.bits);
         let phaser = 0;
         let last = 0;
-        node.onaudioprocess = function (e) {
+        node.onaudioprocess = function(e) {
             let input = e.inputBuffer.getChannelData(0);
             let output = e.outputBuffer.getChannelData(0);
             for (let i = 0; i < bufferSize; i++) {

@@ -460,11 +460,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-
-
-
-
 function updateSongs() {
     let usersSongs = Object.values(currentUserAccount.recordingSession); // get the current user's list of songs
     for (let i = 0; i < usersSongs.length; i++) { // loop through the user's songs and create selectable list on dom
