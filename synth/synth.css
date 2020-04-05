@@ -55,13 +55,6 @@ p {
   color: rgba(241, 238, 238, 0.74);
 }
 
-#piano {
-  position: absolute;
-  bottom: 20%;
-  left: 2%
-  
-}
-
 #speed-dropdown{
   margin-top: 5px;
   height: 33px;
@@ -173,19 +166,6 @@ Button:hover {
   margin: auto;
 }
 
-.div2 {
-  flex: 0 0 auto;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 14em;
-  width: 65em;
-  text-align: center;
-  margin: auto;
-}
-
 .div3 {
   display: flex;
   text-align: center;
@@ -274,6 +254,26 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* !!!the piano lives below this line!!! */
+#piano {
+  position: absolute;
+  bottom: 20%;
+  left: 2%
+}
+
+.div2 {
+  flex: 0 0 auto;
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 14em;
+  width: 65em;
+  text-align: center;
+  margin: auto;
+}
+
 .white {
   height:14em;
   width:4em;
@@ -313,12 +313,11 @@ input:checked + .slider:before {
   background:linear-gradient(to right,#444 0%,#222 100%)
 }
 
-/* CAREFUL HERE!!! THIS CONTROLS THE OVERLAY OF THE KEYS */
-.d, .e, .g, .a, .b {
+.overlay {
   margin:0 0 0 -1em
 }
 
-.white.key.a.active{
+.white.key.active{
   border-top:1px solid #777;
   border-left:1px solid #999;
   border-bottom:1px solid #999;
@@ -326,85 +325,9 @@ input:checked + .slider:before {
   background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
 }
 
-.white.key.b.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
-}
-
-.white.key.c.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
-}
-
-.white.key.d.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
-}
-
-.white.key.e.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
-}
-
-.white.key.f.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
-}
-
-.white.key.g.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
-}
-
-.black.key.a.sharp.active {
+.black.key.active {
   box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
   background:linear-gradient(to right,#444 0%,#222 100%)
 }
 
-.black.key.b.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
-}
 
-.black.key.c.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
-}
-
-.black.key.d.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
-}
-
-.black.key.e.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
-}
-
-.black.key.f.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
-}
-
-.black.key.g.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
-}

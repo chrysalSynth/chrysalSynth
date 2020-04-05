@@ -21,15 +21,25 @@ signUp.addEventListener('click', () => {
     } 
     else {
         //if a userAccountsArray DOES exist... start looping through to see if the current user has already created an account
-        for (let i = 0 ; i < userAccountsArray.length; i++){
-            const userAccountObject = (userAccountsArray[i]);
-            //if they match... break out of loop and shoot them over to the synth page
+
+        userAccountsArray.forEach(userAccountObject => {
             if (userAccountObject.name === name){
                 window.location.href = './synth';
-                //return to break the loop and not run the remaining lines of code
-                return;
             } 
-        }
+            return;
+        });
+
+
+
+        // for (let i = 0 ; i < userAccountsArray.length; i++){
+        //     const userAccountObject = (userAccountsArray[i]);
+        //     //if they match... break out of loop and shoot them over to the synth page
+        //     if (userAccountObject.name === name){
+        //         window.location.href = './synth';
+        //         //return to break the loop and not run the remaining lines of code
+        //         return;
+        //     } 
+        // }
         createUserAccount(userAccountsArray, userAccount);
     }
     //send user to synth page
