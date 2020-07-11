@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
     recordStartButton.addEventListener('click', () => { // start recording on click
         recordingEvents(); // call recording function
         if (recordStartButton.checked) {
-            verbToggle.disabled = true; // disable verb toggle during recording
+            verbToggle.disabled = true; // disable reverb toggle during recording
         } else verbToggle.disabled = false; // re-enable
     });
 
