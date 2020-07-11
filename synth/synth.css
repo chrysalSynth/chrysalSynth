@@ -3,37 +3,28 @@
   background-color: black;
   color: white;
   box-sizing: border-box;
-  
 }
 
 #giantBox {
-  border: 1px solid red;
-  height: 900px;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   flex-direction: column;
-
 }
 
-
-
-input:checked + .image-class {  
-  border: 1px solid red;
-  padding: .5px;
+input:checked + .image-class {
+  padding: 0.5px;
   border-radius: 90%;
-  border: 2px dotted grey
+  border: 2px dotted grey;
 }
 
 img {
-  border: 1px solid red;
   width: 33px;
   margin-left: 5px;
   margin-top: 0px;
   cursor: pointer;
 }
 
-h5{
+h5 {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 30px;
   margin-left: 10px;
@@ -46,17 +37,14 @@ p {
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-[type=radio] {
+[type='radio'] {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-
-
 #aboutUs {
-  border: 1px solid red;
   position: fixed;
   left: 5;
   top: 1%;
@@ -64,33 +52,23 @@ p {
 }
 
 #logout {
-  border: 1px solid red;
   position: absolute;
   margin-left: 1vw;
-  margin-top: -.35vw;
+  margin-top: -0.35vw;
   opacity: 100%;
   font-size: 1em;
   font-family: 'Amatic SC', cursive;
   color: rgba(241, 238, 238, 0.74);
 }
 
-#piano {
-  border: 1px solid red;
-  /* position: absolute; */
-  /* bottom: 20%; */
-  /* left: 2% */
-  
-}
-
-#speed-dropdown{
-  border: 1px solid red;
+#speed-dropdown {
   margin-top: 5px;
   height: 33px;
   display: flex;
   justify-content: left;
 }
 
-#speedDisplay{
+#speedDisplay {
   margin-top: 30px;
   margin-right: 8px;
 }
@@ -111,58 +89,50 @@ p {
 }
 
 #waveshapes {
-  border: 1px solid red;
   display: flex;
   justify-content: left;
-  margin-top: 12px;
   margin-right: 0px;
   justify-content: space-between;
   cursor: pointer;
 }
 
-#reverbAndLoopButtons{
-  border: 1px solid red;
+#reverbAndLoopButtons {
   text-align: center;
   margin-left: 0px;
 }
 
-#loopingContainer{
-  border: 1px solid red;
+#loopingContainer {
   display: flex;
   justify-content: left;
   margin: auto;
   margin-top: 12px;
   margin-right: 0px;
-  border: 2px dotted grey
+  border: 2px dotted grey;
 }
 
-#loopingSwitch{
-  border: 1px solid red;
+#loopingSwitch {
   display: flex;
   margin-right: 30px;
   margin-top: 20px;
 }
 
-#seconds_lowPass{
-  border: 1px solid red;
+#seconds_lowPass {
   display: flex;
   margin-bottom: 1.8vw;
 }
 
-#name-input{
+#name-input {
   display: flex;
 }
 
-#saveSession{
-  border: 1px solid red;
+#saveSession {
   height: 33px;
   width: 150px;
   font-size: 20px;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-#saveButton{
-  border: 1px solid red;
+#saveButton {
   height: 30px;
   cursor: pointer;
   font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -170,35 +140,30 @@ p {
 }
 
 Button:hover {
-  border: 1px solid red;
   cursor: pointer;
   background: #eeff00;
-  color:black;
+  color: black;
 }
 
-#savedSession{
-  border: 1px solid red;
-  height:33px;
-  width:150px;
+#savedSession {
+  height: 33px;
+  width: 150px;
 }
 
 .div1 {
-  border: 1px solid red;
   display: flex;
   justify-content: left;
   margin: auto;
 }
 
-#play{
-  border: 1px solid red;
+#play {
   display: flex;
   text-align: center;
   margin: auto;
-  width:33px;
+  width: 33px;
 }
 
 #div1 {
-  border: 1px solid red;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -206,37 +171,17 @@ Button:hover {
   margin: auto;
 }
 
-.pianoContainer {
-  /* border: 1px solid red; */
-}
-
 .div2 {
-  border: 1px solid red;
-  /* border: 1px solid red; */
-  /* flex: 0 0 auto; */
-  /* margin: 4px; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* flex-direction: column; */
-  /* height: 14em; */
-  /* width: 1200px; */
   margin: 0 auto;
-  /* margin-left: auto; */
-  /* margin-right: auto; */
-  /* text-align: center; */
-  /* margin: auto; */
 }
 
 .div3 {
-  border: 1px solid red;
   display: flex;
   text-align: center;
   margin: auto;
 }
 
 footer {
-  border: 1px solid red;
   /* position: absolute; */
   display: block;
   bottom: 0;
@@ -249,16 +194,14 @@ footer {
 }
 
 #oscilloscope {
-  border: 1px solid red;
   height: 100px;
-  margin-left: 2.5%;
+  margin-left: 8%;
   margin-top: 3.3%;
   opacity: 50%;
 }
 
 /* The switch - the box around the slider */
 .switch {
-  border: 1px solid red;
   position: relative;
   display: inline-block;
   width: 44px;
@@ -274,7 +217,6 @@ footer {
 
 /* The slider */
 .slider {
-  border: 1px solid red;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -282,21 +224,20 @@ footer {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
-  border: 1px solid red;
   position: absolute;
-  content: "";
+  content: '';
   height: 13px;
   width: 13px;
   left: 3px;
   bottom: 3px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -304,7 +245,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px rgb(13, 189, 57);;
+  box-shadow: 0 0 1px rgb(13, 189, 57);
 }
 
 input:checked + .slider:before {
@@ -324,136 +265,158 @@ input:checked + .slider:before {
 }
 
 .white {
-  height:14em;
-  width:4em;
-  z-index:1;
-  border-left:1px solid #bbb;
-  border-bottom:1px solid #bbb;
-  border-radius:0 0 5px 5px;
-  box-shadow:-1px 0 0 rgba(255,255,255,0.8) inset,0 0 5px #ccc inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#eee 0%,#fff 100%);
-  position:relative;
-  float:left
+  height: 14em;
+  width: 4em;
+  z-index: 1;
+  border-left: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  border-radius: 0 0 5px 5px;
+  box-shadow: -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 5px #ccc inset,
+    0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #eee 0%, #fff 100%);
+  position: relative;
+  float: left;
 }
 
-.white:active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white:active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
 .black {
-  height:8em;
-  width:2em;
-  margin:0 0 0 -1em;
-  z-index:2;
-  border:1px solid #000;
-  border-radius:0 0 3px 3px;
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -5px 2px 3px rgba(0,0,0,0.6) inset,0 2px 4px rgba(0,0,0,0.5);
-  background:linear-gradient(45deg,#222 0%,#555 100%);
-  position:relative;
-  float:left
+  height: 8em;
+  width: 2em;
+  margin: 0 0 0 -1em;
+  z-index: 2;
+  border: 1px solid #000;
+  border-radius: 0 0 3px 3px;
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -5px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #222 0%, #555 100%);
+  position: relative;
+  float: left;
 }
 
 .black:active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 /* CAREFUL HERE!!! THIS CONTROLS THE OVERLAY OF THE KEYS */
-.d, .e, .g, .a, .b {
-  margin:0 0 0 -1em
+.d,
+.e,
+.g,
+.a,
+.b {
+  margin: 0 0 0 -1em;
 }
 
-.white.key.a.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.a.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
-.white.key.b.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.b.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
-.white.key.c.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.c.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
-.white.key.d.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.d.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
-.white.key.e.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.e.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
-.white.key.f.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.f.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
-.white.key.g.active{
-  border-top:1px solid #777;
-  border-left:1px solid #999;
-  border-bottom:1px solid #999;
-  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+.white.key.g.active {
+  border-top: 1px solid #777;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+    -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
 }
 
 .black.key.a.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 .black.key.b.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 .black.key.c.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 .black.key.d.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 .black.key.e.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 .black.key.f.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
 
 .black.key.g.sharp.active {
-  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-  background:linear-gradient(to right,#444 0%,#222 100%)
+  box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #444 0%, #222 100%);
 }
